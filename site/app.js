@@ -7,7 +7,7 @@ const CONFIG = {
   // Exemple : "https://votre-instance.app.n8n.cloud/webhook/mova-diagnostic"
   formEndpoint: "",
   // Email affiché au visiteur si l'envoi échoue (facultatif)
-  contactEmail: ""
+  contactEmail: "raphaelcabanne.mova.ia@gmail.com"
 };
 
 (function () {

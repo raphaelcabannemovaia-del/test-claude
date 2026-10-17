@@ -18,8 +18,8 @@ Scénario prêt à importer : `automations/n8n-formulaire-diagnostic.json` (à l
 Il fait trois choses : vous envoie la demande par email, répond au site, puis envoie un email de confirmation au prospect avec votre lien de réservation.
 
 1. Dans n8n : Workflows > Import from File > choisir le fichier.
-2. Nœuds « Email pour moi » et « Confirmation au prospect » : sélectionner votre identifiant Gmail (Credentials > Gmail OAuth2), ou remplacer ces nœuds par « Send Email » (SMTP).
-3. « Email pour moi » : remplacer `VOTRE_EMAIL@exemple.fr` par votre adresse.
+2. Nœuds « Email pour moi » et « Confirmation au prospect » : créer l'identifiant Gmail (Credentials > Gmail OAuth2) en vous connectant avec raphaelcabanne.mova.ia@gmail.com. Les deux emails partent de cette adresse.
+3. « Email pour moi » envoie déjà les demandes à raphaelcabanne.mova.ia@gmail.com : rien à changer.
 4. « Confirmation au prospect » : remplacer `COLLER_ICI_LE_LIEN_DE_RESERVATION_GOOGLE_AGENDA` par votre lien.
 5. Nœud « Formulaire du site » : vérifier que « Allowed Origins (CORS) » vaut `*` ou le domaine du site.
 6. Activer le workflow (interrupteur Active), copier la **Production URL** du nœud Webhook et la coller dans `app.js`, `CONFIG.formEndpoint`.

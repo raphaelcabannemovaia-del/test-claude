@@ -22,7 +22,7 @@
     },
     {
       "parameters": {
-        "sendTo": "VOTRE_EMAIL@exemple.fr",
+        "sendTo": "raphaelcabanne.mova.ia@gmail.com",
         "subject": "=Nouvelle demande de diagnostic : {{ $('Formulaire du site').item.json.body.agency }} ({{ $('Formulaire du site').item.json.body.city }})",
         "emailType": "text",
         "message": "=Nouvelle demande de diagnostic reçue depuis le site mova.ia.\n\nNom : {{ $('Formulaire du site').item.json.body.name }}\nAgence : {{ $('Formulaire du site').item.json.body.agency }}\nEmail : {{ $('Formulaire du site').item.json.body.email }}\nTéléphone : {{ $('Formulaire du site').item.json.body.phone }}\nVille : {{ $('Formulaire du site').item.json.body.city }}\nCollaborateurs : {{ $('Formulaire du site').item.json.body.team_size }}\nChiffre d'affaires : {{ $('Formulaire du site').item.json.body.revenue }}\nLogiciel : {{ $('Formulaire du site').item.json.body.tools || 'non précisé' }}\n\nCe qui leur prend le plus de temps :\n{{ $('Formulaire du site').item.json.body.message || 'non précisé' }}\n\nReçu le {{ $('Formulaire du site').item.json.body.sent_at }}",
@@ -38,7 +38,9 @@
       "position": [
         260,
         0
-      ]
+      ],
+      "notes": "Envoyé depuis le compte Gmail connecté (raphaelcabanne.mova.ia@gmail.com) vers raphaelcabanne.mova.ia@gmail.com. Credentials > Gmail OAuth2 > se connecter avec raphaelcabanne.mova.ia@gmail.com.",
+      "notesInFlow": true
     },
     {
       "parameters": {
@@ -63,7 +65,8 @@
         "message": "=Bonjour {{ $('Formulaire du site').item.json.body.name }},\n\nMerci pour votre demande de diagnostic pour {{ $('Formulaire du site').item.json.body.agency }}.\n\nSi vous n'avez pas encore choisi votre créneau, vous pouvez le faire ici :\nCOLLER_ICI_LE_LIEN_DE_RESERVATION_GOOGLE_AGENDA\n\nLe diagnostic dure 30 minutes en visio. Nous passerons en revue vos leads, votre suivi acquéreurs et vendeurs, et les outils que vous utilisez. Vous recevrez ensuite une proposition écrite, sans engagement.\n\nÀ très bientôt,\nmova.ia\n\nVous recevez cet email parce que vous avez rempli le formulaire du site mova.ia. Pour toute question sur vos données, répondez simplement à ce message.",
         "options": {
           "appendAttribution": false,
-          "senderName": "mova.ia"
+          "senderName": "mova.ia",
+          "replyTo": "raphaelcabanne.mova.ia@gmail.com"
         }
       },
       "id": "2c792193-57c9-4f77-885d-03f8c7d76cc6",
@@ -73,7 +76,9 @@
       "position": [
         780,
         0
-      ]
+      ],
+      "notes": "Envoyé au prospect depuis raphaelcabanne.mova.ia@gmail.com (même identifiant Gmail que le nœud précédent). Remplacer le lien de réservation dans le message.",
+      "notesInFlow": true
     }
   ],
   "connections": {
