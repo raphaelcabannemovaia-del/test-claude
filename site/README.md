@@ -15,9 +15,10 @@ Site statique (HTML/CSS/JS, aucune dépendance). Ouvrir `index.html` dans un nav
 
 ## Contenu à valider
 
-- Démo du haut de page : conversation et dossier fictifs, réglés dans `index.html` (attributs `data-t` = moment d'apparition en millisecondes).
-- Catalogue « Ce que vous pouvez nous confier » : ne garder que ce qui est réellement livrable.
-- Simulateur : hypothèses fixes en haut de la fonction `sim()` dans `app.js` (1 demande sur 50 transformée, 50 % récupérées, 8 min par demande).
+- Positionnement : expertise en automatisation sur mesure et clé en main. Pas de promesse de résultat chiffrée.
+- Ouverture : exemple d'automatisation « nouvelle demande d'un acquéreur » (étapes dans `index.html`, section `.wf`).
+- Exemples : six automatisations types (demandes, visites, relances, vendeurs, annonces, dossiers). Ne garder que ce qui est réellement livrable.
+- Simulateur : mesure le temps passé aujourd'hui (demandes × minutes + administratif × 4,33 semaines). Aucun gain annoncé.
 
 ## Chiffres affichés
 
