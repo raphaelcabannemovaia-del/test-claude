@@ -97,8 +97,15 @@ const CONFIG = {
   (function sim() {
     var leads = $("s-leads"), min = $("s-min"), admin = $("s-admin");
     if (!leads) return;
-    var WEEKS = 52 / 12, DAY = 7;
+    var WEEKS = 52 / 12, DAY = 7, rate = 35;
     var shown = 0, raf = null;
+    document.querySelectorAll(".rate button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        rate = +b.dataset.rate;
+        document.querySelectorAll(".rate button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+        update();
+      });
+    });
     function fill(r) { r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min) * 100) + "%"); }
     function tween(target) {
       var from = shown, t0 = null, dur = reduce ? 0 : 400;
@@ -124,6 +131,7 @@ const CONFIG = {
       $("b-admin").style.setProperty("--w", (total ? hAdmin / total * 100 : 0) + "%");
       var days = Math.round(total / DAY * 10) / 10;
       $("r-days").textContent = "Soit environ " + String(days).replace(".", ",") + " jour" + (days >= 2 ? "s" : "") + " de travail par mois.";
+      $("r-value").textContent = String(Math.round(total * rate / 10) * 10).replace(/\B(?=(\d{3})+(?!\d))/g, NB) + NB + "€ / mois";
       tween(total);
     }
     [leads, min, admin].forEach(function (r) { r.addEventListener("input", update); });
