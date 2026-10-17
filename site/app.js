@@ -1,9 +1,13 @@
 /* Configuration : à compléter avant la mise en ligne (voir README.md) */
 const CONFIG = {
-  // URL de votre page de réservation Google Agenda (Planning des rendez-vous > Partager)
+  // Lien de votre page de réservation Google Agenda (Planning des rendez-vous > Partager)
   bookingUrl: "",
-  // URL d'un service de formulaire (ex. Formspree : https://formspree.io/f/xxxxxxx)
-  formEndpoint: ""
+  // Adresse qui reçoit le formulaire : URL de production du webhook n8n
+  // (scénario prêt à importer : automations/n8n-formulaire-diagnostic.json)
+  // Exemple : "https://votre-instance.app.n8n.cloud/webhook/mova-diagnostic"
+  formEndpoint: "",
+  // Email affiché au visiteur si l'envoi échoue (facultatif)
+  contactEmail: ""
 };
 
 (function () {
@@ -150,8 +154,9 @@ const CONFIG = {
   (function form() {
     var f = $("audit-form");
     if (!f) return;
-    var err = $("f-err"), done = $("audit-done");
-    function showDone() {
+    var err = $("f-err"), done = $("audit-done"), btn = $("f-submit"), btnHtml = btn.innerHTML;
+
+    function showDone(sent) {
       f.hidden = true;
       done.hidden = false;
       done.classList.add("is-in");
@@ -160,11 +165,19 @@ const CONFIG = {
       else {
         link.setAttribute("aria-disabled", "true");
         link.addEventListener("click", function (e) { e.preventDefault(); });
-        notes.push("Aperçu : le lien de réservation Google Agenda n'est pas encore renseigné.");
+        notes.push("Mode test : le lien de réservation n'est pas renseigné (CONFIG.bookingUrl dans app.js).");
       }
-      if (!CONFIG.formEndpoint) notes.push("Aperçu : le formulaire n'est pas encore relié à votre email, rien n'a été envoyé.");
+      if (!sent) notes.push("Mode test : aucune adresse d'envoi n'est configurée (CONFIG.formEndpoint dans app.js), aucun email n'a été envoyé.");
       if (notes.length) { note.hidden = false; note.textContent = notes.join(" "); }
     }
+
+    function fail(reason) {
+      if (window.console) console.error("[mova.ia] Échec de l'envoi du formulaire :", reason);
+      btn.disabled = false;
+      btn.innerHTML = btnHtml;
+      err.textContent = "L'envoi n'a pas abouti. Réessayez dans un instant" + (CONFIG.contactEmail ? " ou écrivez-nous à " + CONFIG.contactEmail : "") + ".";
+    }
+
     f.addEventListener("submit", function (e) {
       e.preventDefault();
       err.textContent = "";
@@ -174,21 +187,37 @@ const CONFIG = {
         if (bad) bad.focus();
         return;
       }
-      if (!CONFIG.formEndpoint) { showDone(); return; }
-      var btn = $("f-submit");
+      // Champ piège invisible : rempli uniquement par les robots, l'envoi est alors ignoré
+      if (f.elements.website && f.elements.website.value) { showDone(true); return; }
+      if (!CONFIG.formEndpoint) {
+        if (window.console) console.warn("[mova.ia] CONFIG.formEndpoint est vide : le formulaire n'envoie rien.");
+        showDone(false);
+        return;
+      }
+
+      // Envoi en application/x-www-form-urlencoded : requête « simple », sans pré-vérification CORS,
+      // lue directement par n8n, Make et Formspree
+      var payload = new URLSearchParams();
+      new FormData(f).forEach(function (v, k) { if (k !== "website") payload.append(k, String(v).trim()); });
+      payload.append("source", "Site mova.ia");
+      payload.append("sent_at", new Date().toISOString());
+
       btn.disabled = true;
-      var data = {};
-      new FormData(f).forEach(function (v, k) { data[k] = v; });
+      btn.textContent = "Envoi en cours…";
+      var ctrl = "AbortController" in window ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
       fetch(CONFIG.formEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(data)
+        headers: { "Accept": "application/json" },
+        body: payload,
+        signal: ctrl ? ctrl.signal : undefined
       }).then(function (r) {
-        if (!r.ok) throw new Error("http " + r.status);
-        showDone();
-      }).catch(function () {
-        btn.disabled = false;
-        err.textContent = "L'envoi a échoué. Réessayez dans un instant.";
+        clearTimeout(timer);
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        showDone(true);
+      }).catch(function (x) {
+        clearTimeout(timer);
+        fail(x);
       });
     });
   })();

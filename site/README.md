@@ -6,19 +6,39 @@ Site statique (HTML/CSS/JS, aucune dépendance externe, polices hébergées dans
 
 1. **Lien de réservation** : dans `app.js`, renseigner `CONFIG.bookingUrl`.
    Google Agenda > Créer > Planning des rendez-vous > durée 30 min, lieu Google Meet, vos disponibilités > Partager > copier le lien.
-2. **Formulaire** : renseigner `CONFIG.formEndpoint`. Tant que ce champ est vide, rien n'est envoyé.
-   - Option recommandée pour le RGPD : un webhook n8n (n8n Cloud hébergé dans l'UE, ou n8n auto-hébergé en Europe).
-     Nœud Webhook en POST, réponse JSON, « Allowed Origins (CORS) » réglé sur le domaine du site, puis envoi d'un email et ajout à un tableur.
-   - Option rapide : Formspree (stockage aux États-Unis ; vérifier la certification Data Privacy Framework et le contrat de sous-traitance avant usage).
+2. **Formulaire** : renseigner `CONFIG.formEndpoint` (et, si vous voulez, `CONFIG.contactEmail`). Tant que `formEndpoint` est vide, rien n'est envoyé. Voir « Recevoir les demandes par email » ci-dessous.
 3. **Mentions légales** (`mentions-legales.html`) : garder un seul cas (société ou entrepreneur individuel) et remplir tous les champs surlignés.
    Le directeur de la publication est le représentant légal de la société éditrice, ou l'entrepreneur lui-même s'il est majeur.
 4. **Confidentialité** (`confidentialite.html`) : remplir la date, l'email de contact, la liste des prestataires et, pour chacun hors UE, la garantie de transfert.
 5. **Hébergement** : glisser le dossier `site/` sur Netlify, Cloudflare Pages ou un hébergeur européen, puis relier le domaine.
 
+## Recevoir les demandes par email (n8n)
+
+Scénario prêt à importer : `automations/n8n-formulaire-diagnostic.json` (à la racine du dépôt, hors du dossier publié).
+Il fait trois choses : vous envoie la demande par email, répond au site, puis envoie un email de confirmation au prospect avec votre lien de réservation.
+
+1. Dans n8n : Workflows > Import from File > choisir le fichier.
+2. Nœuds « Email pour moi » et « Confirmation au prospect » : sélectionner votre identifiant Gmail (Credentials > Gmail OAuth2), ou remplacer ces nœuds par « Send Email » (SMTP).
+3. « Email pour moi » : remplacer `VOTRE_EMAIL@exemple.fr` par votre adresse.
+4. « Confirmation au prospect » : remplacer `COLLER_ICI_LE_LIEN_DE_RESERVATION_GOOGLE_AGENDA` par votre lien.
+5. Nœud « Formulaire du site » : vérifier que « Allowed Origins (CORS) » vaut `*` ou le domaine du site.
+6. Activer le workflow (interrupteur Active), copier la **Production URL** du nœud Webhook et la coller dans `app.js`, `CONFIG.formEndpoint`.
+
+Tester : ouvrir le site déployé (ou `index.html` sur votre ordinateur), remplir le formulaire avec votre propre email, puis vérifier dans n8n l'onglet Executions et votre boîte mail (et les spams).
+L'aperçu sur claude.ai bloque tout envoi vers un autre site : aucun test d'envoi n'y fonctionne.
+
+Le site envoie les champs en `application/x-www-form-urlencoded` : `name`, `agency`, `email`, `phone`, `city`, `team_size`, `revenue`, `tools`, `message`, `source`, `sent_at`.
+Le même format fonctionne avec un webhook Make ou Formspree.
+
+Problèmes fréquents :
+- Le site affiche « L'envoi n'a pas abouti » : workflow non activé, URL de test collée au lieu de la Production URL, ou CORS mal réglé.
+- n8n reçoit la demande mais aucun email n'arrive : identifiant Gmail non autorisé, ou email classé en spam.
+
 ## RGPD : ce qui est déjà en place
 
 - Aucun cookie, aucun traceur, aucune mesure d'audience : pas de bandeau cookies nécessaire tant que rien de tel n'est ajouté.
 - Polices auto-hébergées (`fonts.css`) : aucune adresse IP transmise à Google pendant la consultation.
+- Champ piège invisible contre les robots : les envois automatiques sont ignorés sans gêner les visiteurs.
 - Information sous le formulaire (responsable, finalité, base légale, durée, droits, lien vers la politique).
 - Base légale du formulaire : mesures précontractuelles (art. 6.1.b). Pas de case de consentement obligatoire.
 - Politique de confidentialité structurée selon l'article 13 du RGPD, avec la section sous-traitance (art. 28) pour les données des agences clientes.

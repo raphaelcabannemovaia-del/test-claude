@@ -1,0 +1,118 @@
+{
+  "name": "mova.ia - Formulaire diagnostic",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mova-diagnostic",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "4953d4b3-eef3-4151-9392-1c20a94c0dd0",
+      "name": "Formulaire du site",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "0ed3078b-f1bb-487e-a54e-80199ebdf130"
+    },
+    {
+      "parameters": {
+        "sendTo": "VOTRE_EMAIL@exemple.fr",
+        "subject": "=Nouvelle demande de diagnostic : {{ $('Formulaire du site').item.json.body.agency }} ({{ $('Formulaire du site').item.json.body.city }})",
+        "emailType": "text",
+        "message": "=Nouvelle demande de diagnostic reçue depuis le site mova.ia.\n\nNom : {{ $('Formulaire du site').item.json.body.name }}\nAgence : {{ $('Formulaire du site').item.json.body.agency }}\nEmail : {{ $('Formulaire du site').item.json.body.email }}\nTéléphone : {{ $('Formulaire du site').item.json.body.phone }}\nVille : {{ $('Formulaire du site').item.json.body.city }}\nCollaborateurs : {{ $('Formulaire du site').item.json.body.team_size }}\nChiffre d'affaires : {{ $('Formulaire du site').item.json.body.revenue }}\nLogiciel : {{ $('Formulaire du site').item.json.body.tools || 'non précisé' }}\n\nCe qui leur prend le plus de temps :\n{{ $('Formulaire du site').item.json.body.message || 'non précisé' }}\n\nReçu le {{ $('Formulaire du site').item.json.body.sent_at }}",
+        "options": {
+          "appendAttribution": false,
+          "replyTo": "={{ $('Formulaire du site').item.json.body.email }}"
+        }
+      },
+      "id": "1e9534fd-8314-4bb0-b601-4ca358552d13",
+      "name": "Email pour moi",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"ok\": true\n}",
+        "options": {}
+      },
+      "id": "e782017b-78d3-4d69-a5e8-8e7e666bc6f7",
+      "name": "Réponse au site",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Formulaire du site').item.json.body.email }}",
+        "subject": "Votre demande de diagnostic mova.ia",
+        "emailType": "text",
+        "message": "=Bonjour {{ $('Formulaire du site').item.json.body.name }},\n\nMerci pour votre demande de diagnostic pour {{ $('Formulaire du site').item.json.body.agency }}.\n\nSi vous n'avez pas encore choisi votre créneau, vous pouvez le faire ici :\nCOLLER_ICI_LE_LIEN_DE_RESERVATION_GOOGLE_AGENDA\n\nLe diagnostic dure 30 minutes en visio. Nous passerons en revue vos leads, votre suivi acquéreurs et vendeurs, et les outils que vous utilisez. Vous recevrez ensuite une proposition écrite, sans engagement.\n\nÀ très bientôt,\nmova.ia\n\nVous recevez cet email parce que vous avez rempli le formulaire du site mova.ia. Pour toute question sur vos données, répondez simplement à ce message.",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "mova.ia"
+        }
+      },
+      "id": "2c792193-57c9-4f77-885d-03f8c7d76cc6",
+      "name": "Confirmation au prospect",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Formulaire du site": {
+      "main": [
+        [
+          {
+            "node": "Email pour moi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email pour moi": {
+      "main": [
+        [
+          {
+            "node": "Réponse au site",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Réponse au site": {
+      "main": [
+        [
+          {
+            "node": "Confirmation au prospect",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
