@@ -24,20 +24,27 @@ const CONFIG = {
   window.addEventListener("resize", onScroll);
   onScroll();
 
-  var menuBtn = $("menu-btn"), menu = $("menu");
+  var menuBtn = $("menu-btn"), menu = $("menu"), bd = $("menu-bd"), isOpen = false;
+  Array.prototype.forEach.call(menu.querySelectorAll("a"), function (a, i) { a.style.setProperty("--i", i); });
   function setMenu(open) {
-    menu.hidden = !open;
+    isOpen = open;
     hdr.classList.toggle("menu-open", open);
+    bd.classList.toggle("on", open);
     menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
     menuBtn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
   }
-  menuBtn.addEventListener("click", function () { setMenu(menu.hidden); });
+  menuBtn.addEventListener("click", function () { setMenu(!isOpen); });
+  bd.addEventListener("click", function () { setMenu(false); });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && isOpen) { setMenu(false); menuBtn.focus(); } });
+  window.addEventListener("resize", function () { if (isOpen && window.innerWidth > 900) setMenu(false); });
 
   /* ---------- Apparitions au défilement ---------- */
   document.querySelectorAll("[data-stagger]").forEach(function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", i); });
+  });
+  document.querySelectorAll(".flow").forEach(function (f) {
+    Array.prototype.forEach.call(f.children, function (li, k) { li.style.setProperty("--k", k); });
   });
   if (!reduce && hasIO) {
     document.documentElement.classList.add("motion");

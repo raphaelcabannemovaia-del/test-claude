@@ -34,9 +34,15 @@
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></g></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/></g></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></g></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
 </svg>
 
 <div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="menu-bd" id="menu-bd" aria-hidden="true"></div>
 
 <header class="hdr" id="hdr">
   <div class="pill">
@@ -50,7 +56,7 @@
       <a class="btn btn-sm" href="#appel">Diagnostic offert <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
     </nav>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span></button>
-    <nav class="menu" id="menu" aria-label="Menu" hidden>
+    <nav class="menu" id="menu" aria-label="Menu">
       <a href="#benefices">Bénéfices</a>
       <a href="#exemples">Exemples</a>
       <a href="#comparatif">Comparatif</a>
@@ -104,16 +110,12 @@
 </section>
 
 <!-- ================= OUTILS ================= -->
-<section class="tools" aria-label="Outils compatibles">
-  <div class="wrap">
-    <p>Nous travaillons avec vos outils</p>
-    <div class="tool-list">
-      <span class="tchip"><svg width="16" height="16"><use href="#i-db"/></svg>Logiciel de transaction</span>
-      <span class="tchip"><svg width="16" height="16"><use href="#i-home"/></svg>Portails et passerelles</span>
-      <span class="tchip"><svg width="16" height="16"><use href="#i-globe"/></svg>Site de l'agence</span>
-      <span class="tchip"><svg width="16" height="16"><use href="#i-mail"/></svg>Gmail ou Outlook</span>
-      <span class="tchip"><svg width="16" height="16"><use href="#i-cal"/></svg>Agenda partagé</span>
-      <span class="tchip"><svg width="16" height="16"><use href="#i-phone"/></svg>SMS et WhatsApp</span>
+<section class="tools" aria-label="Outils avec lesquels nous travaillons">
+  <p class="tools-label">Nous branchons les automatisations sur vos outils</p>
+  <div class="logos">
+    <div class="logos-track">
+      <div class="logo-set"><span class="lg lg-1"><i><svg width="20" height="20"><use href="#i-db"/></svg></i>Logiciel de transaction</span><span class="lg lg-2"><i><svg width="20" height="20"><use href="#i-home"/></svg></i>Portails immobiliers</span><span class="lg lg-3"><i><svg width="20" height="20"><use href="#i-globe"/></svg></i>Site de l'agence</span><span class="lg lg-4"><i><svg width="20" height="20"><use href="#i-mail"/></svg></i>Gmail</span><span class="lg lg-5"><i><svg width="20" height="20"><use href="#i-mail"/></svg></i>Outlook</span><span class="lg lg-6"><i><svg width="20" height="20"><use href="#i-cal"/></svg></i>Google Agenda</span><span class="lg lg-7"><i><svg width="20" height="20"><use href="#i-chat"/></svg></i>WhatsApp</span><span class="lg lg-8"><i><svg width="20" height="20"><use href="#i-phone"/></svg></i>SMS</span><span class="lg lg-3"><i><svg width="20" height="20"><use href="#i-grid"/></svg></i>Google Sheets</span><span class="lg lg-1"><i><svg width="20" height="20"><use href="#i-folder"/></svg></i>Google Drive</span><span class="lg lg-2"><i><svg width="20" height="20"><use href="#i-list"/></svg></i>Formulaires web</span></div>
+      <div class="logo-set" aria-hidden="true"><span class="lg lg-1"><i><svg width="20" height="20"><use href="#i-db"/></svg></i>Logiciel de transaction</span><span class="lg lg-2"><i><svg width="20" height="20"><use href="#i-home"/></svg></i>Portails immobiliers</span><span class="lg lg-3"><i><svg width="20" height="20"><use href="#i-globe"/></svg></i>Site de l'agence</span><span class="lg lg-4"><i><svg width="20" height="20"><use href="#i-mail"/></svg></i>Gmail</span><span class="lg lg-5"><i><svg width="20" height="20"><use href="#i-mail"/></svg></i>Outlook</span><span class="lg lg-6"><i><svg width="20" height="20"><use href="#i-cal"/></svg></i>Google Agenda</span><span class="lg lg-7"><i><svg width="20" height="20"><use href="#i-chat"/></svg></i>WhatsApp</span><span class="lg lg-8"><i><svg width="20" height="20"><use href="#i-phone"/></svg></i>SMS</span><span class="lg lg-3"><i><svg width="20" height="20"><use href="#i-grid"/></svg></i>Google Sheets</span><span class="lg lg-1"><i><svg width="20" height="20"><use href="#i-folder"/></svg></i>Google Drive</span><span class="lg lg-2"><i><svg width="20" height="20"><use href="#i-list"/></svg></i>Formulaires web</span></div>
     </div>
   </div>
 </section>
@@ -227,39 +229,45 @@
   <div class="wrap">
     <div class="head rv">
       <p class="eyebrow">Exemples concrets</p>
-      <h2>Six automatisations que nous mettons en place en agence.</h2>
+      <h2>Six automatisations que nous mettons en place <span class="it">en agence</span>.</h2>
       <p class="lede">Chaque agence reçoit une sélection adaptée à son activité et à ses outils, définie pendant le diagnostic.</p>
     </div>
     <div class="ex" data-stagger>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-mail"/></svg></span>
-        <h3>Leads portails</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Chaque lead est lu, ressaisi dans le logiciel de transaction, puis rappelé quand le planning le permet.</div><div class="aft"><small>Après</small>Le lead crée la fiche acquéreur, reçoit le descriptif du bien et vos créneaux, le négociateur est notifié.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-mail"/></svg></span><div><h3>Leads portails</h3><small>Déclencheur · nouveau lead</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Chaque lead est lu, ressaisi dans le logiciel de transaction, puis rappelé quand le planning le permet.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Fiche acquéreur créée dans votre logiciel</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Descriptif, DPE et créneaux envoyés</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Négociateur notifié avec un résumé</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Relance programmée à J+2</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--auto"><svg width="13" height="13"><use href="#i-bolt"/></svg>Automatique</span><span>Portail → Logiciel → Email</span></div>
       </article>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-cal"/></svg></span>
-        <h3>Visites</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Plusieurs appels pour caler un créneau, puis un SMS de rappel à ne pas oublier.</div><div class="aft"><small>Après</small>L'acquéreur réserve un créneau libre. Confirmation, adresse et rappel la veille partent automatiquement.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-cal"/></svg></span><div><h3>Visites</h3><small>Déclencheur · demande de visite</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Plusieurs appels pour caler un créneau, puis un SMS de rappel à ne pas oublier.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Créneau libre réservé par l'acquéreur</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Visite ajoutée à l'agenda du négociateur</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Confirmation et adresse envoyées par SMS</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Rappel automatique la veille</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--auto"><svg width="13" height="13"><use href="#i-bolt"/></svg>Automatique</span><span>Agenda → SMS</span></div>
       </article>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-refresh"/></svg></span>
-        <h3>Relances acquéreurs</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Relances faites quand le planning le permet. Le fichier vieillit.</div><div class="aft"><small>Après</small>Relances programmées après chaque étape, avec les nouveaux biens qui correspondent aux critères.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-refresh"/></svg></span><div><h3>Relances acquéreurs</h3><small>Déclencheur · étape du dossier</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Relances faites quand le planning le permet. Le fichier vieillit.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Relance après chaque visite</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Nouveaux biens proposés selon les critères</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Contacts inactifs signalés au négociateur</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--auto"><svg width="13" height="13"><use href="#i-bolt"/></svg>Automatique</span><span>Logiciel → Email · SMS</span></div>
       </article>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-home"/></svg></span>
-        <h3>Comptes rendus vendeurs</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Rédigés le soir, ou pas du tout quand la semaine est chargée.</div><div class="aft"><small>Après</small>Un brouillon est préparé à partir des retours de visite. Le négociateur relit et envoie.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-home"/></svg></span><div><h3>Comptes rendus vendeurs</h3><small>Déclencheur · fin de visite</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Rédigés le soir, ou pas du tout quand la semaine est chargée.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Retours de visite regroupés</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Compte rendu rédigé en brouillon</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Le négociateur relit et l'envoie au vendeur</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--val"><svg width="13" height="13"><use href="#i-check"/></svg>Vous validez</span><span>Notes → Email</span></div>
       </article>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-doc"/></svg></span>
-        <h3>Annonces</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Chaque annonce est rédigée à partir de zéro, bien par bien.</div><div class="aft"><small>Après</small>Un premier jet est rédigé depuis la fiche du bien et le mandat. Vous ajustez et diffusez.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-doc"/></svg></span><div><h3>Annonces</h3><small>Déclencheur · nouveau mandat</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Chaque annonce est rédigée à partir de zéro, bien par bien.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Premier jet rédigé depuis la fiche du bien</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Points forts, surfaces et DPE mis en avant</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Vous ajustez puis diffusez sur les portails</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--val"><svg width="13" height="13"><use href="#i-check"/></svg>Vous validez</span><span>Fiche bien → Passerelle</span></div>
       </article>
       <article class="ex-c rv">
-        <span class="ibox"><svg width="22" height="22"><use href="#i-db"/></svg></span>
-        <h3>Dossiers de vente et de location</h3>
-        <div class="ba"><div class="bef"><small>Aujourd'hui</small>Pièces réclamées par mail, relances manuelles, documents éparpillés.</div><div class="aft"><small>Après</small>Liste des pièces envoyée, relances automatiques, documents rangés dans le bon dossier.</div></div>
+        <div class="ex-h"><span class="ibox"><svg width="22" height="22"><use href="#i-folder"/></svg></span><div><h3>Dossiers de vente et de location</h3><small>Déclencheur · offre acceptée</small></div></div>
+        <div class="ex-bef"><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span><p><b>Aujourd'hui</b>Pièces réclamées par mail, relances manuelles, documents éparpillés.</p></div>
+        <div class="ex-aft"><small><img src="assets/mark-white.svg" alt="" width="16" height="16">Avec mova.ia</small><ol class="flow"><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Liste des pièces envoyée au client</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Relances jusqu'à réception complète</li><li><i><svg width="12" height="12"><use href="#i-check"/></svg></i>Documents classés dans le bon dossier</li></ol></div>
+        <div class="ex-meta"><span class="mode mode--auto"><svg width="13" height="13"><use href="#i-bolt"/></svg>Automatique</span><span>Email → Drive</span></div>
       </article>
     </div>
     <div class="ex-foot rv">
@@ -274,21 +282,29 @@
   <div class="wrap">
     <div class="head rv">
       <p class="eyebrow">Comparatif</p>
-      <h2>Recruter, faire soi-même ou confier à un spécialiste ?</h2>
+      <h2>Recruter, faire soi-même ou <span class="it">confier à un spécialiste</span> ?</h2>
       <p class="lede">Trois façons de soulager votre équipe. Voici ce qui les distingue.</p>
     </div>
     <div class="cmp-wrap rv">
       <table class="cmp">
         <thead>
-          <tr><th scope="col"><small>Critère</small></th><th scope="col"><small>Option 1</small>Recruter un assistant</th><th scope="col"><small>Option 2</small>Outils en libre-service</th><th scope="col" class="us"><small>Option 3</small>mova.ia</th></tr>
+          <tr>
+            <th scope="col"><span class="oh"><small>Critère</small></span></th>
+            <th scope="col"><span class="oh"><i><svg width="20" height="20"><use href="#i-users"/></svg></i><small>Option 1</small><b>Recruter un assistant</b></span></th>
+            <th scope="col"><span class="oh"><i><svg width="20" height="20"><use href="#i-tune"/></svg></i><small>Option 2</small><b>Outils en libre-service</b></span></th>
+            <th scope="col" class="us"><span class="oh"><span class="rec">Recommandé</span><i class="oh-us"><img src="assets/mark-white.svg" alt="" width="24" height="24"></i><small>Option 3</small><b>mova.ia</b></span></th>
+          </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Mise en place</th><td>Recrutement, intégration, formation</td><td>À paramétrer vous-même</td><td class="us"><svg width="16" height="16"><use href="#i-check"/></svg>Clé en main, après un diagnostic de 30 min</td></tr>
-          <tr><th scope="row">Coût</th><td>Salaire chargé, sur la durée du contrat</td><td>Abonnements et votre temps de paramétrage</td><td class="us"><svg width="16" height="16"><use href="#i-check"/></svg>Mise en place sur devis, suivi mensuel sans engagement</td></tr>
-          <tr><th scope="row">Disponibilité</th><td>Horaires de bureau, congés</td><td>Selon votre paramétrage</td><td class="us"><svg width="16" height="16"><use href="#i-check"/></svg>Automatisations actives en continu</td></tr>
-          <tr><th scope="row">Métier immobilier</th><td>Selon le profil recruté</td><td>Outils génériques</td><td class="us"><svg width="16" height="16"><use href="#i-check"/></svg>Pensé pour la transaction et la location</td></tr>
-          <tr><th scope="row">Maintenance</th><td>Remplacement en cas de départ</td><td>À votre charge quand un outil change</td><td class="us"><svg width="16" height="16"><use href="#i-check"/></svg>Incluse dans le suivi mensuel</td></tr>
+          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-key"/></svg></i>Mise en place</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Recrutement, intégration, formation</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>À paramétrer vous-même</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Clé en main, après un diagnostic de 30 min</span></td></tr>
+          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-doc"/></svg></i>Coût</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Salaire chargé, sur la durée du contrat</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Abonnements et votre temps de paramétrage</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Mise en place sur devis, suivi mensuel sans engagement</span></td></tr>
+          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-clock"/></svg></i>Disponibilité</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Horaires de bureau, congés</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Selon votre paramétrage</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Automatisations actives en continu</span></td></tr>
+          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-home"/></svg></i>Métier immobilier</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Selon le profil recruté</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Outils génériques</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Pensé pour la transaction et la location</span></td></tr>
+          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-refresh"/></svg></i>Maintenance</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Remplacement en cas de départ</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>À votre charge quand un outil change</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Incluse dans le suivi mensuel</span></td></tr>
         </tbody>
+        <tfoot>
+          <tr><td></td><td></td><td></td><td class="us"><a class="btn btn-white btn-sm btn-block" href="#appel">Réserver mon diagnostic <svg width="16" height="16"><use href="#i-arrow"/></svg></a></td></tr>
+        </tfoot>
       </table>
     </div>
     <p class="cmp-note">Ces options se combinent : une agence peut automatiser les tâches répétitives et garder un assistant pour l'accueil et le relationnel.</p>
@@ -363,20 +379,54 @@
 <section class="sec sec--soft" id="methode">
   <div class="wrap">
     <div class="head rv">
-      <p class="eyebrow">Méthode</p>
-      <h2>Clé en main, du diagnostic à la mise en service.</h2>
-      <p class="lede">Vous donnez trente minutes et quelques validations. Nous faisons le reste.</p>
+      <p class="eyebrow">Accompagnement</p>
+      <h2>Clé en main, du diagnostic à la mise en service. <span class="it">Puis chaque mois.</span></h2>
+      <p class="lede">Vous donnez trente minutes et quelques validations. Nous faisons le reste, et nous restons à vos côtés après la mise en service.</p>
     </div>
-    <div class="steps" data-stagger>
-      <article class="step rv"><span class="n">1</span><span class="tag">30 min · offert</span><h3>Diagnostic</h3><p>Nous passons en revue vos leads, votre fichier acquéreurs, votre suivi vendeurs et vos outils, avec le temps que chaque tâche prend.</p></article>
-      <article class="step rv"><span class="n">2</span><span class="tag">Sans obligation</span><h3>Proposition écrite</h3><p>Ce que nous automatisons, comment, à quel prix et dans quel délai. Vous décidez.</p></article>
-      <article class="step rv"><span class="n">3</span><span class="tag">Clé en main</span><h3>Mise en place</h3><p>Nous construisons et branchons les automatisations sur vos outils. Vous validez chaque modèle de message avant activation.</p></article>
-      <article class="step rv"><span class="n">4</span><span class="tag">Chaque mois</span><h3>Suivi</h3><p>Nous ajustons, corrigeons et ajoutons des automatisations quand votre activité évolue.</p></article>
+    <div class="road rv" id="road">
+      <span class="road-fill" aria-hidden="true"></span>
+      <article class="rstep" style="--s:0">
+        <span class="rnum">01</span>
+        <div class="rcard">
+          <span class="tag">30 min · offert</span>
+          <h3>Diagnostic</h3>
+          <p>Nous passons en revue vos leads, votre fichier acquéreurs, votre suivi vendeurs et vos outils, avec le temps que chaque tâche prend.</p>
+          <p class="deliv"><small>Vous obtenez</small>La liste des tâches automatisables chez vous</p>
+        </div>
+      </article>
+      <article class="rstep" style="--s:1">
+        <span class="rnum">02</span>
+        <div class="rcard">
+          <span class="tag">Sans obligation</span>
+          <h3>Proposition écrite</h3>
+          <p>Ce que nous automatisons, comment, à quel prix et dans quel délai. Vous décidez.</p>
+          <p class="deliv"><small>Vous obtenez</small>Périmètre, prix et délai, par écrit</p>
+        </div>
+      </article>
+      <article class="rstep" style="--s:2">
+        <span class="rnum">03</span>
+        <div class="rcard">
+          <span class="tag">Clé en main</span>
+          <h3>Mise en place</h3>
+          <p>Nous construisons et branchons les automatisations sur vos outils. Vous validez chaque modèle de message avant activation.</p>
+          <p class="deliv"><small>Vous obtenez</small>Des automatisations testées et validées</p>
+        </div>
+      </article>
+      <article class="rstep" style="--s:3">
+        <span class="rnum">04</span>
+        <div class="rcard">
+          <span class="tag">Chaque mois</span>
+          <h3>Suivi</h3>
+          <p>Nous ajustons, corrigeons et ajoutons des automatisations quand votre activité évolue.</p>
+          <p class="deliv"><small>Vous obtenez</small>Un point mensuel et les ajustements</p>
+        </div>
+      </article>
     </div>
-    <div class="terms rv">
-      <div><small>Diagnostic</small><b>Offert</b><span>30 minutes en visio</span></div>
-      <div><small>Mise en place</small><b>Sur devis</b><span>Proposition écrite après le diagnostic</span></div>
-      <div><small>Suivi</small><b>Mensuel</b><span>Sans engagement, résiliable à tout moment</span></div>
+    <div class="deal rv">
+      <div class="deal-i"><small>Diagnostic</small><b>Offert</b><span>30 minutes en visio</span></div>
+      <div class="deal-i"><small>Mise en place</small><b>Sur devis</b><span>Proposition écrite après le diagnostic</span></div>
+      <div class="deal-i"><small>Suivi</small><b>Mensuel</b><span>Sans engagement, résiliable à tout moment</span></div>
+      <a class="btn btn-white" href="#appel">Réserver mon diagnostic <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -409,9 +459,12 @@
       <p class="eyebrow">Diagnostic offert</p>
       <h2>30 minutes pour savoir ce que votre agence peut <span class="it">automatiser</span>.</h2>
       <p class="lede">Présentez votre agence en une minute, puis choisissez votre créneau en visio. À la fin de l'appel, vous savez quelles tâches peuvent être automatisées. Vous recevez ensuite une proposition écrite.</p>
-      <p class="info"><span class="ibox"><svg width="24" height="24"><use href="#i-cal"/></svg></span><span>Jeudi 17 h 30 à 21 h<br>Samedi et dimanche, 9 h à 11 h et 15 h à 20 h</span></p>
-      <p class="info"><span class="ibox"><svg width="24" height="24"><use href="#i-clock"/></svg></span><span>30 minutes en visio</span></p>
-      <p class="info"><span class="ibox"><svg width="24" height="24"><use href="#i-shield"/></svg></span><span>Sans engagement, sans carte bancaire</span></p>
+      <ul class="info-list">
+        <li><span class="ibox"><svg width="22" height="22"><use href="#i-clock"/></svg></span><span><b>30 minutes en visio</b>Au créneau qui vous convient</span></li>
+        <li><span class="ibox"><svg width="22" height="22"><use href="#i-list"/></svg></span><span><b>Un état des lieux de votre agence</b>Vos tâches répétitives, vos outils, le temps passé</span></li>
+        <li><span class="ibox"><svg width="22" height="22"><use href="#i-doc"/></svg></span><span><b>Une proposition écrite</b>Périmètre, prix et délai, sans obligation</span></li>
+        <li><span class="ibox"><svg width="22" height="22"><use href="#i-shield"/></svg></span><span><b>Sans engagement</b>Aucune carte bancaire demandée</span></li>
+      </ul>
     </div>
     <div class="form-card rv">
       <form id="audit-form" novalidate>
