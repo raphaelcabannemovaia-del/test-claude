@@ -11,8 +11,13 @@ Site statique (HTML/CSS/JS, aucune dépendance). Ouvrir `index.html` dans un nav
    avec l'URL `https://formspree.io/f/xxxxxxx`. Tant que ce champ est vide, rien n'est envoyé.
 3. **Mentions légales et confidentialité** : remplacer tous les champs surlignés « À COMPLÉTER ».
    Un SIREN est nécessaire pour facturer.
-4. **Photo** : remplacer le bloc `.avatar` (initiales) par `<img src="assets/raphael.jpg" alt="Raphaël Cabanne">`.
-5. **Hébergement** : glisser le dossier `site/` sur Netlify ou Cloudflare Pages, puis relier le domaine mova.ia.
+4. **Hébergement** : glisser le dossier `site/` sur Netlify ou Cloudflare Pages, puis relier le domaine mova.ia.
+
+## Contenu à valider
+
+- Démo du haut de page : conversation et dossier fictifs, réglés dans `index.html` (attributs `data-t` = moment d'apparition en millisecondes).
+- Catalogue « Ce que vous pouvez nous confier » : ne garder que ce qui est réellement livrable.
+- Simulateur : hypothèses fixes en haut de la fonction `sim()` dans `app.js` (1 demande sur 50 transformée, 50 % récupérées, 8 min par demande).
 
 ## Chiffres affichés
 

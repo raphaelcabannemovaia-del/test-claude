@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>mova.ia | Agents IA pour agences immobilières indépendantes</title>
-  <meta name="description" content="mova.ia installe des agents IA dans les agences immobilières indépendantes&nbsp;: réponse immédiate aux demandes, qualification, prise de rendez-vous de visite et relances. Audit gratuit de 30&nbsp;minutes.">
+  <meta name="description" content="mova.ia installe des agents IA sur mesure dans les agences immobilières indépendantes : réponse immédiate aux demandes, qualification, prise de rendez-vous et relances. Audit gratuit, abonnement sans engagement.">
   <meta name="theme-color" content="#08294B">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,14 +14,37 @@
 </head>
 <body>
 
-<header class="site-header">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></g></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.6M8.2 13.2l7.6 4.6"/></g></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></g></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.8.7 3 2.5 3.5 5.2"/></g></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="8" cy="15" r="4.5"/><path d="m11.5 11.5 9-9M17 6l3 3M14.5 8.5l2 2"/></g></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></g></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 9.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.5a6 6 0 0 1-4.6-2.2L4 15.5a1.6 1.6 0 0 1 2.4-2.1L7 14"/></g></symbol>
+  <symbol id="i-tune" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="site-header" id="hdr">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="mova.ia, accueil"><img src="assets/mark.svg" alt="" width="34" height="34"><span>mova<span class="dot">.</span>ia</span></a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#probleme">Le problème</a>
-      <a href="#solution">La solution</a>
-      <a href="#calculateur">Calculateur</a>
+      <a href="#demo">Démo</a>
+      <a href="#simulateur">Simulateur</a>
+      <a href="#services">Services</a>
       <a href="#methode">Méthode</a>
+      <a href="#offre">Offre</a>
       <a class="btn btn--primary btn--sm" href="#audit">Audit gratuit</a>
     </nav>
   </div>
@@ -29,87 +52,113 @@
 
 <main id="top">
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
-    <div>
-      <p class="eyebrow">Agents IA pour agences immobilières indépendantes</p>
-      <h1>Vos prospects écrivent à 22&nbsp;h. Votre agence leur répond en <em>moins de 2 minutes.</em></h1>
-      <p class="lede">mova.ia installe des agents IA qui répondent à chaque demande, qualifient l'acheteur ou le vendeur et calent la visite dans l'agenda de votre équipe. Soirs et week-ends compris.</p>
-      <div class="hero-cta">
-        <a class="btn btn--primary" href="#audit">Réserver un audit gratuit de 30&nbsp;min</a>
-        <a class="btn btn--ghost" href="#calculateur">Calculer ce que je perds</a>
+    <div class="hero-top">
+      <div>
+        <p class="eyebrow">Agents IA sur mesure pour agences immobilières</p>
+        <h1><span class="ln">Vos prospects écrivent à 22 h.</span> <span class="ln">Votre agence répond en <span class="mark">moins de 2 minutes.</span></span></h1>
       </div>
-      <p class="hero-note">Abonnement mensuel sans engagement, résiliable à tout moment.</p>
+      <div class="hero-side">
+        <p class="lede">Nos agents IA répondent à chaque demande, qualifient l'acheteur, calent la visite et relancent les silencieux. Pendant que votre équipe vend.</p>
+        <div class="hero-cta">
+          <a class="btn btn--primary" href="#audit">Réserver mon audit gratuit <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#simulateur">Simuler mes pertes</a>
+        </div>
+        <div class="trust">
+          <span><svg width="16" height="16"><use href="#i-check"/></svg>Audit offert</span>
+          <span><svg width="16" height="16"><use href="#i-check"/></svg>Sans engagement</span>
+          <span><svg width="16" height="16"><use href="#i-check"/></svg>Sur mesure</span>
+        </div>
+      </div>
     </div>
 
-    <figure class="convo" style="margin:0">
-      <div class="convo-top"><strong>Demande reçue via un portail</strong><span>Dimanche 22:47</span></div>
-      <div class="convo-body">
-        <div class="msg msg--in">Bonjour, le T3 avec balcon est-il toujours disponible&nbsp;? Possible de le visiter cette semaine&nbsp;?<small>Camille · 22:47</small></div>
-        <div class="msg msg--out">Bonjour Camille, oui, il est disponible. Je peux vous proposer une visite mardi à 18&nbsp;h ou mercredi à 12&nbsp;h&nbsp;30. Quel créneau vous convient&nbsp;?<small>Agent mova.ia · 22:48</small></div>
-        <div class="msg msg--in">Mardi 18&nbsp;h, parfait. Mon budget est de 310&nbsp;000&nbsp;€, financement accepté.<small>Camille · 22:49</small></div>
+    <!-- Démo animée : l'agent répond et remplit le dossier en direct -->
+    <div class="demo" id="demo" data-total="23500" aria-label="Démonstration : un agent mova.ia répond à un prospect et remplit son dossier">
+      <div class="demo-bar">
+        <span class="live"><i></i>Agent mova.ia en service</span>
+        <span class="demo-bar-r"><span class="demo-cap-s">Démonstration · données fictives</span>
+          <button class="demo-toggle" type="button" id="demo-toggle" hidden><svg width="12" height="12"><use href="#i-pause"/></svg><span>Pause</span></button></span>
       </div>
-      <div class="convo-done">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        Visite ajoutée à l'agenda du négociateur, fiche acheteur prête.
+      <div class="demo-grid">
+        <div class="demo-chat">
+          <div class="chat-head">
+            <span class="who"><span class="ava">CM</span><span><b>Camille M.</b>via un portail immobilier</span></span>
+            <span>Dim. 22:47</span>
+          </div>
+          <div class="chat-feed" id="feed">
+            <div class="msg msg--in" data-t="500">Bonjour, l'appartement T3 avec balcon à Villeurbanne est-il toujours disponible ?<small>22:47</small></div>
+            <div class="msg msg--out" data-t="2500">Bonsoir Camille, oui, il est disponible. 68 m², 3e étage avec ascenseur, 315 000 €. Vous cherchez pour y habiter ou pour investir ?<small>Agent mova.ia · 22:47</small></div>
+            <div class="msg msg--in" data-t="4700">Pour y habiter. Nous sommes deux, avec un bébé.<small>22:48</small></div>
+            <div class="msg msg--out" data-t="6800">Le T3 s'y prête bien. Avez-vous déjà un accord de financement ?<small>Agent mova.ia · 22:48</small></div>
+            <div class="msg msg--in" data-t="8800">Oui, accord de principe de la banque jusqu'à 330 000 €.<small>22:49</small></div>
+            <div class="msg msg--out" data-t="11000">Merci. Julien, notre négociateur, peut vous faire visiter mardi à 18 h ou mercredi à 12 h 30. Quel créneau préférez-vous ?<small>Agent mova.ia · 22:49</small></div>
+            <div class="msg msg--in" data-t="13100">Mardi 18 h, parfait !<small>22:50</small></div>
+            <div class="msg msg--out" data-t="15000">C'est noté pour mardi 18 h. Vous recevez la confirmation par SMS et par email, avec l'adresse exacte. Bonne soirée !<small>Agent mova.ia · 22:50</small></div>
+            <div class="typing is-off" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <aside class="demo-file" aria-label="Dossier prospect">
+          <div class="file-head"><h4>Dossier prospect</h4><span>mis à jour en direct</span></div>
+          <div class="pipe"><span class="is-on" data-t="500" data-on>Nouveau</span><span class="is-on" data-t="9400" data-on>Qualifié</span><span class="is-on" data-t="15500" data-on>Visite planifiée</span></div>
+          <dl class="fields">
+            <div><dt>Bien</dt><dd data-t="2700">T3 · 68 m² · Villeurbanne</dd></div>
+            <div><dt>Projet</dt><dd data-t="5100">Résidence principale</dd></div>
+            <div><dt>Foyer</dt><dd data-t="5400">2 adultes, 1 enfant</dd></div>
+            <div><dt>Budget</dt><dd data-t="9100">330 000 €</dd></div>
+            <div><dt>Financement</dt><dd data-t="9300">Accord de principe</dd></div>
+            <div><dt>Visite</dt><dd data-t="15400">Mardi 18:00 · Julien</dd></div>
+          </dl>
+          <ul class="acts">
+            <li data-t="2800"><svg width="18" height="18"><use href="#i-check"/></svg><span>Réponse envoyée en 38 secondes</span></li>
+            <li data-t="9700"><svg width="18" height="18"><use href="#i-check"/></svg><span>Prospect qualifié, priorité haute</span></li>
+            <li data-t="16000"><svg width="18" height="18"><use href="#i-check"/></svg><span>Visite ajoutée à l'agenda de Julien</span></li>
+            <li data-t="16700"><svg width="18" height="18"><use href="#i-check"/></svg><span>Confirmation envoyée par SMS et email</span></li>
+            <li data-t="17400"><svg width="18" height="18"><use href="#i-check"/></svg><span>Fiche enregistrée dans votre logiciel</span></li>
+          </ul>
+        </aside>
       </div>
-      <figcaption class="convo-cap">Exemple de conversation. Les prénoms et le bien sont fictifs.</figcaption>
-    </figure>
+      <div class="demo-progress" aria-hidden="true"><span id="demo-bar"></span></div>
+    </div>
   </div>
 </section>
 
-<!-- PROBLEME -->
+<!-- ============ PROBLEME ============ -->
 <section class="section section--soft" id="probleme">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Ce que vous perdez</p>
-      <h2>Un prospect qui attend appelle l'agence suivante.</h2>
-      <p class="lede">Un acheteur ou un vendeur contacte plusieurs agences en quelques minutes. La première qui répond prend la visite, puis le mandat.</p>
+    <div class="head rv">
+      <p class="eyebrow">Le problème</p>
+      <h2>Chaque demande sans réponse finit chez un concurrent.</h2>
+      <p class="lede">Un acheteur contacte plusieurs agences en quelques minutes. La première qui répond obtient la visite. Souvent, elle obtient aussi la vente.</p>
     </div>
 
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">42 h</div>
-        <p>Délai moyen de réponse à une demande reçue par le web.</p>
-        <cite>Harvard Business Review, 2011</cite>
-      </div>
-      <div class="stat">
-        <div class="stat-num">23&nbsp;%</div>
-        <p>Des entreprises n'ont jamais répondu à la demande envoyée.</p>
-        <cite>Harvard Business Review, 2011</cite>
-      </div>
-      <div class="stat">
-        <div class="stat-num">47&nbsp;%</div>
-        <p>Des demandes envoyées via le site d'un agent immobilier sont restées sans réponse humaine.</p>
-        <cite>Mike DelPrete, enquête client mystère, 2024</cite>
-      </div>
-      <div class="stat">
-        <div class="stat-num">×7</div>
-        <p>Plus de chances de qualifier un contact quand l'entreprise répond dans l'heure.</p>
-        <cite>Harvard Business Review, 2011</cite>
-      </div>
+    <div class="stats" data-stagger>
+      <div class="stat rv"><div class="stat-num" data-count="42" data-suffix=" h">42 h</div><p>Délai moyen de réponse à une demande reçue par le web.</p><cite>Harvard Business Review, 2011</cite></div>
+      <div class="stat rv"><div class="stat-num" data-count="23" data-suffix=" %">23 %</div><p>Des entreprises n'ont jamais répondu à la demande envoyée.</p><cite>Harvard Business Review, 2011</cite></div>
+      <div class="stat rv"><div class="stat-num" data-count="47" data-suffix=" %">47 %</div><p>Des demandes envoyées via le site d'un agent immobilier sont restées sans réponse humaine.</p><cite>Mike DelPrete, enquête client mystère, 2024</cite></div>
+      <div class="stat rv"><div class="stat-num" data-count="7" data-prefix="×">×7</div><p>Plus de chances de qualifier un contact quand l'entreprise répond dans l'heure.</p><cite>Harvard Business Review, 2011</cite></div>
     </div>
-    <p class="stats-foot">Études américaines. Celle de la Harvard Business Review porte sur 2 241 entreprises, tous secteurs confondus ; celle de Mike DelPrete porte sur des agents immobiliers aux États-Unis. Pendant l'audit, nous mesurons vos propres délais de réponse.</p>
+    <p class="stats-foot">Études américaines. Celle de la Harvard Business Review porte sur 2 241 entreprises, tous secteurs confondus ; celle de Mike DelPrete porte sur des agents immobiliers aux États-Unis. Pendant l'audit, nous mesurons vos propres délais.</p>
 
-    <div class="loss">
-      <div class="loss-col">
-        <h3>Votre temps</h3>
+    <div class="loss" data-stagger>
+      <div class="loss-col rv">
+        <h3>Le temps que vous perdez</h3>
         <ul>
-          <li>Répondre cent fois aux mêmes questions&nbsp;: disponibilité, prix, charges, quartier.</li>
+          <li>Répondre cent fois aux mêmes questions : disponibilité, prix, charges, quartier.</li>
           <li>Trier les curieux des acheteurs financés.</li>
           <li>Jongler entre portails, mails, SMS et téléphone.</li>
-          <li>Caler une visite en plusieurs allers-retours.</li>
+          <li>Caler une visite en cinq allers-retours.</li>
           <li>Relancer à la main, quand on y pense.</li>
         </ul>
       </div>
-      <div class="loss-col">
-        <h3>Votre argent</h3>
+      <div class="loss-col rv">
+        <h3>L'argent que vous perdez</h3>
         <ul>
-          <li>Le prospect qui écrit le soir ou le week-end contacte l'agence suivante.</li>
+          <li>Le prospect du soir ou du week-end signe ailleurs.</li>
           <li>Une demande sans réponse ne revient presque jamais.</li>
           <li>Les contacts payés aux portails s'éteignent faute de relance.</li>
-          <li>Des visites données à des prospects non qualifiés.</li>
+          <li>Des visites données à des prospects non financés.</li>
           <li>Un négociateur payé pour trier au lieu de vendre.</li>
         </ul>
       </div>
@@ -117,209 +166,414 @@
   </div>
 </section>
 
-<!-- SOLUTION -->
+<!-- ============ SIMULATEUR ============ -->
+<section class="section" id="simulateur">
+  <div class="wrap">
+    <div class="head rv">
+      <p class="eyebrow">Simulateur</p>
+      <h2>Combien vous coûtent vos demandes sans réponse ?</h2>
+      <p class="lede">Trois réglages, un chiffre. Placez les curseurs sur la réalité de votre agence.</p>
+    </div>
+
+    <div class="sim rv">
+      <div class="sim-in">
+        <div class="sim-field">
+          <label for="s-leads">Demandes reçues par mois <output id="o-leads" for="s-leads">80</output></label>
+          <input class="range" id="s-leads" type="range" min="10" max="400" step="5" value="80">
+        </div>
+        <div class="sim-field">
+          <label for="s-lost">Part restée sans réponse rapide <output id="o-lost" for="s-lost">30 %</output></label>
+          <input class="range" id="s-lost" type="range" min="5" max="80" step="1" value="30">
+        </div>
+        <div class="sim-field">
+          <label for="s-fee">Honoraires moyens par vente <output id="o-fee" for="s-fee">5 000 €</output></label>
+          <input class="range" id="s-fee" type="range" min="2000" max="20000" step="500" value="5000">
+        </div>
+      </div>
+      <div class="sim-out" aria-live="polite">
+        <div class="sim-row sim-row--lose">
+          <span>Ce que vous perdez</span>
+          <b id="r-lose">28 800 €</b>
+          <small>d'honoraires par an, sur les demandes restées sans suite.</small>
+        </div>
+        <div class="sim-sep"></div>
+        <div class="sim-row sim-row--win">
+          <span>Ce que vous pouvez récupérer</span>
+          <b id="r-win">14 400 €</b>
+          <small id="r-more">par an, et 11 h de tri libérées chaque mois.</small>
+        </div>
+        <a class="btn btn--primary btn--block" href="#audit">Récupérer ce chiffre <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></a>
+        <p class="sim-hyp">Estimation sans promesse de résultat. Hypothèses : 1 demande sur 50 devient une vente, la moitié des demandes perdues est récupérée, 8 minutes de traitement manuel par demande. Nous les remplaçons par vos vrais chiffres pendant l'audit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UNE JOURNEE ============ -->
+<section class="section section--soft" id="journee">
+  <div class="wrap">
+    <div class="head rv">
+      <p class="eyebrow">Une journée dans votre agence</p>
+      <h2>Ce qui vous échappe aujourd'hui. Ce que vous récupérez demain.</h2>
+    </div>
+
+    <div class="day rv">
+      <div class="day-tabs is-auto" role="tablist" aria-label="Moments de la journée" id="day-tabs">
+        <button class="day-tab" type="button" role="tab" id="t-1" aria-controls="p-1" aria-selected="true"><b>08:30</b>La boîte du lundi</button>
+        <button class="day-tab" type="button" role="tab" id="t-2" aria-controls="p-2" aria-selected="false" tabindex="-1"><b>11:00</b>En pleine visite</button>
+        <button class="day-tab" type="button" role="tab" id="t-3" aria-controls="p-3" aria-selected="false" tabindex="-1"><b>13:15</b>Un vendeur se présente</button>
+        <button class="day-tab" type="button" role="tab" id="t-4" aria-controls="p-4" aria-selected="false" tabindex="-1"><b>18:30</b>Les prospects silencieux</button>
+        <button class="day-tab" type="button" role="tab" id="t-5" aria-controls="p-5" aria-selected="false" tabindex="-1"><b>22:47</b>Dimanche soir</button>
+      </div>
+      <div>
+        <div class="day-panel" role="tabpanel" id="p-1" aria-labelledby="t-1">
+          <div class="dp"><span class="dp-l">Vous avez</span><p>Une boîte pleine : les demandes des portails, les mails et les messages arrivés depuis vendredi soir.</p></div>
+          <div class="dp dp--us"><span class="dp-l">mova.ia fait</span><p>Chaque demande a déjà reçu une réponse. Les prospects qualifiés vous attendent, classés par priorité.</p></div>
+          <div class="dp dp--lose"><span class="dp-l">Sans nous, vous perdez</span><p>Votre matinée à trier, et les acheteurs qui ont visité ailleurs samedi.</p></div>
+          <div class="dp dp--win"><span class="dp-l">Avec nous, vous gagnez</span><p>Une liste de rendez-vous prêts avant votre premier café.</p></div>
+        </div>
+        <div class="day-panel" role="tabpanel" id="p-2" aria-labelledby="t-2" hidden>
+          <div class="dp"><span class="dp-l">Vous avez</span><p>Trois nouvelles demandes pendant que vous faites visiter un appartement.</p></div>
+          <div class="dp dp--us"><span class="dp-l">mova.ia fait</span><p>L'agent répond aux trois, pose les questions de qualification et propose des créneaux.</p></div>
+          <div class="dp dp--lose"><span class="dp-l">Sans nous, vous perdez</span><p>Des prospects qui attendent trois heures et appellent l'agence d'en face.</p></div>
+          <div class="dp dp--win"><span class="dp-l">Avec nous, vous gagnez</span><p>Une visite menée sans interruption, et aucune demande en attente à la sortie.</p></div>
+        </div>
+        <div class="day-panel" role="tabpanel" id="p-3" aria-labelledby="t-3" hidden>
+          <div class="dp"><span class="dp-l">Vous avez</span><p>Un propriétaire qui demande une estimation via votre site.</p></div>
+          <div class="dp dp--us"><span class="dp-l">mova.ia fait</span><p>L'agent recueille surface, adresse et délai de vente, puis cale le rendez-vous d'estimation.</p></div>
+          <div class="dp dp--lose"><span class="dp-l">Sans nous, vous perdez</span><p>Le mandat, signé chez le concurrent qui a rappelé en premier.</p></div>
+          <div class="dp dp--win"><span class="dp-l">Avec nous, vous gagnez</span><p>Un rendez-vous d'estimation fixé, avec la fiche du bien déjà remplie.</p></div>
+        </div>
+        <div class="day-panel" role="tabpanel" id="p-4" aria-labelledby="t-4" hidden>
+          <div class="dp"><span class="dp-l">Vous avez</span><p>Une dizaine de prospects sans nouvelles depuis leur première demande.</p></div>
+          <div class="dp dp--us"><span class="dp-l">mova.ia fait</span><p>Chacun reçoit une relance personnalisée, au rythme que vous avez validé.</p></div>
+          <div class="dp dp--lose"><span class="dp-l">Sans nous, vous perdez</span><p>Des contacts payés aux portails, qui s'éteignent un à un.</p></div>
+          <div class="dp dp--win"><span class="dp-l">Avec nous, vous gagnez</span><p>Des prospects réactivés, sans y passer votre soirée.</p></div>
+        </div>
+        <div class="day-panel" role="tabpanel" id="p-5" aria-labelledby="t-5" hidden>
+          <div class="dp"><span class="dp-l">Vous avez</span><p>Un acheteur financé qui veut visiter. Votre agence est fermée.</p></div>
+          <div class="dp dp--us"><span class="dp-l">mova.ia fait</span><p>Réponse en moins de 2 minutes, qualification, visite proposée et inscrite à l'agenda.</p></div>
+          <div class="dp dp--lose"><span class="dp-l">Sans nous, vous perdez</span><p>La visite, puis la vente, prises par l'agence qui a répondu en premier.</p></div>
+          <div class="dp dp--win"><span class="dp-l">Avec nous, vous gagnez</span><p>Une visite confirmée lundi matin, sans avoir touché à votre téléphone.</p></div>
+        </div>
+        <p class="day-foot">Situations types, rencontrées dans la plupart des agences indépendantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENTS ============ -->
 <section class="section section--navy" id="solution">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Ce que nous installons</p>
-      <h2>Quatre agents IA branchés sur vos outils.</h2>
-      <p class="lede">Chaque agent prend en charge une étape que votre équipe fait aujourd'hui à la main, avec vos biens, vos horaires et votre ton.</p>
+    <div class="head rv">
+      <p class="eyebrow">La solution</p>
+      <h2>Quatre agents qui travaillent <span class="hl">pendant que vous vendez.</span></h2>
+      <p class="lede">Chacun prend en charge une tâche que votre équipe fait aujourd'hui à la main. Ils connaissent vos biens, vos horaires et votre façon de parler à vos clients.</p>
     </div>
 
-    <div class="agents">
-      <article class="agent">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="agents" data-stagger>
+      <article class="agent rv">
+        <div class="mini mini-reply" aria-hidden="true"><span class="q">Toujours disponible ?</span><span class="a"><span class="chip-t">0:38</span><span class="dots"><i></i><i></i><i></i></span></span></div>
         <h3>Réponse immédiate</h3>
-        <p>Répond 24&nbsp;h/24 aux demandes des portails, du site et des réseaux, avec les informations réelles de vos biens.</p>
+        <p>Chaque demande reçoit une réponse précise, de jour comme de nuit.</p>
+        <ul><li>Portails, site, mails, réseaux</li><li>Informations réelles de vos biens</li><li>Votre ton, votre signature</li></ul>
       </article>
-      <article class="agent">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>
+      <article class="agent rv">
+        <div class="mini mini-qual" aria-hidden="true"><div>Budget <i></i></div><div>Financement <i></i></div><div>Délai <i></i></div></div>
         <h3>Qualification</h3>
-        <p>Pose les bonnes questions&nbsp;: projet, budget, financement, délai. Votre équipe reçoit une fiche claire.</p>
+        <p>L'agent sépare les acheteurs prêts des simples curieux.</p>
+        <ul><li>Projet, budget, financement, délai</li><li>Priorité attribuée à chaque prospect</li><li>Fiche claire pour votre équipe</li></ul>
       </article>
-      <article class="agent">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <article class="agent rv">
+        <div class="mini mini-cal" aria-hidden="true"><div class="wk"><span>L</span><span class="on">M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><p>Mardi 18:00 · confirmé</p></div>
         <h3>Prise de rendez-vous</h3>
-        <p>Propose des créneaux de visite selon l'agenda du négociateur, puis confirme par message et par mail.</p>
+        <p>Les visites et estimations se calent seules dans les agendas.</p>
+        <ul><li>Créneaux selon vos disponibilités</li><li>Confirmation par SMS et email</li><li>Rappel la veille du rendez-vous</li></ul>
       </article>
-      <article class="agent">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+      <article class="agent rv">
+        <div class="mini mini-rel" aria-hidden="true"><div class="tl"><span>J+1</span><span>J+3</span><span>J+7</span></div></div>
         <h3>Relances</h3>
-        <p>Relance les contacts restés silencieux, selon un calendrier que vous validez. Aucun contact n'est oublié.</p>
+        <p>Aucun prospect n'est oublié, même trois semaines après.</p>
+        <ul><li>Calendrier de relance validé par vous</li><li>Messages personnalisés</li><li>Relance après visite</li></ul>
       </article>
     </div>
-    <p class="handoff">Vous gardez la main&nbsp;: lorsqu'une demande exige un humain, l'agent transmet la conversation à votre équipe avec tout l'historique. D'autres automatisations se décident pendant l'audit, selon votre agence.</p>
+    <div class="handoff rv"><svg width="26" height="26"><use href="#i-hand"/></svg><p>Vous gardez la main. Négociation, question juridique, client mécontent : l'agent transmet la conversation à votre équipe avec tout l'historique.</p></div>
   </div>
 </section>
 
-<!-- AVANT / APRES -->
-<section class="section">
+<!-- ============ CATALOGUE ============ -->
+<section class="section" id="services">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Avant et après</p>
-      <h2>Une journée ordinaire, deux façons de la vivre.</h2>
-    </div>
-    <div class="compare" role="table" aria-label="Comparaison sans et avec mova.ia">
-      <div class="compare-row" role="row"><div role="columnheader">Situation</div><div role="columnheader">Sans automatisation</div><div role="columnheader" class="yes">Avec mova.ia</div></div>
-      <div class="compare-row" role="row"><div role="cell">Demande reçue dimanche soir</div><div role="cell" class="no">Lue le lundi, réponse en fin de journée.</div><div role="cell" class="yes">Réponse en moins de 2 minutes, visite proposée.</div></div>
-      <div class="compare-row" role="row"><div role="cell">Contact curieux ou sérieux&nbsp;?</div><div role="cell" class="no">Un appel pour le savoir.</div><div role="cell" class="yes">Budget, financement et délai déjà posés.</div></div>
-      <div class="compare-row" role="row"><div role="cell">Planifier une visite</div><div role="cell" class="no">Plusieurs mails et SMS.</div><div role="cell" class="yes">Créneau choisi, inscrit à l'agenda.</div></div>
-      <div class="compare-row" role="row"><div role="cell">Contact sans nouvelles</div><div role="cell" class="no">Oublié dans la boîte mail.</div><div role="cell" class="yes">Relancé au bon moment.</div></div>
-      <div class="compare-row" role="row"><div role="cell">Votre équipe</div><div role="cell" class="no">Trie et répond.</div><div role="cell" class="yes">Visite et signe.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CALCULATEUR -->
-<section class="section section--soft" id="calculateur">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Calculateur</p>
-      <h2>Estimez ce que vos demandes sans suite vous coûtent.</h2>
-      <p class="lede">Entrez les chiffres de votre agence. Les valeurs de départ sont des exemples à remplacer par les vôtres.</p>
+    <div class="head rv">
+      <p class="eyebrow">Sur mesure</p>
+      <h2>Ce que vous pouvez nous confier.</h2>
+      <p class="lede">Chaque agence a ses irritants. Choisissez ce qui vous fait perdre le plus de temps, nous construisons l'automatisation qui s'en charge.</p>
     </div>
 
-    <div class="calc">
-      <div class="panel">
-        <div class="field">
-          <label for="c-leads"><span>Demandes reçues par mois</span><span class="val" id="o-leads"></span></label>
-          <input id="c-leads" type="range" min="10" max="400" step="5" value="80">
-          <span class="hint">Portails, site, réseaux, téléphone.</span>
-        </div>
-        <div class="field">
-          <label for="c-lost"><span>Part sans réponse rapide ou sans suite</span><span class="val" id="o-lost"></span></label>
-          <input id="c-lost" type="range" min="0" max="80" step="1" value="30">
-          <span class="hint">Soirs, week-ends, oublis, relances jamais faites.</span>
-        </div>
-        <div class="field">
-          <label for="c-conv"><span>Taux de transformation en vente ou mandat</span><span class="val" id="o-conv"></span></label>
-          <input id="c-conv" type="range" min="0.5" max="10" step="0.5" value="2">
-          <span class="hint">Votre taux de transformation habituel.</span>
-        </div>
-        <div class="field">
-          <label for="c-fee"><span>Honoraires moyens par vente</span><span class="val" id="o-fee"></span></label>
-          <input id="c-fee" type="range" min="1000" max="20000" step="500" value="5000">
-        </div>
-        <div class="field">
-          <label for="c-rec"><span>Part des demandes perdues que vous récupérez</span><span class="val" id="o-rec"></span></label>
-          <input id="c-rec" type="range" min="10" max="100" step="5" value="50">
-          <span class="hint">Hypothèse modifiable. Elle se mesure pendant l'audit puis au suivi.</span>
-        </div>
-        <div class="field">
-          <label for="c-min"><span>Minutes passées par demande à répondre, trier, relancer</span><span class="val" id="o-min"></span></label>
-          <input id="c-min" type="range" min="2" max="30" step="1" value="8">
-        </div>
+    <div class="cat" data-stagger>
+      <div class="cat-col rv">
+        <span class="cat-ico"><svg width="22" height="22"><use href="#i-key"/></svg></span>
+        <h3>Acheteurs</h3>
+        <p>De la première question à la visite.</p>
+        <ul>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Réponse aux demandes 24 h/24</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Qualification budget et financement</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Prise de rendez-vous de visite</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Relance après visite</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Alerte quand un bien correspond</li>
+        </ul>
       </div>
-
-      <div class="result" aria-live="polite">
-        <p class="eyebrow">Honoraires récupérables par an</p>
-        <div class="result-big" id="r-year">0 €</div>
-        <p class="result-sub" id="r-sub"></p>
-        <div class="result-split">
-          <div><b id="r-lost">0</b><span>demandes perdues par mois</span></div>
-          <div><b id="r-hours">0 h</b><span>de tri et de relances par mois</span></div>
-        </div>
-        <a class="btn btn--primary" href="#audit">Vérifier ces chiffres avec vous</a>
-        <p class="calc-foot">Estimation fondée sur vos valeurs saisies, sans promesse de résultat. Calcul&nbsp;: demandes × part perdue × taux de transformation × honoraires × part récupérée × 12 mois.</p>
+      <div class="cat-col rv">
+        <span class="cat-ico"><svg width="22" height="22"><use href="#i-home"/></svg></span>
+        <h3>Vendeurs et mandats</h3>
+        <p>Plus de rendez-vous d'estimation.</p>
+        <ul>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Demandes d'estimation traitées</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Rendez-vous d'estimation calés</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Relance des propriétaires hésitants</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Compte rendu de visite au vendeur</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Suivi des mandats à renouveler</li>
+        </ul>
+      </div>
+      <div class="cat-col rv">
+        <span class="cat-ico"><svg width="22" height="22"><use href="#i-doc"/></svg></span>
+        <h3>Administratif</h3>
+        <p>Moins de saisie, moins d'oublis.</p>
+        <ul>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Rédaction des annonces</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Collecte des pièces du dossier</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Fiches mises à jour dans votre logiciel</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Tri et réponse aux mails courants</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Bilan d'activité chaque semaine</li>
+        </ul>
+      </div>
+      <div class="cat-col rv">
+        <span class="cat-ico"><svg width="22" height="22"><use href="#i-spark"/></svg></span>
+        <h3>Visibilité</h3>
+        <p>Une agence active, sans effort.</p>
+        <ul>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Publication des nouveaux biens</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Demande d'avis après une vente</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Lettre d'information aux contacts</li>
+          <li><svg width="14" height="14"><use href="#i-check"/></svg>Réponses aux messages des réseaux</li>
+        </ul>
       </div>
     </div>
+    <div class="cat-foot rv">
+      <p>Une tâche répétitive qui n'est pas dans la liste ? Parlez-en pendant l'audit. Nous vérifions si elle s'automatise et ce qu'elle vous ferait gagner.</p>
+      <a class="btn btn--primary" href="#audit">En parler pendant l'audit <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></a>
+    </div>
   </div>
 </section>
 
-<!-- METHODE -->
+<!-- ============ OUTILS ============ -->
+<section class="section section--soft" id="outils">
+  <div class="wrap">
+    <div class="head rv">
+      <p class="eyebrow">Vos outils</p>
+      <h2>On se branche sur vos outils. Votre équipe garde ses habitudes.</h2>
+      <p class="lede">Les demandes arrivent par vos canaux habituels. Les agents agissent dans vos agendas, votre logiciel et vos messageries.</p>
+    </div>
+
+    <div class="hub rv">
+      <div class="hub-col hub-in">
+        <h4>Les demandes arrivent</h4>
+        <div class="tool"><svg width="20" height="20"><use href="#i-home"/></svg>Portails immobiliers</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-globe"/></svg>Site de l'agence</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-mail"/></svg>Boîte mail</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-share"/></svg>Réseaux sociaux</div>
+      </div>
+      <div class="hub-core">
+        <span class="mk"><img src="assets/mark.svg" alt="" width="36" height="36"></span>
+        <div><span class="logo"><span>mova<span class="dot">.</span>ia</span></span><p>Vos agents traitent, qualifient et planifient.</p></div>
+      </div>
+      <div class="hub-col hub-out">
+        <h4>Les agents agissent</h4>
+        <div class="tool"><svg width="20" height="20"><use href="#i-cal"/></svg>Agendas des négociateurs</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-db"/></svg>Logiciel ou CRM</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-phone"/></svg>SMS et WhatsApp</div>
+        <div class="tool"><svg width="20" height="20"><use href="#i-team"/></svg>Alertes à votre équipe</div>
+      </div>
+    </div>
+    <p class="hub-note">La compatibilité avec vos logiciels est vérifiée pendant l'audit, avant tout engagement.</p>
+
+    <div class="close" data-stagger>
+      <div class="rv"><svg width="26" height="26"><use href="#i-tune"/></svg><h3>Du sur-mesure</h3><p>Chaque agent est réglé sur vos biens, vos horaires et votre façon de parler. Aucun modèle générique.</p></div>
+      <div class="rv"><svg width="26" height="26"><use href="#i-team"/></svg><h3>Un interlocuteur dédié</h3><p>La même personne vous suit de l'audit au suivi mensuel. Vous savez toujours qui appeler.</p></div>
+      <div class="rv"><svg width="26" height="26"><use href="#i-chat"/></svg><h3>Proches de vous</h3><p>Échanges en visio ou par téléphone, réponses rapides, réglages quand vous en avez besoin.</p></div>
+      <div class="rv"><svg width="26" height="26"><use href="#i-shield"/></svg><h3>Vos données protégées</h3><p>Les données de vos prospects restent les vôtres. Leur traitement est encadré par contrat, conformément au RGPD.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHODE ============ -->
 <section class="section" id="methode">
   <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Notre méthode</p>
-      <h2>Audit, installation, suivi.</h2>
-      <p class="lede">Nous commençons par regarder comment arrivent vos demandes et ce que vous en faites. Les logiciels compatibles avec votre agence sont déterminés pendant l'audit et l'installation.</p>
+    <div class="head rv">
+      <p class="eyebrow">Méthode</p>
+      <h2>De l'audit à la mise en service, nous faisons le travail.</h2>
+      <p class="lede">Vous donnez trente minutes. Nous analysons, construisons, testons et améliorons. Vous validez à chaque étape.</p>
     </div>
-    <div class="steps">
-      <article class="step">
-        <span class="step-n">Étape 1</span>
-        <h3>Audit</h3>
-        <p>Un échange de 30&nbsp;minutes&nbsp;: vos sources de demandes, vos outils, vos délais de réponse actuels et les pertes à traiter en premier.</p>
-        <span class="tag">Gratuit</span>
+
+    <div class="steps" id="steps">
+      <article class="step rv">
+        <span class="step-n">1</span>
+        <div class="step-card">
+          <div class="step-top"><span class="tag">Gratuit</span><span class="tag tag--soft">30 minutes en visio</span></div>
+          <h3>Audit : 30 minutes pour voir où part votre argent.</h3>
+          <p>Nous passons en revue la vie d'une demande dans votre agence, de son arrivée jusqu'à la vente. Vous repartez avec une vision claire de ce que vous perdez, même si vous ne signez rien.</p>
+          <div class="step-cols">
+            <div>
+              <h4>Ce que nous faisons</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous comptons vos demandes et identifions leurs sources.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous mesurons votre délai de réponse réel, soirs et week-ends compris.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous repérons les tâches répétitives de votre équipe.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous vérifions la compatibilité avec vos outils.</li>
+              </ul>
+            </div>
+            <div class="get">
+              <h4>Ce que vous obtenez</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Une estimation chiffrée de vos pertes.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Les automatisations à installer en priorité.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Une proposition écrite, sans obligation.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="risk">Ce que vous risquez : 30 minutes.</p>
+        </div>
       </article>
-      <article class="step">
-        <span class="step-n">Étape 2</span>
-        <h3>Installation</h3>
-        <p>Configuration des agents sur vos outils, avec vos biens et votre façon de parler à vos clients. Vous testez avant la mise en service.</p>
+
+      <article class="step rv">
+        <span class="step-n">2</span>
+        <div class="step-card">
+          <div class="step-top"><span class="tag">Sur mesure</span><span class="tag tag--soft">Vous validez avant la mise en service</span></div>
+          <h3>Installation : des agents réglés sur votre agence.</h3>
+          <p>Nous construisons vos agents à partir de vos biens, de vos réponses habituelles et de vos règles. Rien ne part vers un client sans votre accord.</p>
+          <div class="step-cols">
+            <div>
+              <h4>Ce que nous faisons</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous branchons les agents sur vos canaux, agendas et logiciel.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous rédigeons les réponses avec vos biens, vos prix et votre ton.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous fixons avec vous les cas où l'humain reprend la main.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous testons sur des demandes réelles avant le lancement.</li>
+              </ul>
+            </div>
+            <div class="get">
+              <h4>Ce que vous obtenez</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Des agents en service sur vos vraies demandes.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Une équipe qui garde ses outils.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Aucune compétence technique requise.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </article>
-      <article class="step">
-        <span class="step-n">Étape 3</span>
-        <h3>Suivi</h3>
-        <p>Nous relisons les conversations, ajustons les réponses et mesurons les rendez-vous obtenus, mois après mois.</p>
+
+      <article class="step rv">
+        <span class="step-n">3</span>
+        <div class="step-card">
+          <div class="step-top"><span class="tag">Chaque mois</span><span class="tag tag--soft">Inclus dans l'abonnement</span></div>
+          <h3>Suivi : vos agents s'améliorent chaque mois.</h3>
+          <p>Un agent IA se règle dans la durée. Nous lisons ce qu'il répond, corrigeons ce qui doit l'être et ajoutons ce dont votre agence a besoin.</p>
+          <div class="step-cols">
+            <div>
+              <h4>Ce que nous faisons</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous relisons les conversations.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous ajustons réponses, relances et priorités.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Nous ajoutons vos nouveaux biens et de nouvelles automatisations.</li>
+              </ul>
+            </div>
+            <div class="get">
+              <h4>Ce que vous obtenez</h4>
+              <ul>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Un point mensuel chiffré : demandes traitées, délai de réponse, rendez-vous obtenus.</li>
+                <li><svg width="16" height="16"><use href="#i-check"/></svg>Un interlocuteur joignable.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- OFFRE -->
-<section class="section section--soft">
+<!-- ============ OFFRE ============ -->
+<section class="section section--soft" id="offre">
   <div class="wrap offer">
-    <div>
+    <div class="rv">
       <p class="eyebrow">L'offre</p>
-      <h2>Un abonnement, sans engagement.</h2>
-      <ul class="checks">
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Audit de départ gratuit.</span></li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Abonnement mensuel, résiliable à tout moment.</span></li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Installation et suivi assurés par le fondateur.</span></li>
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Offre adaptée à la taille de votre agence, chiffrée après l'audit.</span></li>
+      <h2>Un abonnement. Aucun engagement.</h2>
+      <p class="lede">Vous payez chaque mois pour des agents qui travaillent. S'ils ne vous rapportent rien, vous arrêtez.</p>
+      <ul class="incl">
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Audit de départ offert</b><span>Votre situation chiffrée avant de décider.</span></div></li>
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Installation sur mesure</b><span>Agents configurés sur vos outils et vos biens.</span></div></li>
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Agents actifs 24 h/24</b><span>Soirs, week-ends et jours fériés.</span></div></li>
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Ajustements chaque mois</b><span>Réponses et relances améliorées en continu.</span></div></li>
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Point mensuel chiffré</b><span>Vous voyez ce que les agents vous rapportent.</span></div></li>
+        <li><svg width="22" height="22"><use href="#i-check"/></svg><div><b>Un interlocuteur dédié</b><span>Joignable en visio et par téléphone.</span></div></li>
       </ul>
     </div>
-    <div class="offer-card">
-      <p class="tagline">Trente minutes pour savoir combien d'argent et de temps se perdent chez vous.</p>
-      <p>À la fin de l'audit, vous décidez. Rien à signer pour le réaliser.</p>
-      <a class="btn btn--primary" href="#audit">Réserver mon audit</a>
+    <div class="offer-card rv">
+      <p class="big">Sans engagement. <em>Résiliable à tout moment.</em></p>
+      <p>Un abonnement mensuel, sans durée minimale. Les résultats se voient chaque mois dans votre point chiffré.</p>
+      <dl>
+        <div><dt>Audit</dt><dd>Offert</dd></div>
+        <div><dt>Engagement</dt><dd>Aucun</dd></div>
+        <div><dt>Tarif</dt><dd>Selon la taille de votre agence</dd></div>
+        <div><dt>Proposition</dt><dd>Écrite, après l'audit</dd></div>
+      </dl>
+      <a class="btn btn--primary btn--block" href="#audit">Réserver mon audit gratuit <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- A PROPOS -->
-<section class="section" id="apropos">
-  <div class="wrap">
-    <div class="about">
-      <div class="avatar" aria-hidden="true">RC</div>
-      <div>
-        <p class="eyebrow">Qui est derrière mova.ia</p>
-        <h2>Raphaël Cabanne, fondateur.</h2>
-        <p>Je conçois et j'installe moi-même les agents IA de mova.ia. Vous échangez directement avec moi, de l'audit au suivi, sans intermédiaire ni service commercial.</p>
-        <p>Mon travail se limite aux agences immobilières indépendantes, pour connaître leurs outils, leurs horaires et leurs contraintes.</p>
-      </div>
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="rv">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce que les agences nous demandent.</h2>
+      <p class="lede">Une autre question ? Posez-la pendant l'audit.</p>
+    </div>
+    <div class="faq rv">
+      <details><summary>Combien ça coûte ?</summary><p>Le tarif dépend du nombre de demandes que vous recevez et des agents installés. Vous le recevez par écrit à la fin de l'audit, sans obligation de signer.</p></details>
+      <details><summary>Suis-je engagé sur une durée ?</summary><p>Non. L'abonnement est mensuel et résiliable à tout moment.</p></details>
+      <details><summary>Est-ce compatible avec mon logiciel et mes portails ?</summary><p>Nous le vérifions pendant l'audit, avant toute proposition. Vous savez exactement ce qui sera branché, et comment.</p></details>
+      <details><summary>L'IA peut-elle dire n'importe quoi à mes clients ?</summary><p>Elle répond à partir des informations que vous lui donnez : vos biens, vos prix, vos règles. Les sujets sensibles, comme la négociation ou les questions juridiques, sont transmis à votre équipe.</p></details>
+      <details><summary>Que se passe-t-il si l'agent ne sait pas répondre ?</summary><p>Il transmet la conversation à un membre de votre équipe avec l'historique complet. Les règles de transmission sont fixées avec vous à l'installation.</p></details>
+      <details><summary>Mes négociateurs vont-ils être remplacés ?</summary><p>Non. Les agents prennent les tâches répétitives : répondre, trier, planifier, relancer. Vos négociateurs gardent les visites, la relation client et la négociation.</p></details>
+      <details><summary>Faut-il des compétences techniques ?</summary><p>Aucune. Nous installons, testons et réglons tout. Vous validez les réponses avant la mise en service.</p></details>
+      <details><summary>Mes clients sauront-ils qu'ils parlent à une IA ?</summary><p>Vous choisissez la formulation. Nous recommandons de l'indiquer dès le premier message : c'est plus clair pour vos clients et cela évite les malentendus.</p></details>
+      <details><summary>Que deviennent les données de mes prospects ?</summary><p>Elles restent les vôtres. Leur traitement est encadré par contrat et détaillé pendant l'audit, conformément au RGPD.</p></details>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section section--soft" id="faq">
-  <div class="wrap">
-    <div class="head"><p class="eyebrow">Questions fréquentes</p><h2>Ce que les agences demandent avant de commencer.</h2></div>
-    <div class="faq">
-      <details><summary>Est-ce compatible avec mon logiciel et mes portails&nbsp;?</summary><p>La compatibilité se vérifie pendant l'audit puis l'installation. Je regarde vos outils actuels avant de vous proposer quoi que ce soit.</p></details>
-      <details><summary>Que se passe-t-il si l'agent ne sait pas répondre&nbsp;?</summary><p>Il transmet la conversation à votre équipe avec l'historique complet. Les cas où l'humain reprend la main sont définis avec vous à l'installation.</p></details>
-      <details><summary>Suis-je engagé sur une durée&nbsp;?</summary><p>Non. L'abonnement est mensuel et résiliable à tout moment.</p></details>
-      <details><summary>Que deviennent les données de mes prospects&nbsp;?</summary><p>Elles restent les vôtres. Leur traitement est cadré par contrat et détaillé pendant l'audit, dans le respect du RGPD.</p></details>
-      <details><summary>Mes clients sauront-ils qu'ils parlent à une IA&nbsp;?</summary><p>Vous choisissez la formulation. Je recommande de l'indiquer clairement dès le premier message&nbsp;: cela rassure et évite les malentendus.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- RESERVATION -->
+<!-- ============ RESERVATION ============ -->
 <section class="section section--navy" id="audit">
   <div class="wrap book">
-    <div>
-      <p class="eyebrow">Audit gratuit de 30&nbsp;minutes</p>
-      <h2>Parlons de votre agence.</h2>
-      <p class="lede">Décrivez votre agence en quelques lignes. Vous choisissez ensuite un créneau en visioconférence.</p>
+    <div class="rv">
+      <p class="eyebrow">Audit gratuit · 30 minutes</p>
+      <h2>Le prochain prospect écrit ce soir. <span class="hl">Qui lui répond ?</span></h2>
+      <p class="lede">Présentez votre agence en une minute, puis choisissez votre créneau en visio.</p>
+      <ul class="book-points">
+        <li><svg width="18" height="18"><use href="#i-check"/></svg>Vos pertes estimées avec vos vrais chiffres</li>
+        <li><svg width="18" height="18"><use href="#i-check"/></svg>Les automatisations prioritaires pour votre agence</li>
+        <li><svg width="18" height="18"><use href="#i-check"/></svg>Aucun engagement, aucune carte bancaire</li>
+      </ul>
       <div class="slots" aria-label="Créneaux habituels">
-        <div class="slot"><span>Jeudi</span><span>17&nbsp;h&nbsp;30&nbsp;à&nbsp;21&nbsp;h</span></div>
-        <div class="slot"><span>Samedi</span><span>9&nbsp;h&nbsp;à&nbsp;11&nbsp;h · 15&nbsp;h&nbsp;à&nbsp;20&nbsp;h</span></div>
-        <div class="slot"><span>Dimanche</span><span>9&nbsp;h&nbsp;à&nbsp;11&nbsp;h · 15&nbsp;h&nbsp;à&nbsp;20&nbsp;h</span></div>
+        <div class="slot"><span>Jeudi</span><span>17 h 30 à 21 h</span></div>
+        <div class="slot"><span>Samedi</span><span>9 h à 11 h · 15 h à 20 h</span></div>
+        <div class="slot"><span>Dimanche</span><span>9 h à 11 h · 15 h à 20 h</span></div>
       </div>
     </div>
 
-    <div class="panel">
+    <div class="panel rv">
       <form id="audit-form" novalidate>
         <div class="form-grid">
           <div class="field"><label for="f-name">Prénom et nom</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
@@ -331,22 +585,22 @@
             <select id="f-size" name="team_size" required>
               <option value="">Choisir</option><option>1 personne</option><option>2 à 4 personnes</option><option>5 à 9 personnes</option><option>10 personnes ou plus</option>
             </select></div>
-          <div class="field"><label for="f-ca">Chiffre d'affaires annuel de l'agence</label>
+          <div class="field"><label for="f-ca">Chiffre d'affaires annuel</label>
             <select id="f-ca" name="revenue" required>
-              <option value="">Choisir</option><option>Moins de 150 000 €</option><option>150 000 à 400 000 €</option><option>400 000 à 1 M€</option><option>Plus de 1 M€</option>
+              <option value="">Choisir</option><option>Moins de 150 000 €</option><option>150 000 à 400 000 €</option><option>400 000 à 1 M€</option><option>Plus de 1 M€</option>
             </select></div>
-          <div class="field"><label for="f-tools">Logiciel ou CRM utilisé <span class="hint">(facultatif)</span></label><input id="f-tools" name="tools" type="text"></div>
+          <div class="field"><label for="f-tools">Logiciel ou CRM <span class="hint">(facultatif)</span></label><input id="f-tools" name="tools" type="text"></div>
           <div class="field full"><label for="f-msg">Ce qui vous fait perdre le plus de temps <span class="hint">(facultatif)</span></label><textarea id="f-msg" name="message"></textarea></div>
         </div>
         <label class="consent" for="f-consent"><input id="f-consent" name="consent" type="checkbox" required><span>J'accepte que mova.ia utilise ces informations pour me recontacter au sujet de l'audit. Détails dans la <a href="confidentialite.html">politique de confidentialité</a>.</span></label>
-        <button class="btn btn--primary" type="submit" id="f-submit">Continuer vers le choix du créneau</button>
-        <p class="form-msg" id="f-msg-err" role="alert"></p>
+        <button class="btn btn--primary btn--block" type="submit" id="f-submit">Continuer vers le choix du créneau <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></button>
+        <p class="form-msg" id="f-err" role="alert"></p>
       </form>
 
       <div class="done" id="audit-done" hidden>
         <h3>Merci, il reste une étape.</h3>
-        <p>Choisissez maintenant le créneau qui vous convient. Vous recevrez un email de confirmation avec le lien de la visioconférence.</p>
-        <a class="btn btn--primary" id="book-link" href="#audit" target="_blank" rel="noopener">Choisir mon créneau</a>
+        <p>Choisissez le créneau qui vous convient. Vous recevrez un email de confirmation avec le lien de la visio.</p>
+        <a class="btn btn--primary" id="book-link" href="#audit" target="_blank" rel="noopener">Choisir mon créneau <svg class="arr" width="18" height="18"><use href="#i-arrow"/></svg></a>
         <p class="preview-note" id="preview-note" hidden></p>
       </div>
     </div>
@@ -365,6 +619,8 @@
     <span>© <span id="year">2026</span> mova.ia</span>
   </div>
 </footer>
+
+<div class="m-cta" id="m-cta"><a class="btn btn--primary btn--block" href="#audit">Réserver mon audit gratuit</a></div>
 
 <script src="app.js"></script>
 </body>
