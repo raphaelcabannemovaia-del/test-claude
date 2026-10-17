@@ -169,7 +169,7 @@ const CONFIG = {
       e.preventDefault();
       err.textContent = "";
       if (!f.checkValidity()) {
-        err.textContent = "Complétez les champs obligatoires et cochez la case d'accord.";
+        err.textContent = "Complétez les champs obligatoires pour continuer.";
         var bad = f.querySelector(":invalid");
         if (bad) bad.focus();
         return;
