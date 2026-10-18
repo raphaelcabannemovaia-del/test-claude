@@ -48,7 +48,7 @@ Si vous ajoutez Google Analytics, un pixel publicitaire ou une vidéo YouTube in
 ## Contenu à valider
 
 - Outils cités (bandeau et FAQ) : n8n, Make, Zapier, Claude, Claude Code, Mistral AI, OpenAI. Retirer ceux que vous n'utilisez pas réellement.
-- Exemples : six automatisations types. Ne garder que ce qui est réellement livrable.
+- Procédé (5 étapes) et services (audit, automatisations sur mesure, support client 24h/24) : ne promettre que ce qui est réellement livrable.
 - FAQ « données » : l'hébergement UE et l'exclusion de l'entraînement des modèles doivent être vérifiés dans les conditions de chaque outil utilisé.
 - Simulateur : mesure le temps passé aujourd'hui (leads × minutes + administratif × 4,33 semaines). Aucun gain annoncé.
 

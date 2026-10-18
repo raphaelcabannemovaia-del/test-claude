@@ -47,9 +47,6 @@ const CONFIG = {
   document.querySelectorAll("[data-stagger]").forEach(function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", i); });
   });
-  document.querySelectorAll(".flow").forEach(function (f) {
-    Array.prototype.forEach.call(f.children, function (li, k) { li.style.setProperty("--k", k); });
-  });
   if (!reduce && hasIO) {
     document.documentElement.classList.add("motion");
     var rvObs = new IntersectionObserver(function (entries) {
@@ -222,50 +219,37 @@ const CONFIG = {
     });
   })();
 
-  /* ---------- Animations des solutions ---------- */
-  (function solAnims() {
-    var roots = document.querySelectorAll(".anim");
-    Array.prototype.forEach.call(roots, function (root) {
-      var num = function (v) { return v == null ? null : +v; };
-      var items = Array.prototype.map.call(root.querySelectorAll("[data-at]"), function (el) {
-        return { el: el, at: +el.dataset.at, off: num(el.dataset.off), done: num(el.dataset.done), fix: num(el.dataset.fix) };
-      });
-      var dur = +root.dataset.dur || 12000;
-      if (reduce) {
-        items.forEach(function (i) {
-          i.el.classList.toggle("on", i.off == null);
-          if (i.done != null) i.el.classList.add("done");
-          if (i.fix != null) i.el.classList.add("fix");
-        });
-        return;
+  /* ---------- Globe en points (procédé, étape 05) ---------- */
+  (function globe() {
+    var cv = document.querySelector(".globe");
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext("2d"), W = cv.width, R = W * 0.46, N = 1100, pts = [], rot = 0, visible = false, raf = null;
+    for (var k = 0; k < N; k++) {
+      var yk = 1 - (k / (N - 1)) * 2, rk = Math.sqrt(1 - yk * yk), th = k * 2.39996;
+      pts.push([Math.cos(th) * rk, yk, Math.sin(th) * rk]);
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, W);
+      var c = Math.cos(rot), s = Math.sin(rot);
+      for (var k = 0; k < N; k++) {
+        var p = pts[k], x = p[0] * c + p[2] * s, z = -p[0] * s + p[2] * c;
+        if (z < -0.05) continue;
+        ctx.globalAlpha = 0.25 + 0.75 * Math.max(0, z);
+        ctx.fillStyle = z > 0.55 ? "#e9fff7" : "#9fe9d2";
+        ctx.beginPath();
+        ctx.arc(W / 2 + x * R, W / 2 - p[1] * R, 1.1 + z * 1.3, 0, 6.2832);
+        ctx.fill();
       }
-      var t = 0, last = null, playing = false, visible = false;
-      function render() {
-        items.forEach(function (i) {
-          i.el.classList.toggle("on", t >= i.at && (i.off == null || t < i.off));
-          if (i.done != null) i.el.classList.toggle("done", t >= i.done);
-          if (i.fix != null) i.el.classList.toggle("fix", t >= i.fix);
-        });
-        root.classList.toggle("is-end", t > dur - 700);
-      }
-      function frame(ts) {
-        if (!playing) { last = null; return; }
-        if (last !== null) t += Math.min(100, ts - last);
-        last = ts;
-        if (t >= dur) t = 0;
-        render();
-        requestAnimationFrame(frame);
-      }
-      function sync() {
-        var want = visible && !document.hidden;
-        if (want && !playing) { playing = true; requestAnimationFrame(frame); }
-        else if (!want) playing = false;
-      }
-      render();
-      document.addEventListener("visibilitychange", sync);
-      if (hasIO) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }, { threshold: 0.3 }).observe(root);
-      else { visible = true; sync(); }
-    });
+    }
+    function frame() {
+      rot += 0.0035; draw();
+      raf = visible && !document.hidden ? requestAnimationFrame(frame) : null;
+    }
+    function sync() { if (visible && !document.hidden && !raf) raf = requestAnimationFrame(frame); }
+    draw();
+    if (reduce || !hasIO) return;
+    document.addEventListener("visibilitychange", sync);
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }).observe(cv);
   })();
 
   var y = $("year");
