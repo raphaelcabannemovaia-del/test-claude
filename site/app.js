@@ -222,6 +222,52 @@ const CONFIG = {
     });
   })();
 
+  /* ---------- Animations des solutions ---------- */
+  (function solAnims() {
+    var roots = document.querySelectorAll(".anim");
+    Array.prototype.forEach.call(roots, function (root) {
+      var num = function (v) { return v == null ? null : +v; };
+      var items = Array.prototype.map.call(root.querySelectorAll("[data-at]"), function (el) {
+        return { el: el, at: +el.dataset.at, off: num(el.dataset.off), done: num(el.dataset.done), fix: num(el.dataset.fix) };
+      });
+      var dur = +root.dataset.dur || 12000;
+      if (reduce) {
+        items.forEach(function (i) {
+          i.el.classList.toggle("on", i.off == null);
+          if (i.done != null) i.el.classList.add("done");
+          if (i.fix != null) i.el.classList.add("fix");
+        });
+        return;
+      }
+      var t = 0, last = null, playing = false, visible = false;
+      function render() {
+        items.forEach(function (i) {
+          i.el.classList.toggle("on", t >= i.at && (i.off == null || t < i.off));
+          if (i.done != null) i.el.classList.toggle("done", t >= i.done);
+          if (i.fix != null) i.el.classList.toggle("fix", t >= i.fix);
+        });
+        root.classList.toggle("is-end", t > dur - 700);
+      }
+      function frame(ts) {
+        if (!playing) { last = null; return; }
+        if (last !== null) t += Math.min(100, ts - last);
+        last = ts;
+        if (t >= dur) t = 0;
+        render();
+        requestAnimationFrame(frame);
+      }
+      function sync() {
+        var want = visible && !document.hidden;
+        if (want && !playing) { playing = true; requestAnimationFrame(frame); }
+        else if (!want) playing = false;
+      }
+      render();
+      document.addEventListener("visibilitychange", sync);
+      if (hasIO) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }, { threshold: 0.3 }).observe(root);
+      else { visible = true; sync(); }
+    });
+  })();
+
   var y = $("year");
   if (y) y.textContent = new Date().getFullYear();
 })();

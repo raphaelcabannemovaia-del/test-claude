@@ -37,6 +37,7 @@
   <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></g></symbol>
   <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></g></symbol>
   <symbol id="i-nodes" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7.5 12h3.5l5.5-6M11 12l5.5 6"/></g></symbol>
   <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
@@ -241,54 +242,163 @@
       <h2>Six solutions pensées pour <span class="it">l'agence immobilière</span>.</h2>
       <p class="lede">Chaque agence reçoit une sélection adaptée à son activité et à ses outils, définie pendant le diagnostic.</p>
     </div>
-    <div class="sols" data-stagger>
-      <article class="sol rv">
-        <div class="sol-main">
+    <div class="sols">
+      <article class="sol2 rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-chat"/></svg></span><div><small>Solution 1</small><h3>Assistant de réponse et qualification 24/7</h3></div></div>
-          <p class="sol-how"><b>Fonctionnement</b>L'assistant répond en moins de 2 minutes, par mail, SMS, WhatsApp ou chat sur le site, à toute demande issue des portails ou du site. Il pose les questions de qualification (budget, financement validé, délai, bien à vendre ou non), propose un créneau de visite directement dans l'agenda de l'agent et inscrit le tout dans le CRM. Les demandes à fort potentiel, comme un vendeur ou un acquéreur financé, sont transmises immédiatement à un humain.</p>
+          <p class="sol-how"><b>Fonctionnement</b>L'assistant répond en moins de 2 minutes, par mail, SMS, WhatsApp ou chat sur le site, à toute demande issue des portails ou du site. Il pose les questions de qualification (budget, financement validé, délai, bien à vendre ou non), propose un créneau de visite directement dans l'agenda de l'agent et inscrit le tout dans le CRM. Les demandes à fort potentiel, comme un vendeur ou un acquéreur financé, sont transmises immédiatement à un humain.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Un acquéreur vous écrit dimanche à 21 h. Vous lui répondez lundi à 11 h. Entre-temps, il a contacté trois agences, et l'une d'elles lui a déjà fixé une visite. Chaque heure d'attente vous coûte des contacts, et chaque visite non qualifiée vous coûte une demi-journée.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Chaque demande reçoit une réponse en moins de deux minutes, jour et nuit. Les acquéreurs sont qualifiés avant la visite (budget, financement, délai), et vos agents ne se déplacent plus que pour des projets sérieux. Les rendez-vous arrivent directement dans leur agenda.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Un acquéreur vous écrit dimanche à 21 h. Vous lui répondez lundi à 11 h. Entre-temps, il a contacté trois agences, et l'une d'elles lui a déjà fixé une visite. Chaque heure d'attente vous coûte des contacts, et chaque visite non qualifiée vous coûte une demi-journée.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Chaque demande reçoit une réponse en moins de deux minutes, jour et nuit. Les acquéreurs sont qualifiés avant la visite (budget, financement, délai), et vos agents ne se déplacent plus que pour des projets sérieux. Les rendez-vous arrivent directement dans leur agenda.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="14500">
+  <div class="ph"><div class="ph-scr"><span class="ph-isl"></span>
+    <div class="ph-hd"><span class="ph-av"><img src="assets/mark-white.svg" alt="" width="18" height="18"></span><div><b>Agence du Parc</b><small>Assistant mova.ia · en ligne</small></div></div>
+    <div class="ph-feed">
+      <div class="m in" data-at="400">Bonsoir, le T3 rue Paul-Bert est-il encore disponible ?</div>
+      <div class="m typing" data-at="1300" data-off="2700"><i></i><i></i><i></i></div>
+      <div class="m out" data-at="2700">Bonsoir ! Oui : 68 m², balcon, 315 000 €. Votre financement est-il déjà validé ?</div>
+      <div class="m in" data-at="4900">Oui, accord bancaire jusqu'à 330 000 €.</div>
+      <div class="m typing" data-at="5700" data-off="7000"><i></i><i></i><i></i></div>
+      <div class="m out" data-at="7000">Parfait. Je vous propose une visite mardi à 18 h ou jeudi à 12 h 30.</div>
+      <div class="m in" data-at="9000">Mardi 18 h.</div>
+      <div class="m out" data-at="10100">C'est noté. Julien vous attendra sur place, confirmation envoyée par SMS.</div>
+    </div>
+  </div></div>
+  <div class="tag-f t1" data-at="7400" data-off="10400"><span class="d"><svg width="11" height="11"><use href="#i-check"/></svg></span>Acquéreur financé · transmis à Julien</div>
+  <div class="tag-f t2" data-at="10700"><span class="d"><svg width="11" height="11"><use href="#i-check"/></svg></span>Visite ajoutée à l'agenda</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
-      <article class="sol rv">
-        <div class="sol-main">
+      <article class="sol2 sol2--rev rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-spark"/></svg></span><div><small>Solution 2</small><h3>Studio d'annonces IA</h3></div></div>
           <p class="sol-how"><b>Fonctionnement</b>À partir des photos, de la fiche technique et d'une note vocale de l'agent après la visite de prise de mandat, l'IA produit une annonce structurée, ses versions courtes pour les portails, une traduction (anglais, allemand…) et les publications pour les réseaux sociaux. Le home staging virtuel est possible, avec la mention « image retouchée / aménagement virtuel » obligatoire.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Une heure par bien pour écrire une annonce que personne ne relit. Des descriptions interchangeables qui ne font pas ressortir vos biens sur les portails. Des réseaux sociaux à l'abandon faute de temps.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Une annonce complète, déclinée pour chaque portail et chaque réseau, prête en quelques minutes après la visite. Un ton homogène pour toute l'agence. L'agent valide, sans avoir à rédiger.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Une heure par bien pour écrire une annonce que personne ne relit. Des descriptions interchangeables qui ne font pas ressortir vos biens sur les portails. Des réseaux sociaux à l'abandon faute de temps.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Une annonce complète, déclinée pour chaque portail et chaque réseau, prête en quelques minutes après la visite. Un ton homogène pour toute l'agence. L'agent valide, sans avoir à rédiger.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="13500">
+  <div class="pics"><span class="pic pic1" data-at="300"><svg width="18" height="18"><use href="#i-home"/></svg></span><span class="pic pic2" data-at="600"><svg width="18" height="18"><use href="#i-home"/></svg></span><span class="pic pic3" data-at="900"><svg width="18" height="18"><use href="#i-home"/></svg></span></div>
+  <div class="voice" data-at="1300"><span class="mic"><svg width="14" height="14"><use href="#i-mic"/></svg></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small>Note vocale · 0:42</small></div>
+  <div class="card gen" data-at="2600">
+    <small class="lab"><svg width="12" height="12"><use href="#i-spark"/></svg> Rédaction en cours</small>
+    <b class="tw" data-at="3000">Lumineux T3 avec balcon, au calme</b>
+    <p class="tw tw2" data-at="3500">Au 3e étage avec ascenseur, ce T3 de 68 m² offre un séjour traversant, deux chambres et un balcon plein sud. DPE C, proche tram.</p>
+  </div>
+  <div class="chips" ><span data-at="6300">Portails · version courte</span><span data-at="6800">Anglais · allemand</span><span data-at="7300">Instagram · Facebook</span><span class="warn" data-at="7800">Aménagement virtuel signalé</span></div>
+  <div class="pill-ok" data-at="8800"><svg width="11" height="11"><use href="#i-check"/></svg> Prête à valider par l'agent</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
-      <article class="sol rv">
-        <div class="sol-main">
+      <article class="sol2 rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-home"/></svg></span><div><small>Solution 3</small><h3>Avis de valeur express</h3></div></div>
-          <p class="sol-how"><b>Fonctionnement</b>L'IA croise les données DVF (ventes réelles, publiées avec un décalage d'environ 6 mois), les biens comparables en vente et les caractéristiques du bien. Elle génère un avis de valeur argumenté et un dossier de présentation aux couleurs de l'agence. L'agent ajuste le prix final, car c'est lui qui connaît le terrain et le marché récent que DVF ne reflète pas encore.</p>
+          <p class="sol-how"><b>Fonctionnement</b>L'IA croise les données DVF (ventes réelles, publiées avec un décalage d'environ 6 mois), les biens comparables en vente et les caractéristiques du bien. Elle génère un avis de valeur argumenté et un dossier de présentation aux couleurs de l'agence. L'agent ajuste le prix final, car c'est lui qui connaît le terrain et le marché récent que DVF ne reflète pas encore.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Deux à trois heures pour préparer chaque rendez-vous de prise de mandat. Des estimations qui varient d'un agent à l'autre. Des propriétaires qui ne rappellent pas parce que votre concurrent a envoyé son estimation la veille.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Un dossier d'estimation professionnel prêt en moins de 30 minutes, fondé sur les ventes réelles du quartier. Vous arrivez au rendez-vous avec des arguments chiffrés, et vous pouvez répondre le jour même à une demande d'estimation.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Deux à trois heures pour préparer chaque rendez-vous de prise de mandat. Des estimations qui varient d'un agent à l'autre. Des propriétaires qui ne rappellent pas parce que votre concurrent a envoyé son estimation la veille.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Un dossier d'estimation professionnel prêt en moins de 30 minutes, fondé sur les ventes réelles du quartier. Vous arrivez au rendez-vous avec des arguments chiffrés, et vous pouvez répondre le jour même à une demande d'estimation.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="14500">
+  <div class="card">
+    <small class="lab">Avis de valeur · simulation</small>
+    <b class="ttl">Maison 4 pièces · 92 m² · Écully</b>
+    <div class="pics pics--sm"><span class="pic pic1" data-at="300"><svg width="18" height="18"><use href="#i-home"/></svg></span><span class="pic pic2" data-at="600"><svg width="18" height="18"><use href="#i-home"/></svg></span><span class="pic pic3" data-at="900"><svg width="18" height="18"><use href="#i-home"/></svg></span></div>
+    <ul class="steps-l"><li data-at="1500" data-done="2500"><span class="sp"><svg width="11" height="11"><use href="#i-check"/></svg></span>Ventes DVF du quartier<em>48 ventes · 24 mois</em></li><li data-at="2800" data-done="3800"><span class="sp"><svg width="11" height="11"><use href="#i-check"/></svg></span>Biens comparables en vente<em>12 annonces</em></li><li data-at="4100" data-done="5100"><span class="sp"><svg width="11" height="11"><use href="#i-check"/></svg></span>Caractéristiques du bien<em>DPE C · jardin</em></li><li data-at="5400" data-done="6400"><span class="sp"><svg width="11" height="11"><use href="#i-check"/></svg></span>Offre et demande locales<em>délai moyen 74 j</em></li></ul>
+  </div>
+  <div class="res" data-at="7200">
+    <small>Fourchette estimée</small>
+    <div class="bar2"><i class="rng"></i><i class="pin"></i></div>
+    <div class="vals"><span>412 000 €</span><b>428 000 €</b><span>441 000 €</span></div>
+    <p>Prix final ajusté par l'agent</p>
+  </div>
+  <div class="pill-ok" data-at="9300"><svg width="11" height="11"><use href="#i-check"/></svg> Dossier PDF aux couleurs de l'agence</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
-      <article class="sol rv">
-        <div class="sol-main">
+      <article class="sol2 sol2--rev rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-list"/></svg></span><div><small>Solution 4</small><h3>Reporting vendeur automatique</h3></div></div>
-          <p class="sol-how"><b>Fonctionnement</b>Après chaque visite, l'agent dicte 30 secondes de compte rendu. L'IA le structure, l'inscrit dans le CRM et compile chaque semaine un rapport envoyé au vendeur : nombre de vues et de contacts, visites, retours des acquéreurs, comparaison avec le marché. Quand les retours vont dans ce sens, le rapport prépare aussi un argumentaire de baisse de prix.</p>
+          <p class="sol-how"><b>Fonctionnement</b>Après chaque visite, l'agent dicte 30 secondes de compte rendu. L'IA le structure, l'inscrit dans le CRM et compile chaque semaine un rapport envoyé au vendeur : nombre de vues et de contacts, visites, retours des acquéreurs, comparaison avec le marché. Quand les retours vont dans ce sens, le rapport prépare aussi un argumentaire de baisse de prix.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des vendeurs sans nouvelles qui se sentent abandonnés et ne renouvellent pas l'exclusivité. Des baisses de prix refusées faute de preuves. Des comptes rendus de visite jamais saisis.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Chaque vendeur reçoit un rapport clair, chaque semaine, sans effort de votre part. Les retours de visite deviennent des données exploitables, et vos propositions d'ajustement de prix s'appuient sur des faits.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des vendeurs sans nouvelles qui se sentent abandonnés et ne renouvellent pas l'exclusivité. Des baisses de prix refusées faute de preuves. Des comptes rendus de visite jamais saisis.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Chaque vendeur reçoit un rapport clair, chaque semaine, sans effort de votre part. Les retours de visite deviennent des données exploitables, et vos propositions d'ajustement de prix s'appuient sur des faits.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="13500">
+  <div class="voice" data-at="300"><span class="mic"><svg width="14" height="14"><use href="#i-mic"/></svg></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><small>Compte rendu dicté · 0:30</small></div>
+  <div class="card rp" data-at="1700">
+    <div class="rp-h"><b>Rapport hebdomadaire</b><small>Semaine 42 · T4 Villeurbanne</small></div>
+    <div class="kpi"><div data-at="2300"><b>1 284</b><small>vues</small></div><div data-at="2600"><b>23</b><small>contacts</small></div><div data-at="2900"><b>6</b><small>visites</small></div></div>
+    <div class="chart"><i data-at="3300" style="--h:38%"></i><i data-at="3450" style="--h:52%"></i><i data-at="3600" style="--h:46%"></i><i data-at="3750" style="--h:70%"></i><i data-at="3900" style="--h:62%"></i><i data-at="4050" style="--h:84%"></i><i data-at="4200" style="--h:76%"></i></div>
+    <div class="fb" data-at="5000">« Bel appartement, prix au-dessus du secteur. »<small>Retour de 3 acquéreurs sur 6</small></div>
+    <div class="alert" data-at="6400"><svg width="13" height="13"><use href="#i-doc"/></svg> Argumentaire d'ajustement de prix prêt</div>
+  </div>
+  <div class="pill-ok" data-at="8000"><svg width="11" height="11"><use href="#i-check"/></svg> Envoyé au vendeur · lundi 8:00</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
-      <article class="sol rv">
-        <div class="sol-main">
+      <article class="sol2 rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-folder"/></svg></span><div><small>Solution 5</small><h3>Dossier de vente piloté</h3></div></div>
           <p class="sol-how"><b>Fonctionnement</b>Dès la signature du mandat, le vendeur reçoit une liste de pièces personnalisée selon le type de bien (copropriété, maison, diagnostics requis). L'IA relance automatiquement, lit les documents reçus, signale les anomalies (DPE expiré, diagnostic manquant, incohérence de surface), prépare la vigilance LCB-FT et transmet un dossier complet au notaire.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des heures à réclamer les mêmes documents, des compromis retardés de plusieurs semaines, des allers-retours avec le notaire et un risque réel en cas de contrôle sur vos obligations anti-blanchiment.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Un dossier complet et vérifié avant même l'offre d'achat. Les relances partent toutes seules, les erreurs sont repérées avant le notaire, et vos compromis se signent plus vite.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des heures à réclamer les mêmes documents, des compromis retardés de plusieurs semaines, des allers-retours avec le notaire et un risque réel en cas de contrôle sur vos obligations anti-blanchiment.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Un dossier complet et vérifié avant même l'offre d'achat. Les relances partent toutes seules, les erreurs sont repérées avant le notaire, et vos compromis se signent plus vite.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="13500">
+  <div class="card">
+    <div class="rp-h"><b>Dossier de vente</b><small>Appartement en copropriété</small></div>
+    <span class="prog"><i data-at="300"></i></span>
+    <ul class="dl">
+      <li data-at="500" data-done="1300"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>Titre de propriété</li>
+      <li data-at="900" data-done="2100"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>Diagnostics amiante, plomb, électricité</li>
+      <li class="bad" data-at="1300" data-done="2900" data-fix="6200"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>DPE<em class="e1">expiré · relance envoyée</em><em class="e2">nouveau DPE reçu</em></li>
+      <li data-at="1700" data-done="3700"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>Règlement de copropriété et PV d'AG</li>
+      <li data-at="2100" data-done="4500"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>Surface Carrez vérifiée</li>
+      <li data-at="2500" data-done="5300"><span class="st"><svg width="11" height="11"><use href="#i-check"/></svg></span>Vigilance LCB-FT<em class="e0">préparée</em></li>
+    </ul>
+  </div>
+  <div class="pill-ok" data-at="7600"><svg width="11" height="11"><use href="#i-check"/></svg> Dossier complet transmis au notaire</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
-      <article class="sol rv">
-        <div class="sol-main">
+      <article class="sol2 sol2--rev rv">
+        <div class="sol2-txt">
           <div class="sol-h"><span class="ibox"><svg width="22" height="22"><use href="#i-refresh"/></svg></span><div><small>Solution 6</small><h3>Relance et matching de la base</h3></div></div>
-          <p class="sol-how"><b>Fonctionnement</b>L'IA réveille la base existante. Elle croise chaque nouveau mandat avec les acquéreurs en attente, recontacte les anciens clients au bon moment (3 à 7 ans après un achat, période de revente fréquente), relance les estimations restées sans suite et envoie des nouvelles du marché personnalisées par quartier.</p>
+          <p class="sol-how"><b>Fonctionnement</b>L'IA réveille la base existante. Elle croise chaque nouveau mandat avec les acquéreurs en attente, recontacte les anciens clients au bon moment (3 à 7 ans après un achat, période de revente fréquente), relance les estimations restées sans suite et envoie des nouvelles du marché personnalisées par quartier.</p>
+          <div class="sol2-bw">
+            <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des milliers de contacts dans votre logiciel, que personne ne relance. Des acquéreurs qui achètent ailleurs un bien que vous aviez en portefeuille. Des propriétaires estimés il y a un an qui vendent aujourd'hui avec un concurrent.</p></div>
+            <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Votre base devient votre première source de mandats. Chaque nouveau bien est proposé dans l'heure aux acquéreurs compatibles, et vos anciens clients pensent à vous au moment où ils décident de vendre.</p></div>
+          </div>
         </div>
-        <div class="sol-lose"><small><span class="xk"><svg width="11" height="11"><use href="#i-x"/></svg></span>Ce que vous perdez aujourd'hui</small><p>Des milliers de contacts dans votre logiciel, que personne ne relance. Des acquéreurs qui achètent ailleurs un bien que vous aviez en portefeuille. Des propriétaires estimés il y a un an qui vendent aujourd'hui avec un concurrent.</p></div>
-        <div class="sol-win"><small><span class="ok"><svg width="12" height="12"><use href="#i-check"/></svg></span>Ce que vous gagnez</small><p>Votre base devient votre première source de mandats. Chaque nouveau bien est proposé dans l'heure aux acquéreurs compatibles, et vos anciens clients pensent à vous au moment où ils décident de vendre.</p></div>
+        <div class="sol2-vis" aria-hidden="true">
+          <div class="anim" data-dur="12500">
+  <div class="card mt-new" data-at="300"><small class="lab">Nouveau mandat</small><b class="ttl">T3 · 72 m² · Lyon 6e</b><span class="price">395 000 €</span></div>
+  <div class="scan" data-at="1200"><span class="sbar"></span>Analyse de 1 840 contacts</div>
+  <ul class="ml">
+    <li data-at="2400"><span class="av2">CM</span><div><b>Camille M.</b><small>Acquéreuse · budget 400 k€ · T3</small></div><em>96 %</em></li>
+    <li data-at="3000"><span class="av2 a2">TR</span><div><b>Thomas R.</b><small>Acquéreur · Lyon 6e · financé</small></div><em>92 %</em></li>
+    <li data-at="3600"><span class="av2 a3">SB</span><div><b>Sophie B.</b><small>Ancienne cliente · achat en 2020</small></div><em>Revente ?</em></li>
+  </ul>
+  <div class="pill-ok" data-at="5200"><svg width="11" height="11"><use href="#i-check"/></svg> Proposé à 3 contacts en moins d'une heure</div>
+</div>
+          <p class="vis-cap">Démonstration · données fictives</p>
+        </div>
       </article>
     </div>
     <div class="ex-foot rv">
@@ -301,32 +411,26 @@
 <!-- ================= COMPARATIF ================= -->
 <section class="sec" id="comparatif">
   <div class="wrap">
-    <div class="head rv">
+    <div class="head head--c rv">
       <p class="eyebrow">Comparatif</p>
       <h2>Recruter, faire soi-même ou <span class="it">confier à un spécialiste</span> ?</h2>
       <p class="lede">Trois façons de soulager votre équipe. Voici ce qui les distingue.</p>
     </div>
-    <div class="cmp-wrap rv">
-      <table class="cmp">
-        <thead>
-          <tr>
-            <th scope="col"><span class="oh"><small>Critère</small></span></th>
-            <th scope="col"><span class="oh"><i><svg width="20" height="20"><use href="#i-users"/></svg></i><small>Option 1</small><b>Recruter un assistant</b></span></th>
-            <th scope="col"><span class="oh"><i><svg width="20" height="20"><use href="#i-tune"/></svg></i><small>Option 2</small><b>Outils en libre-service</b></span></th>
-            <th scope="col" class="us"><span class="oh"><span class="rec">Recommandé</span><i class="oh-us"><img src="assets/mark-white.svg" alt="" width="24" height="24"></i><small>Option 3</small><b>mova.ia</b></span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-key"/></svg></i>Mise en place</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Recrutement, intégration, formation</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>À paramétrer vous-même</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Clé en main, après un diagnostic de 30 min</span></td></tr>
-          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-doc"/></svg></i>Coût</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Salaire chargé, sur la durée du contrat</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Abonnements et votre temps de paramétrage</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Mise en place sur devis, suivi mensuel sans engagement</span></td></tr>
-          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-clock"/></svg></i>Disponibilité</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Horaires de bureau, congés</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Selon votre paramétrage</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Automatisations actives en continu</span></td></tr>
-          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-home"/></svg></i>Métier immobilier</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Selon le profil recruté</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Outils génériques</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Pensé pour la transaction et la location</span></td></tr>
-          <tr><th scope="row"><span class="rl"><i><svg width="17" height="17"><use href="#i-refresh"/></svg></i>Maintenance</span></th><td data-label="Recruter un assistant"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>Remplacement en cas de départ</span></td><td data-label="Outils en libre-service"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-minus"/></svg></span>À votre charge quand un outil change</span></td><td class="us" data-label="mova.ia"><span class="cv"><span class="d"><svg width="12" height="12"><use href="#i-check"/></svg></span>Incluse dans le suivi mensuel</span></td></tr>
-        </tbody>
-        <tfoot>
-          <tr><td></td><td></td><td></td><td class="us"><a class="btn btn-white btn-sm btn-block" href="#appel">Réserver mon diagnostic <svg width="16" height="16"><use href="#i-arrow"/></svg></a></td></tr>
-        </tfoot>
-      </table>
+    <div class="vs" data-stagger>
+      <article class="vs-c rv">
+        <div class="vs-top"><span class="vs-ic"><svg width="24" height="24"><use href="#i-users"/></svg></span><small>En interne</small><h3>Recruter un assistant</h3><p>Une personne de plus dans l'équipe.</p></div>
+        <ul class="vs-list"><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Mise en place</small>Recrutement, intégration, formation</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Coût</small>Salaire chargé, sur la durée du contrat</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Disponibilité</small>Horaires de bureau, congés</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Métier immobilier</small>Selon le profil recruté</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Maintenance</small>Remplacement en cas de départ</div></li></ul>
+      </article>
+      <article class="vs-c vs-c--us rv">
+        <span class="vs-badge">Recommandé</span>
+        <div class="vs-top"><span class="vs-ic"><img src="assets/mark-white.svg" alt="" width="26" height="26"></span><small>Avec mova.ia</small><h3>Sur mesure, clé en main</h3><p>Une expertise clé en main, suivie chaque mois.</p></div>
+        <ul class="vs-list"><li><span class="mk"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><small>Mise en place</small>Clé en main, après un diagnostic de 30 min</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><small>Coût</small>Mise en place sur devis, suivi mensuel sans engagement</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><small>Disponibilité</small>Automatisations actives en continu</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><small>Métier immobilier</small>Pensé pour la transaction et la location</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-check"/></svg></span><div><small>Maintenance</small>Incluse dans le suivi mensuel</div></li></ul>
+        <a class="btn btn-white btn-block" href="#appel">Réserver mon diagnostic <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="vs-c rv">
+        <div class="vs-top"><span class="vs-ic"><svg width="24" height="24"><use href="#i-tune"/></svg></span><small>En autonomie</small><h3>Outils en libre-service</h3><p>Des logiciels à configurer soi-même.</p></div>
+        <ul class="vs-list"><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Mise en place</small>À paramétrer vous-même</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Coût</small>Abonnements et votre temps de paramétrage</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Disponibilité</small>Selon votre paramétrage</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Métier immobilier</small>Outils génériques</div></li><li><span class="mk"><svg width="12" height="12"><use href="#i-minus"/></svg></span><div><small>Maintenance</small>À votre charge quand un outil change</div></li></ul>
+      </article>
     </div>
     <p class="cmp-note">Ces options se combinent : une agence peut automatiser les tâches répétitives et garder un assistant pour l'accueil et le relationnel.</p>
   </div>
