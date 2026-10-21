@@ -4,15 +4,14 @@ Site statique (HTML/CSS/JS, aucune dépendance externe, polices hébergées dans
 
 ## À compléter avant la mise en ligne
 
-1. **Lien de réservation** : dans `app.js`, renseigner `CONFIG.bookingUrl`.
-   Google Agenda > Créer > Planning des rendez-vous > durée 30 min, lieu Google Meet, vos disponibilités > Partager > copier le lien.
-2. **Formulaire** : renseigner `CONFIG.formEndpoint` (et, si vous voulez, `CONFIG.contactEmail`). Tant que `formEndpoint` est vide, rien n'est envoyé. Voir « Recevoir les demandes par email » ci-dessous.
+1. **Demande de diagnostic** : le bouton de la section « Diagnostic offert » ouvre un e-mail prérempli vers `CONFIG.contactEmail` (dans `app.js`). Le visiteur doit appuyer sur « Envoyer » dans sa messagerie ; s'il n'en a pas de configurée, l'adresse s'affiche avec un bouton « Copier ». Pour répondre avec un lien de visio, créez un Planning des rendez-vous Google Agenda (30 min, Google Meet) et collez le lien dans votre réponse.
+2. *(supprimé : l'ancien formulaire avec n8n n'est plus utilisé)*
 3. **Mentions légales** (`mentions-legales.html`) : garder un seul cas (société ou entrepreneur individuel) et remplir tous les champs surlignés.
    Le directeur de la publication est le représentant légal de la société éditrice, ou l'entrepreneur lui-même s'il est majeur.
 4. **Confidentialité** (`confidentialite.html`) : remplir la date, l'email de contact, la liste des prestataires et, pour chacun hors UE, la garantie de transfert.
 5. **Hébergement** : glisser le dossier `site/` sur Netlify, Cloudflare Pages ou un hébergeur européen, puis relier le domaine.
 
-## Recevoir les demandes par email (n8n)
+## Ancien formulaire (n8n), conservé à titre facultatif
 
 Scénario prêt à importer : `automations/n8n-formulaire-diagnostic.json` (à la racine du dépôt, hors du dossier publié).
 Il fait trois choses : vous envoie la demande par email, répond au site, puis envoie un email de confirmation au prospect avec votre lien de réservation.
@@ -38,9 +37,8 @@ Problèmes fréquents :
 
 - Aucun cookie, aucun traceur, aucune mesure d'audience : pas de bandeau cookies nécessaire tant que rien de tel n'est ajouté.
 - Polices auto-hébergées (`fonts.css`) : aucune adresse IP transmise à Google pendant la consultation.
-- Champ piège invisible contre les robots : les envois automatiques sont ignorés sans gêner les visiteurs.
-- Information sous le formulaire (responsable, finalité, base légale, durée, droits, lien vers la politique).
-- Base légale du formulaire : mesures précontractuelles (art. 6.1.b). Pas de case de consentement obligatoire.
+- Information sous le bouton de demande (responsable, finalité, base légale, durée, droits, lien vers la politique).
+- Base légale de la demande de diagnostic : mesures précontractuelles (art. 6.1.b). Pas de case de consentement obligatoire.
 - Politique de confidentialité structurée selon l'article 13 du RGPD, avec la section sous-traitance (art. 28) pour les données des agences clientes.
 
 Si vous ajoutez Google Analytics, un pixel publicitaire ou une vidéo YouTube intégrée, un bandeau de consentement devient obligatoire.

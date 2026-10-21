@@ -393,7 +393,7 @@
     <div class="rv">
       <p class="eyebrow">Diagnostic offert</p>
       <h2>30 minutes pour savoir ce que votre agence peut <span class="it">automatiser</span>.</h2>
-      <p class="lede">Présentez votre agence en une minute, puis choisissez votre créneau en visio. À la fin de l'appel, vous savez quelles tâches peuvent être automatisées. Vous recevez ensuite une proposition écrite.</p>
+      <p class="lede">Envoyez-nous un message en une minute : nous vous proposons un créneau en visio. À la fin de l'appel, vous savez quelles tâches peuvent être automatisées. Vous recevez ensuite une proposition écrite.</p>
       <ul class="info-list">
         <li><span class="ibox"><svg width="22" height="22"><use href="#i-clock"/></svg></span><span><b>30 minutes en visio</b>Au créneau qui vous convient</span></li>
         <li><span class="ibox"><svg width="22" height="22"><use href="#i-list"/></svg></span><span><b>Un état des lieux de votre agence</b>Vos tâches répétitives, vos outils, le temps passé</span></li>
@@ -401,34 +401,18 @@
         <li><span class="ibox"><svg width="22" height="22"><use href="#i-shield"/></svg></span><span><b>Sans engagement</b>Aucune carte bancaire demandée</span></li>
       </ul>
     </div>
-    <div class="form-card rv">
-      <form id="audit-form" novalidate>
-        <h3>Réserver mon diagnostic</h3>
-        <p>Gratuit et sans engagement.</p>
-        <div class="fgrid">
-          <div class="field"><label for="f-name">Prénom et nom</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Julien Martin" required></div>
-          <div class="field"><label for="f-agency">Agence</label><input id="f-agency" name="agency" type="text" autocomplete="organization" placeholder="Agence du Parc" required></div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="vous@agence.fr" required></div>
-          <div class="field"><label for="f-phone">Téléphone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00" required></div>
-          <div class="field"><label for="f-city">Ville</label><input id="f-city" name="city" type="text" autocomplete="address-level2" placeholder="Lyon" required></div>
-          <div class="field"><label for="f-size">Nombre de collaborateurs</label>
-            <select id="f-size" name="team_size" required><option value="">Choisir</option><option>1 personne</option><option>2 à 4 personnes</option><option>5 à 9 personnes</option><option>10 personnes ou plus</option></select></div>
-          <div class="field"><label for="f-ca">Chiffre d'affaires annuel</label>
-            <select id="f-ca" name="revenue" required><option value="">Choisir</option><option>Moins de 150 000 €</option><option>150 000 à 400 000 €</option><option>400 000 à 1 M€</option><option>Plus de 1 M€</option></select></div>
-          <div class="field"><label for="f-tools">Logiciel de transaction <span class="hint">(facultatif)</span></label><input id="f-tools" name="tools" type="text" placeholder="Hektor, Apimo, Netty…"></div>
-          <div class="field full"><label for="f-msg">Ce qui prend le plus de temps à votre équipe <span class="hint">(facultatif)</span></label><textarea id="f-msg" name="message" placeholder="Traitement des leads, relances acquéreurs, comptes rendus vendeurs…"></textarea></div>
-        </div>
-        <div class="hp" aria-hidden="true"><label for="f-website">Ne pas remplir ce champ</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-        <p class="notice">mova.ia utilise ces informations uniquement pour répondre à votre demande de diagnostic (base légale : mesures précontractuelles prises à votre demande). Elles ne sont ni vendues ni cédées et sont conservées 3 ans au plus après notre dernier échange. Vous pouvez y accéder, les rectifier, les faire supprimer ou vous opposer à tout contact. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
-        <button class="btn btn-green btn-block" type="submit" id="f-submit">Continuer vers le choix du créneau <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
-        <p class="form-msg" id="f-err" role="alert"></p>
-      </form>
-      <div class="done" id="audit-done" hidden>
-        <h3>Merci, il reste une étape.</h3>
-        <p>Choisissez le créneau qui vous convient. Vous recevrez un email de confirmation avec le lien de la visio.</p>
-        <a class="btn btn-green" id="book-link" href="#appel" target="_blank" rel="noopener">Choisir mon créneau <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
-        <p class="preview-note" id="preview-note" hidden></p>
-      </div>
+    <div class="cta-card rv">
+      <p class="cta-k">Diagnostic offert</p>
+      <h3>Réservez votre diagnostic en un clic.</h3>
+      <p class="cta-p">Gratuit, 30 minutes, sans engagement. Le bouton ouvre un e-mail déjà rédigé, adressé à mova.ia : il ne reste qu'à l'envoyer.</p>
+      <a class="send" id="send-btn" href="mailto:raphaelcabanne.mova.ia@gmail.com?subject=Demande%20de%20diagnostic%20offert">
+        <span class="send-ic"><svg width="26" height="26"><use href="#i-mail"/></svg></span>
+        <span class="send-t"><b>Réserver mon diagnostic offert</b><small id="send-sub">Ouvre un e-mail prêt à envoyer</small></span>
+        <span class="send-go" aria-hidden="true"><svg width="22" height="22"><use href="#i-arrow"/></svg></span>
+      </a>
+      <p class="send-fb" id="send-fb" hidden>Votre messagerie ne s'est pas ouverte ? Écrivez-nous à <b id="send-addr">raphaelcabanne.mova.ia@gmail.com</b> <button type="button" id="send-copy">Copier l'adresse</button></p>
+      <ul class="send-pts"><li><svg width="14" height="14"><use href="#i-check"/></svg> Créneau proposé en visio</li><li><svg width="14" height="14"><use href="#i-check"/></svg> Aucune carte bancaire</li></ul>
+      <p class="notice">Votre message est envoyé depuis votre propre messagerie : ce site ne collecte rien. mova.ia l'utilise uniquement pour répondre à votre demande et le conserve 3 ans au plus après notre dernier échange. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
     </div>
   </div>
 </section>

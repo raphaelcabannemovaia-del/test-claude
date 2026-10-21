@@ -207,25 +207,6 @@ h4 { font-size: 1rem; letter-spacing: -0.02em; line-height: 1.25; }
 .contact { position: relative; overflow: hidden; isolation: isolate; }
 .contact::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 60% at 0% 20%, rgba(0, 168, 125, .26), transparent 70%), radial-gradient(50% 60% at 100% 100%, rgba(18, 62, 112, .9), transparent 70%); }
 .contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(36px, 6vw, 80px); align-items: start; }
-.form-card { padding: clamp(26px, 4vw, 46px); border-radius: var(--r-xl); background: #fff; color: var(--text); box-shadow: 0 60px 120px -50px rgba(0, 0, 0, .7); }
-.form-card h3 { color: var(--text); font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.045em; }
-.form-card form > p:first-of-type { color: var(--muted); margin: 8px 0 26px; }
-.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
-.fgrid .full { grid-column: 1 / -1; }
-.field { display: grid; gap: 9px; margin-bottom: 18px; }
-.field label { font-weight: 600; font-size: .95rem; }
-.hint { font-weight: 400; color: var(--muted); font-size: .85rem; }
-input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--bg-2); font: 400 1rem var(--f-body); color: var(--text); transition: border-color .2s, box-shadow .2s, background .2s; }
-input::placeholder, textarea::placeholder { color: #8b9aac; }
-input:focus, select:focus, textarea:focus { outline: 0; border-color: var(--green); background: #fff; box-shadow: 0 0 0 4px rgba(0, 168, 125, .14); }
-textarea { min-height: 110px; resize: vertical; }
-.consent { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; margin: 4px 0 24px; font-size: .88rem; color: var(--muted); }
-.consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--green); }
-.form-msg { margin-top: 12px; min-height: 1.2em; font-size: .92rem; color: var(--hot); }
-.done h3 { margin-bottom: 10px; }
-.done p { color: var(--muted); margin-bottom: 22px; }
-.done.is-in { animation: rise .5s var(--ease) both; }
-.preview-note { margin-top: 16px; padding: 14px 16px; border-radius: 14px; background: #fdf0ed; color: #7a2c1d; font-size: .88rem; }
 
 /* ---------- Pied de page ---------- */
 .foot { padding-block: clamp(56px, 7vw, 88px) 36px; border-top: 1px solid var(--dark-line); }
@@ -285,7 +266,7 @@ textarea { min-height: 110px; resize: vertical; }
   body { font-size: 16px; }
   .pill { padding-left: 18px; }
   .logo { font-size: 1.35rem; }
-  .pain, .fgrid { grid-template-columns: minmax(0, 1fr); }
+  .pain { grid-template-columns: minmax(0, 1fr); }
   .cta-row .btn { width: 100%; }
   .wf { padding: 18px; border-radius: 26px; }
   .wstep { grid-template-columns: 42px minmax(0, 1fr); }
@@ -520,8 +501,6 @@ textarea { min-height: 110px; resize: vertical; }
 @media (max-width: 1080px) { .proof { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .proof { grid-template-columns: minmax(0, 1fr); } }
 
-/* Champ piège anti-robots, invisible pour les visiteurs */
-.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
 /* =========================================================
    Comparatif en cartes
@@ -774,4 +753,52 @@ textarea { min-height: 110px; resize: vertical; }
 @keyframes ang { to { --ang: 360deg; } }
 @media (max-width: 700px) {
   .motion .rv { filter: none; transform: translateY(30px); }
+}
+
+/* =========================================================
+   Demande de diagnostic : bouton horizontal animé
+   ========================================================= */
+.cta-card { display: grid; gap: 18px; padding: clamp(28px, 4vw, 46px); border-radius: var(--r-xl); background: #fff; color: var(--text); box-shadow: 0 60px 120px -50px rgba(0, 0, 0, .7); }
+.cta-k { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--green-ink); }
+.cta-card h3 { color: var(--text); font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.045em; line-height: 1.12; }
+.cta-p { color: var(--muted); }
+.send { position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px; width: 100%; min-height: 96px; margin-top: 6px; padding: 14px 14px 14px 16px; border-radius: 999px; color: #fff; text-decoration: none; cursor: pointer; background: linear-gradient(100deg, #00a87d, #0a8f78 40%, #0b3f6e 75%, #00a87d); background-size: 220% 100%; box-shadow: 0 26px 50px -22px rgba(0, 168, 125, .95), inset 0 1px 0 rgba(255, 255, 255, .25); transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.send::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(60% 120% at 20% 0%, rgba(255, 255, 255, .22), transparent 60%); }
+.send::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 38%; z-index: -1; background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .42), transparent); transform: translateX(-130%) skewX(-18deg); }
+.send:hover { transform: translateY(-3px); box-shadow: 0 34px 60px -22px rgba(0, 168, 125, 1), inset 0 1px 0 rgba(255, 255, 255, .3); }
+.send:active { transform: translateY(0) scale(.99); }
+.send:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; }
+.send-ic { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .18); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); }
+.send-t { display: grid; gap: 5px; min-width: 0; text-align: left; }
+.send-t b { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.02rem, 2.2vw, 1.3rem); letter-spacing: -0.03em; line-height: 1.15; }
+.send-t small { font-size: .86rem; color: rgba(255, 255, 255, .85); }
+.send-go { position: relative; overflow: hidden; width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--green-ink); box-shadow: 0 10px 24px -10px rgba(4, 22, 42, .6); }
+.send-fb { padding: 14px 16px; border-radius: 16px; background: var(--bg-2); color: var(--muted); font-size: .92rem; }
+.send-fb b { color: var(--text); overflow-wrap: anywhere; }
+.send-fb button { margin-left: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: #fff; color: var(--text); font: 600 .82rem var(--f-body); cursor: pointer; }
+.send-fb button:hover { border-color: var(--green); color: var(--green-ink); }
+.send-pts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .92rem; color: var(--text); }
+.send-pts li { display: flex; align-items: center; gap: 8px; }
+.send-pts svg { color: var(--green-ink); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .send { animation: sendBg 7s ease-in-out infinite alternate, sendRing 2.8s ease-out infinite; }
+  .send::after { animation: sendShine 3.6s ease-in-out 1s infinite; }
+  .send-ic svg { animation: sendBob 2.4s ease-in-out infinite; }
+  .send-go svg { animation: sendGo 1.4s ease-in-out infinite; }
+  .send:hover .send-go svg { animation-duration: .9s; }
+  .send.is-sent { animation-play-state: paused; }
+  .send.is-sent .send-ic svg { animation: sendFly 1s var(--ease) forwards; }
+  .send.is-sent .send-go { background: var(--mint); }
+}
+@keyframes sendBg { to { background-position: 100% 0; } }
+@keyframes sendRing { 0% { box-shadow: 0 26px 50px -22px rgba(0, 168, 125, .95), 0 0 0 0 rgba(0, 168, 125, .5); } 70%, 100% { box-shadow: 0 26px 50px -22px rgba(0, 168, 125, .95), 0 0 0 20px rgba(0, 168, 125, 0); } }
+@keyframes sendShine { 0% { transform: translateX(-130%) skewX(-18deg); } 45%, 100% { transform: translateX(380%) skewX(-18deg); } }
+@keyframes sendBob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-4px) rotate(-6deg); } }
+@keyframes sendGo { 0%, 100% { transform: translateX(-4px); } 50% { transform: translateX(6px); } }
+@keyframes sendFly { 0% { transform: none; opacity: 1; } 60% { transform: translate(34px, -14px) scale(.8); opacity: 0; } 61% { transform: translate(-34px, 14px) scale(.8); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (max-width: 480px) {
+  .send { gap: 12px; min-height: 88px; padding: 10px 10px 10px 12px; }
+  .send-ic { width: 50px; height: 50px; }
+  .send-go { width: 56px; height: 56px; }
 }

@@ -1,12 +1,6 @@
 /* Configuration : à compléter avant la mise en ligne (voir README.md) */
 const CONFIG = {
-  // Lien de votre page de réservation Google Agenda (Planning des rendez-vous > Partager)
-  bookingUrl: "",
-  // Adresse qui reçoit le formulaire : URL de production du webhook n8n
-  // (scénario prêt à importer : automations/n8n-formulaire-diagnostic.json)
-  // Exemple : "https://votre-instance.app.n8n.cloud/webhook/mova-diagnostic"
-  formEndpoint: "",
-  // Email affiché au visiteur si l'envoi échoue (facultatif)
+  // Adresse qui reçoit les demandes de diagnostic (le bouton ouvre la messagerie du visiteur)
   contactEmail: "raphaelcabanne.mova.ia@gmail.com"
 };
 
@@ -156,7 +150,7 @@ const CONFIG = {
     document.querySelectorAll(".wf, .vs-c--us").forEach(function (el) { tilt(el, 5); });
 
     // Boutons d'appel à l'action aimantés
-    document.querySelectorAll(".cta-row .btn, .deal .btn, .vs-c--us .btn, .nav .btn, #f-submit").forEach(function (b) {
+    document.querySelectorAll(".cta-row .btn, .deal .btn, .vs-c--us .btn, .nav .btn, #send-btn").forEach(function (b) {
       b.classList.add("magnet");
       b.addEventListener("pointermove", function (e) {
         var r = b.getBoundingClientRect();
@@ -258,75 +252,33 @@ const CONFIG = {
     update();
   })();
 
-  /* ---------- Formulaire puis choix du créneau ---------- */
-  (function form() {
-    var f = $("audit-form");
-    if (!f) return;
-    var err = $("f-err"), done = $("audit-done"), btn = $("f-submit"), btnHtml = btn.innerHTML;
-
-    function showDone(sent) {
-      f.hidden = true;
-      done.hidden = false;
-      done.classList.add("is-in");
-      var link = $("book-link"), note = $("preview-note"), notes = [];
-      if (CONFIG.bookingUrl) link.href = CONFIG.bookingUrl;
-      else {
-        link.setAttribute("aria-disabled", "true");
-        link.addEventListener("click", function (e) { e.preventDefault(); });
-        notes.push("Mode test : le lien de réservation n'est pas renseigné (CONFIG.bookingUrl dans app.js).");
-      }
-      if (!sent) notes.push("Mode test : aucune adresse d'envoi n'est configurée (CONFIG.formEndpoint dans app.js), aucun email n'a été envoyé.");
-      if (notes.length) { note.hidden = false; note.textContent = notes.join(" "); }
-    }
-
-    function fail(reason) {
-      if (window.console) console.error("[mova.ia] Échec de l'envoi du formulaire :", reason);
-      btn.disabled = false;
-      btn.innerHTML = btnHtml;
-      err.textContent = "L'envoi n'a pas abouti. Réessayez dans un instant" + (CONFIG.contactEmail ? " ou écrivez-nous à " + CONFIG.contactEmail : "") + ".";
-    }
-
-    f.addEventListener("submit", function (e) {
-      e.preventDefault();
-      err.textContent = "";
-      if (!f.checkValidity()) {
-        err.textContent = "Complétez les champs obligatoires pour continuer.";
-        var bad = f.querySelector(":invalid");
-        if (bad) bad.focus();
-        return;
-      }
-      // Champ piège invisible : rempli uniquement par les robots, l'envoi est alors ignoré
-      if (f.elements.website && f.elements.website.value) { showDone(true); return; }
-      if (!CONFIG.formEndpoint) {
-        if (window.console) console.warn("[mova.ia] CONFIG.formEndpoint est vide : le formulaire n'envoie rien.");
-        showDone(false);
-        return;
-      }
-
-      // Envoi en application/x-www-form-urlencoded : requête « simple », sans pré-vérification CORS,
-      // lue directement par n8n, Make et Formspree
-      var payload = new URLSearchParams();
-      new FormData(f).forEach(function (v, k) { if (k !== "website") payload.append(k, String(v).trim()); });
-      payload.append("source", "Site mova.ia");
-      payload.append("sent_at", new Date().toISOString());
-
-      btn.disabled = true;
-      btn.textContent = "Envoi en cours…";
-      var ctrl = "AbortController" in window ? new AbortController() : null;
-      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
-      fetch(CONFIG.formEndpoint, {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: payload,
-        signal: ctrl ? ctrl.signal : undefined
-      }).then(function (r) {
-        clearTimeout(timer);
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        showDone(true);
-      }).catch(function (x) {
-        clearTimeout(timer);
-        fail(x);
-      });
+  /* ---------- Bouton de demande de diagnostic : ouvre un e-mail prérempli ---------- */
+  (function send() {
+    var btn = $("send-btn");
+    if (!btn) return;
+    var mail = CONFIG.contactEmail, sub = $("send-sub"), subHtml = sub.textContent, fb = $("send-fb"), cp = $("send-copy");
+    var body = [
+      "Bonjour,", "",
+      "Je souhaite réserver un diagnostic offert de 30 minutes.", "",
+      "Nom et prénom :", "Agence :", "Ville :", "Téléphone :",
+      "Nombre de collaborateurs :", "Logiciel de transaction :", "",
+      "Ce qui prend le plus de temps à mon équipe :", "", "Merci."
+    ].join("\r\n");
+    btn.href = "mailto:" + mail + "?subject=" + encodeURIComponent("Demande de diagnostic offert") + "&body=" + encodeURIComponent(body);
+    $("send-addr").textContent = mail;
+    btn.addEventListener("click", function () {
+      btn.classList.add("is-sent");
+      sub.textContent = "Ouverture de votre messagerie…";
+      setTimeout(function () {
+        btn.classList.remove("is-sent");
+        sub.textContent = subHtml;
+        fb.hidden = false;
+      }, 2200);
+    });
+    cp.addEventListener("click", function () {
+      var ok = function () { cp.textContent = "Adresse copiée"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(ok, function () { cp.textContent = "Copiez : " + mail; });
+      else cp.textContent = "Copiez : " + mail;
     });
   })();
 
