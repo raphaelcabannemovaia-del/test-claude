@@ -256,7 +256,8 @@ const CONFIG = {
   (function send() {
     var btn = $("send-btn");
     if (!btn) return;
-    var mail = CONFIG.contactEmail, sub = $("send-sub"), subHtml = sub.textContent, fb = $("send-fb"), cp = $("send-copy");
+    var mail = CONFIG.contactEmail, sub = $("send-sub"), subHtml = sub.textContent, cp = $("send-copy");
+    var subject = "Demande de diagnostic offert";
     var body = [
       "Bonjour,", "",
       "Je souhaite réserver un diagnostic offert de 30 minutes.", "",
@@ -264,21 +265,35 @@ const CONFIG = {
       "Nombre de collaborateurs :", "Logiciel de transaction :", "",
       "Ce qui prend le plus de temps à mon équipe :", "", "Merci."
     ].join("\r\n");
-    btn.href = "mailto:" + mail + "?subject=" + encodeURIComponent("Demande de diagnostic offert") + "&body=" + encodeURIComponent(body);
+    var q = encodeURIComponent;
+    var mailto = "mailto:" + mail + "?subject=" + q(subject) + "&body=" + q(body);
+    btn.href = mailto;
+    $("send-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q(mail) + "&su=" + q(subject) + "&body=" + q(body);
+    $("send-outlook").href = "https://outlook.live.com/mail/0/deeplink/compose?to=" + q(mail) + "&subject=" + q(subject) + "&body=" + q(body);
     $("send-addr").textContent = mail;
-    btn.addEventListener("click", function () {
+    var framed = false;
+    try { framed = window.self !== window.top; } catch (e) { framed = true; }
+
+    btn.addEventListener("click", function (e) {
+      // Dans un cadre (aperçu), naviguer vers mailto: remplace tout le site par une page d'erreur :
+      // on l'ouvre dans une nouvelle fenêtre, et on bascule sur le webmail si le navigateur la bloque.
+      if (framed) {
+        e.preventDefault();
+        var w = null;
+        try { w = window.open(mailto, "_blank"); } catch (x) { w = null; }
+        if (!w) {
+          var g = window.open($("send-gmail").href, "_blank");
+          if (!g) { cp.textContent = "Copier : " + mail; }
+        }
+      }
       btn.classList.add("is-sent");
       sub.textContent = "Ouverture de votre messagerie…";
-      setTimeout(function () {
-        btn.classList.remove("is-sent");
-        sub.textContent = subHtml;
-        fb.hidden = false;
-      }, 2200);
+      setTimeout(function () { btn.classList.remove("is-sent"); sub.textContent = subHtml; }, 2200);
     });
     cp.addEventListener("click", function () {
       var ok = function () { cp.textContent = "Adresse copiée"; };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(ok, function () { cp.textContent = "Copiez : " + mail; });
-      else cp.textContent = "Copiez : " + mail;
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(ok, function () { cp.textContent = mail; });
+      else cp.textContent = mail;
     });
   })();
 
