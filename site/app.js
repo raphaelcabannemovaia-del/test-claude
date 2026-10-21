@@ -50,10 +50,121 @@ const CONFIG = {
   if (!reduce && hasIO) {
     document.documentElement.classList.add("motion");
     var rvObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rvObs.unobserve(e.target); } });
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, i = +el.style.getPropertyValue("--i") || 0;
+        el.classList.add("in");
+        rvObs.unobserve(el);
+        // une fois l'apparition finie, les survols retrouvent des transitions courtes
+        setTimeout(function () { el.classList.add("rv-done"); }, 1500 + i * 90);
+      });
     }, { rootMargin: "0px 0px -8% 0px" });
     document.querySelectorAll(".rv").forEach(function (el) { rvObs.observe(el); });
   }
+
+  /* ---------- Mouvement : titres mot à mot, halo, inclinaison, aimant, parallaxe ---------- */
+  if (!reduce && hasIO) (function craft() {
+    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    // Titres : chaque mot monte depuis un masque, la ponctuation reste collée au mot
+    var WJ = "\u2060";
+    function split(h) {
+      var label = h.textContent.replace(/\s+/g, " ").trim(), k = 0;
+      (function walk(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 1) return walk(n);
+          if (n.nodeType !== 3 || !n.nodeValue.trim()) return;
+          var frag = document.createDocumentFragment();
+          n.nodeValue.replace(/[\t\n\r]+/g, " ").split(/( +)/).forEach(function (part, p) {
+            if (!part) return;
+            if (/^ +$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+            if (p === 0 && k > 0 && /^[\u00a0.,;:!?»)]/.test(part)) frag.appendChild(document.createTextNode(WJ));
+            var w = document.createElement("span"), i = document.createElement("span");
+            w.className = "wd";
+            w.setAttribute("aria-hidden", "true");
+            i.textContent = part;
+            i.style.setProperty("--w", k++);
+            w.appendChild(i);
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, n);
+        });
+      })(h);
+      h.setAttribute("aria-label", label);
+      h.classList.add("split");
+    }
+    document.querySelectorAll(".hero h1, .rv h2, .pact-h h3").forEach(split);
+
+    // Listes : les lignes arrivent l'une après l'autre
+    document.querySelectorAll(".pact-c ul, .vs-list, .svc ul, .info-list").forEach(function (l) {
+      Array.prototype.forEach.call(l.children, function (li, k) { li.style.setProperty("--k", k); });
+    });
+
+    // Parallaxe de l'ouverture
+    var hero = document.querySelector(".hero"), hText = hero && hero.querySelector(".hero-grid > div:first-child"),
+        hCard = hero && hero.querySelector(".wf-wrap"), ticking = false;
+    function para() {
+      ticking = false;
+      var y = window.scrollY || 0, h = hero.offsetHeight;
+      if (y > h) return;
+      hero.style.setProperty("--hy", (y * 0.3).toFixed(1));
+      hText.style.translate = "0 " + (y * 0.16).toFixed(1) + "px";
+      hText.style.opacity = Math.max(0, 1 - y / (h * 0.85)).toFixed(3);
+      if (hCard) hCard.style.translate = "0 " + (y * 0.07).toFixed(1) + "px";
+    }
+    if (hero && hText) window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(para); }
+    }, { passive: true });
+
+    if (!fine) return;
+
+    // Halo lumineux qui suit le pointeur sur les cartes
+    document.querySelectorAll(".pc, .svc, .ben, .fit-c, .pact-c, .vs-c, .pain li").forEach(function (el) {
+      var glow = document.createElement("span");
+      glow.className = "spot-l";
+      glow.setAttribute("aria-hidden", "true");
+      el.classList.add("spot");
+      el.insertBefore(glow, el.firstChild);
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left).toFixed(0) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top).toFixed(0) + "px");
+      });
+    });
+
+    // Inclinaison 3D amortie
+    function tilt(el, max) {
+      var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+      function loop() {
+        cx += (tx - cx) * 0.12;
+        cy += (ty - cy) * 0.12;
+        var a = Math.sqrt(cx * cx + cy * cy);
+        el.style.rotate = a < 0.02 ? "" : (-cy).toFixed(3) + " " + cx.toFixed(3) + " 0 " + a.toFixed(2) + "deg";
+        raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.02 ? requestAnimationFrame(loop) : null;
+      }
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 2 * max;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * 2 * max;
+        if (!raf) raf = requestAnimationFrame(loop);
+      });
+      el.addEventListener("pointerleave", function () {
+        tx = ty = 0;
+        if (!raf) raf = requestAnimationFrame(loop);
+      });
+    }
+    document.querySelectorAll(".wf, .vs-c--us").forEach(function (el) { tilt(el, 5); });
+
+    // Boutons d'appel à l'action aimantés
+    document.querySelectorAll(".cta-row .btn, .deal .btn, .vs-c--us .btn, .nav .btn, #f-submit").forEach(function (b) {
+      b.classList.add("magnet");
+      b.addEventListener("pointermove", function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.translate = ((e.clientX - r.left - r.width / 2) * 0.2).toFixed(1) + "px " + ((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1) + "px";
+      });
+      b.addEventListener("pointerleave", function () { b.style.translate = ""; });
+    });
+  })();
 
   /* ---------- Compteurs des chiffres sourcés ---------- */
   if (!reduce && hasIO) {
