@@ -112,6 +112,50 @@ const CONFIG = {
 
     if (!fine) return;
 
+    // Lumière d'ambiance qui suit le pointeur dans le fond de chaque section
+    var ambs = [], active = null, rafA = null;
+    document.querySelectorAll(".hero, .sec").forEach(function (sec) {
+      var box = document.createElement("span"), l = document.createElement("span");
+      box.className = "amb";
+      box.setAttribute("aria-hidden", "true");
+      l.className = "amb-l";
+      box.appendChild(l);
+      sec.insertBefore(box, sec.firstChild);
+      sec.classList.add("has-amb");
+      ambs.push({ sec: sec, l: l, x: 0, y: 0, tx: 0, ty: 0 });
+    });
+    function ambLoop() {
+      rafA = null;
+      if (!active) return;
+      active.x += (active.tx - active.x) * 0.08;
+      active.y += (active.ty - active.y) * 0.08;
+      active.l.style.translate = active.x.toFixed(1) + "px " + active.y.toFixed(1) + "px";
+      if (Math.abs(active.tx - active.x) + Math.abs(active.ty - active.y) > 0.5) rafA = requestAnimationFrame(ambLoop);
+    }
+    document.addEventListener("pointermove", function (e) {
+      var sec = e.target.closest ? e.target.closest(".has-amb") : null, item = null;
+      for (var k = 0; k < ambs.length; k++) if (ambs[k].sec === sec) item = ambs[k];
+      var r = item ? item.sec.getBoundingClientRect() : null;
+      if (item !== active) {
+        if (active) active.sec.classList.remove("amb-on");
+        active = item;
+        if (active) {
+          active.x = active.tx = e.clientX - r.left;
+          active.y = active.ty = e.clientY - r.top;
+          active.l.style.translate = active.x + "px " + active.y + "px";
+          active.sec.classList.add("amb-on");
+        }
+      }
+      if (!active) return;
+      active.tx = e.clientX - r.left;
+      active.ty = e.clientY - r.top;
+      if (!rafA) rafA = requestAnimationFrame(ambLoop);
+    }, { passive: true });
+    document.documentElement.addEventListener("pointerleave", function () {
+      if (active) active.sec.classList.remove("amb-on");
+      active = null;
+    });
+
     // Halo lumineux qui suit le pointeur sur les cartes
     document.querySelectorAll(".pc, .svc, .ben, .fit-c, .pact-c, .vs-c, .pain li").forEach(function (el) {
       var glow = document.createElement("span");
@@ -184,11 +228,16 @@ const CONFIG = {
     if (!root || reduce) return;
     var steps = root.querySelectorAll(".wstep");
     var i = -1, timer = null, visible = false;
+    // Les étiquettes flottantes suivent le déroulé : réponse envoyée, puis 24h/24
+    var fa = document.querySelector(".float--a"), fb = document.querySelector(".float--b");
+    root.parentNode.classList.add("sync");
     function paint() {
       Array.prototype.forEach.call(steps, function (s, k) {
         s.classList.toggle("on", k <= i);
         s.classList.toggle("cur", k === i);
       });
+      if (fa) fa.classList.toggle("show", i >= 2);
+      if (fb) fb.classList.toggle("show", i >= 4);
     }
     function tick() {
       i = i >= steps.length - 1 ? -1 : i + 1;
