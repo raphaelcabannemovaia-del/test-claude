@@ -11,6 +11,8 @@ const CONFIG = {
   var hasIO = "IntersectionObserver" in window;
   var NB = " ";
   document.documentElement.classList.add("js");
+  var root_ = document.documentElement;
+  var isPaused = function () { return root_.classList.contains("anim-off"); };
 
   /* ---------- Progression, en-tête, menu mobile ---------- */
   var hdr = $("hdr"), prog = $("progress");
@@ -240,6 +242,7 @@ const CONFIG = {
       if (fb) fb.classList.toggle("show", i >= 4);
     }
     function tick() {
+      if (isPaused()) return;
       i = i >= steps.length - 1 ? -1 : i + 1;
       paint();
       clearTimeout(timer);
@@ -247,10 +250,12 @@ const CONFIG = {
     }
     function sync() {
       clearTimeout(timer);
+      if (isPaused()) { i = steps.length - 1; paint(); return; }
       if (visible && !document.hidden) timer = setTimeout(tick, 700);
     }
     i = 0; paint();
     document.addEventListener("visibilitychange", sync);
+    document.addEventListener("motionchange", sync);
     if (hasIO) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }, { threshold: 0.3 }).observe(root);
     else { visible = true; sync(); }
   })();
@@ -402,13 +407,103 @@ const CONFIG = {
     }
     function frame() {
       t++; lon0 -= 0.0016; draw();
-      raf = visible && !document.hidden ? requestAnimationFrame(frame) : null;
+      raf = visible && !document.hidden && !isPaused() ? requestAnimationFrame(frame) : null;
     }
-    function sync() { if (visible && !document.hidden && !raf) raf = requestAnimationFrame(frame); }
+    function sync() { if (visible && !document.hidden && !isPaused() && !raf) raf = requestAnimationFrame(frame); }
     draw();
     if (reduce || !hasIO) return;
     document.addEventListener("visibilitychange", sync);
+    document.addEventListener("motionchange", sync);
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }).observe(cv);
+  })();
+
+  /* ---------- Pause des animations (WCAG 2.2.2) ---------- */
+  (function motionControl() {
+    var b = $("anim-ctl");
+    if (!b) return;
+    if (reduce) { b.hidden = true; return; }
+    b.addEventListener("click", function () {
+      var off = root_.classList.toggle("anim-off");
+      b.setAttribute("aria-pressed", off ? "true" : "false");
+      b.setAttribute("aria-label", off ? "Reprendre les animations" : "Mettre en pause les animations");
+      b.lastChild.textContent = off ? "Reprendre" : "Animations";
+      document.dispatchEvent(new Event("motionchange"));
+    });
+  })();
+
+  /* ---------- Consentement : le bandeau n'apparaît que si des traceurs sont ajoutés ----------
+     Mode d'emploi : placer le script du traceur avec type="text/plain" et data-consent="mesure"
+     (audience) ou data-consent="publicite" (pixels publicitaires). Il ne s'exécute qu'après accord. */
+  (function consent() {
+    var pending = document.querySelectorAll('script[type="text/plain"][data-consent]');
+    if (!pending.length) return;
+    var KEY = "mova_consent", MAXAGE = 182 * 864e5;
+    var CATS = { mesure: ["Mesure d'audience", "Comprendre comment le site est utilisé, de façon statistique."], publicite: ["Publicité", "Mesurer l'efficacité de nos campagnes sur Instagram, LinkedIn et Meta."] };
+    var used = {};
+    Array.prototype.forEach.call(pending, function (s) { used[s.getAttribute("data-consent")] = true; });
+    function read() {
+      try {
+        var v = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (v && v.t && Date.now() - v.t < MAXAGE && v.c) return v.c;
+      } catch (e) {}
+      return null;
+    }
+    function write(c) { try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), c: c })); } catch (e) {} }
+    function run(c) {
+      Array.prototype.forEach.call(document.querySelectorAll('script[type="text/plain"][data-consent]'), function (old) {
+        if (!c[old.getAttribute("data-consent")]) return;
+        var s = document.createElement("script");
+        Array.prototype.forEach.call(old.attributes, function (a) { if (a.name !== "type" && a.name !== "data-consent") s.setAttribute(a.name, a.value); });
+        s.text = old.text;
+        old.parentNode.replaceChild(s, old);
+      });
+    }
+    var bar = null, previous = read();
+    function close() { if (bar) { bar.remove(); bar = null; } }
+    function decide(c) {
+      var wasOn = previous && Object.keys(c).some(function (k) { return previous[k] && !c[k]; });
+      write(c); previous = c; close();
+      if (wasOn) { location.reload(); return; }   // retire les traceurs déjà chargés
+      run(c);
+    }
+    function all(v) { var c = {}; Object.keys(used).forEach(function (k) { c[k] = v; }); return c; }
+    function open(custom) {
+      close();
+      bar = document.createElement("div");
+      bar.className = "cmp-bar";
+      bar.setAttribute("role", "dialog");
+      bar.setAttribute("aria-labelledby", "cmp-t");
+      var opts = Object.keys(used).map(function (k) {
+        return '<label class="cmp-opt"><b>' + CATS[k][0] + '</b><small>' + CATS[k][1] + '</small><input type="checkbox" data-k="' + k + '"' + (previous && previous[k] ? " checked" : "") + '></label>';
+      }).join("");
+      bar.innerHTML = '<h2 id="cmp-t">Vos choix sur les cookies</h2>' +
+        '<p>Nous aimerions mesurer l\'audience et l\'efficacité de nos publicités. Rien n\'est déposé sans votre accord, et le site fonctionne de la même façon si vous refusez. <a href="cookies.html">En savoir plus</a>.</p>' +
+        (custom ? '<div class="cmp-opts">' + opts + '</div><button type="button" class="cmp-save" data-act="save">Enregistrer mes choix</button>' :
+          '<div class="cmp-act"><button type="button" data-act="none">Tout refuser</button><button type="button" data-act="all">Tout accepter</button><button type="button" data-act="custom">Personnaliser</button></div>');
+      document.body.appendChild(bar);
+      bar.addEventListener("click", function (e) {
+        var a = e.target.getAttribute && e.target.getAttribute("data-act");
+        if (a === "all") decide(all(true));
+        else if (a === "none") decide(all(false));
+        else if (a === "custom") open(true);
+        else if (a === "save") {
+          var c = all(false);
+          Array.prototype.forEach.call(bar.querySelectorAll("input[data-k]"), function (i) { c[i.getAttribute("data-k")] = i.checked; });
+          decide(c);
+        }
+      });
+      var first = bar.querySelector("button, input");
+      if (first && custom) first.focus();
+    }
+    // Lien permanent pour modifier ou retirer son choix
+    var list = $("legal-links");
+    if (list) {
+      var li = document.createElement("li"), btn = document.createElement("button");
+      btn.type = "button"; btn.className = "link-btn"; btn.textContent = "Gérer mes cookies";
+      btn.addEventListener("click", function () { open(true); });
+      li.appendChild(btn); list.appendChild(li);
+    }
+    if (previous) run(previous); else open(false);
   })();
 
   var y = $("year");

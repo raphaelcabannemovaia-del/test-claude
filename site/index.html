@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a class="skip" href="#top">Aller au contenu</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -98,7 +99,7 @@
 
     <div class="wf-wrap">
       <div class="float float--a" aria-hidden="true"><span class="fi"><svg width="20" height="20"><use href="#i-chat"/></svg></span><span>Réponse envoyée<small>Dimanche 22:14 · WhatsApp</small></span></div>
-      <div class="wf" id="wf" aria-label="Exemple : support client automatisé, actif 24h/24 et 7j/7">
+      <div class="wf" id="wf" role="group" aria-label="Exemple : support client automatisé, actif 24h/24 et 7j/7">
         <div class="wf-top">
           <div><small>SUPPORT CLIENT AUTOMATISÉ</small><b>Actif 24h/24 · 7j/7</b></div>
           <span class="state"><i></i>En ligne</span>
@@ -441,6 +442,7 @@
 
 </main>
 
+<button class="motion-ctl" id="anim-ctl" type="button" aria-pressed="false" aria-label="Mettre en pause les animations"><svg class="i-p" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"/></svg><svg class="i-g" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5l9 5.5-9 5.5z" fill="currentColor"/></svg><span>Animations</span></button>
 <footer class="foot dark">
   <div class="wrap">
     <div class="foot-grid">
@@ -454,7 +456,11 @@
       </div>
       <div>
         <h4>Votre agence</h4>
-        <ul><li><a href="#appel">Réserver un diagnostic</a></li><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="confidentialite.html">Confidentialité</a></li></ul>
+        <ul><li><a href="#appel">Réserver un diagnostic</a></li></ul>
+      </div>
+      <div>
+        <h4>Légal</h4>
+        <ul id="legal-links"><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="confidentialite.html">Confidentialité</a></li><li><a href="cookies.html">Cookies et traceurs</a></li><li><a href="conditions-utilisation.html">Conditions d'utilisation</a></li><li><a href="cgv.html">Conditions de vente</a></li><li><a href="remboursement.html">Annulation et remboursement</a></li></ul>
       </div>
     </div>
     <div class="foot-bot"><span>© <span id="year">2026</span> mova.ia</span><span>Automatisation IA pour agences immobilières</span></div>

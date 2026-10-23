@@ -58,3 +58,26 @@ Si vous ajoutez Google Analytics, un pixel publicitaire ou une vidéo YouTube in
 - −80 % : Anthropic, *Estimating AI productivity gains from Claude conversations*, novembre 2025 : temps de tâche estimé sur 100 000 conversations, hors temps de vérification.
 
 Ne pas ajouter de chiffre sans source vérifiable. Revérifier chaque source dans sa publication d'origine avant la mise en ligne.
+
+## Conformité France et Union européenne
+
+Pages du site : mentions légales, politique de confidentialité, politique de cookies, conditions d'utilisation, conditions générales de vente (CGV), annulation et remboursement. Elles sont liées dans le pied de page.
+
+À faire avant la mise en ligne (les champs sont surlignés en jaune dans chaque page) :
+
+1. Mentions légales : éditeur (société ou entrepreneur individuel), SIREN, hébergeur.
+2. Confidentialité : hébergeur, outil de visioconférence, garanties pour les prestataires hors UE.
+3. CGV et remboursement : acompte, délais, taux de pénalités, clause de propriété intellectuelle, tribunal compétent, plafond de responsabilité. Ces deux pages sont des modèles : à faire relire par un juriste avant le premier client.
+4. Supprimer les blocs « Modèle à valider » une fois les pages relues.
+5. Mettre à jour la date « Version du » à chaque modification de fond.
+
+Cookies : le site ne dépose aucun cookie et n'a donc pas de bandeau. Le bandeau de consentement est déjà écrit et reste inactif tant qu'aucun traceur n'est ajouté. Pour ajouter un pixel ou un outil d'audience :
+
+1. Insérer le script avec `type="text/plain"` et `data-consent="publicite"` (ou `"mesure"`), avant `app.js`. Il ne s'exécute qu'après accord.
+2. Mettre à jour `cookies.html` (liste des traceurs, finalité, durée) et la politique de confidentialité (destinataires, transferts hors UE).
+3. Ajouter le domaine du traceur dans la politique de sécurité de `_headers`, sinon le navigateur le bloque.
+4. Le bandeau présente « Tout refuser » et « Tout accepter » au même niveau, conserve le choix 6 mois et ajoute le lien « Gérer mes cookies » dans le pied de page.
+
+Accessibilité : lien d'évitement, contrastes de couleurs vérifiés (texte blanc sur vert profond `#007a5c`, le vert du logo `#00a87d` sert aux fonds sans texte), bouton de pause des animations, respect de « réduire les animations ». Contrôle automatique avec axe-core : aucune violation sur les sept pages. Un audit manuel (lecteur d'écran, zoom 200 %) reste recommandé.
+
+En-têtes de sécurité : le fichier `_headers` est lu par Netlify et Cloudflare Pages. Sur un autre hébergeur, reprendre ces valeurs dans sa configuration.
