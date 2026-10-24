@@ -43,6 +43,6 @@ Définir le problème, l'expliquer avec des chiffres concrets, puis la solution.
 - Pas de code avant validation du plan scène par scène.
 
 ## Avancement
-- Références Instagram : vidéo de 1 min 30 découpée en environ 8 fragments. Analyse dans `reference-analyse.md`.
+- Références Instagram : vidéo de 1 min 30 découpée en environ 8 fragments. Analyse dans `reference-analyse.md`. Parties 1, 2 et 3 analysées (reste environ 5 fragments).
 - Pièces jointes dans le chat : fonctionnent (≈ 10 Mo max). Le connecteur Drive ne peut pas lire les vidéos.
 - Reste à faire : parties 2 à 8, transcriptions, configuration de la voix, puis texte bêta, puis plan, puis code.
