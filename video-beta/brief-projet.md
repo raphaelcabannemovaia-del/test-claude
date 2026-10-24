@@ -45,4 +45,5 @@ Définir le problème, l'expliquer avec des chiffres concrets, puis la solution.
 ## Avancement
 - Références Instagram : vidéo de 1 min 30 découpée en environ 8 fragments. Analyse dans `reference-analyse.md`. Parties 1 à 5 analysées (la partie 5 est la fin avec le bouton d'action). Il manque 3 fragments (Drive : 20,6 Mo, 11,4 Mo et 19,7 Mo). Les pièces jointes jusqu'à environ 20 Mo passent dans le chat.
 - Pièces jointes dans le chat : fonctionnent (≈ 10 Mo max). Le connecteur Drive ne peut pas lire les vidéos.
-- Reste à faire : parties 2 à 8, transcriptions, configuration de la voix, puis texte bêta, puis plan, puis code.
+- Pub bêta v1 livrée : `mova-ia-pub-beta-v1.mp4` (92,7 s), script et sources dans `mova-ia-pub-beta-v1-script.md`, générateur dans `pipeline/`.
+- Reste à faire : retours de l'utilisateur sur la bêta, voix premium (service + clé `TTS_API_KEY`), 3 fragments de référence manquants (optionnels), musique définitive.
