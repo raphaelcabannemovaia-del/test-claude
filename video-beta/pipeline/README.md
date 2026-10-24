@@ -2,8 +2,8 @@
 
 Fabrique la vidéo 9:16 à partir du script, sans service externe.
 
-1. Voix (Piper, voix d'homme française « tom ») : télécharger
-   `https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-fr_FR-tom-medium.tar.bz2`
+1. Voix (Piper, voix d'homme française « Pierre », modèle UPMC, locuteur 1) : télécharger
+   `https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-fr_FR-upmc-medium.tar.bz2`
    et l'extraire dans `video-beta/tts-models/`. Installer `pip install piper-tts playwright numpy`.
 2. `python3 -I build_voice.py` : voix, timing des mots, sous-titres `.srt`. Le script est dans la liste `SEGS`.
 3. Assembler la page : remplacer `/*TL*/` de `template.html` par le contenu de `timeline.json`, dans `video.html`.

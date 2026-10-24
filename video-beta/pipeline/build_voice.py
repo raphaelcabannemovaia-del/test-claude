@@ -9,7 +9,7 @@ from piper import PiperVoice, SynthesisConfig
 
 BUILD = os.path.dirname(os.path.abspath(__file__))
 AUD = os.path.join(BUILD, "audio")
-MODEL = os.path.join(os.path.dirname(BUILD), "tts-models", "vits-piper-fr_FR-tom-medium", "fr_FR-tom-medium")
+MODEL = os.path.join(os.path.dirname(BUILD), "tts-models", "vits-piper-fr_FR-upmc-medium", "fr_FR-upmc-medium")
 OUT = "/home/user/test-claude/video-beta"
 os.makedirs(AUD, exist_ok=True)
 NB = " "
@@ -17,80 +17,56 @@ NB = " "
 # tts : texte lu. cap : texte affiché, "affiché|lu" pour le timing,
 # préfixe "*" = mot en vert, "^" = mot en rouge. gap : silence après. ls : lenteur.
 SEGS = [
-    # A — CRM vert
-    dict(id="a1", gap=0.30, ls=1.00,
-         tts="Votre agence tourne. Les mandats rentrent, l'équipe enchaîne les visites.",
-         cap="Votre agence *tourne. Les mandats rentrent, l'équipe enchaîne les visites."),
-    dict(id="a2", gap=0.80, ls=1.05,
-         tts="Sur le papier, tout va bien.",
-         cap="Sur le papier, tout va *bien."),
-    # B — bascule rouge
-    dict(id="b1", gap=0.25, ls=0.98,
-         tts="Sauf que, pendant ce temps, des demandes attendent une réponse.",
-         cap="Sauf que, pendant ce temps, des ^demandes attendent une réponse."),
-    dict(id="b2", gap=0.25, ls=0.98,
-         tts="Les mêmes informations sont saisies deux fois.",
-         cap="Les mêmes informations sont ^saisies ^deux ^fois."),
-    dict(id="b3", gap=0.25, ls=0.98,
-         tts="Des vendeurs restent sans nouvelles.",
-         cap="Des vendeurs restent ^sans ^nouvelles."),
-    dict(id="b4", gap=0.90, ls=1.02,
-         tts="Et votre fichier acquéreurs s'éteint, sans bruit.",
-         cap="Et votre fichier acquéreurs ^s'éteint, sans bruit."),
-    # C — chiffres
-    dict(id="c1", gap=0.35, ls=1.02,
-         tts="Et les chiffres sont sans appel.",
-         cap="Et les chiffres sont sans appel."),
-    dict(id="c2", gap=0.40, ls=0.97,
+    # S1 — accroche : le problème
+    dict(id="h1", gap=0.25, ls=1.00,
+         tts="Votre agence reçoit des demandes tous les jours.",
+         cap="Votre agence reçoit des *demandes tous les jours."),
+    dict(id="h2", gap=0.45, ls=1.10,
+         tts="Le problème ?",
+         cap="Le ^problème ?"),
+    dict(id="h3", gap=0.35, ls=0.98,
          tts="Sur plus de deux mille demandes envoyées à des agences, soixante-huit pour cent sont restées sans réponse en vingt-quatre heures.",
          cap=f"Sur 2{NB}198|plus_de_deux_mille demandes envoyées à des agences, ^68{NB}%|soixante-huit_pour_cent sont restées ^sans ^réponse en 24{NB}h.|vingt-quatre_heures."),
-    dict(id="c3", gap=0.35, ls=0.97,
-         tts="Quatre-vingt-deux pour cent des agents interrogés utilisent déjà l'I.A.",
-         cap=f"*82{NB}%|quatre-vingt-deux_pour_cent des agents interrogés utilisent déjà l'IA.|l'I.A."),
-    dict(id="c4", gap=0.85, ls=0.97,
-         tts="Et en France, quarante pour cent des T.P.E. et P.M.E. s'y sont mises, contre vingt-six pour cent un an plus tôt.",
-         cap=f"En France, *40{NB}%|quarante_pour_cent des TPE|T.P.E. et PME|P.M.E. utilisent l'IA,|s'y_sont_mises, contre 26{NB}%|vingt-six_pour_cent un an plus tôt."),
-    # D — pont + logo
-    dict(id="d1", gap=2.30, ls=1.06,
+    dict(id="h4", gap=0.35, ls=1.00,
+         tts="Et un acheteur sans réponse, c'est un acheteur qui visite ailleurs.",
+         cap="Et un acheteur sans réponse, c'est un acheteur qui visite ^ailleurs."),
+    dict(id="h5", gap=0.70, ls=1.00,
+         tts="Même chose pour vos vendeurs : sans nouvelles, votre mandat est en danger.",
+         cap=f"Même chose pour vos vendeurs{NB}: sans nouvelles, votre ^mandat est en ^danger."),
+    # S2 — pont + logo
+    dict(id="b1", gap=1.90, ls=1.05,
          tts="Il existe une meilleure façon de travailler.",
          cap="Il existe une *meilleure *façon de travailler."),
-    # E — démonstration
-    dict(id="e1", gap=0.40, ls=1.00,
-         tts="Mova I.A. installe dans votre agence des agents I.A. sur mesure.",
-         cap=f"*mova.ia|Mova_I.A. installe dans votre agence des agents IA|I.A. sur *mesure."),
-    dict(id="e2", gap=0.30, ls=0.98,
-         tts="Une demande arrive à vingt-deux heures ? L'agent répond, qualifie le contact, et propose une visite.",
-         cap=f"Une demande arrive à 22{NB}h ?|vingt-deux_heures L'agent *répond, *qualifie le contact et *propose une visite."),
-    dict(id="e3", gap=0.70, ls=1.05,
-         tts="Sept jours sur sept.",
-         cap="*7 *jours *sur *7.|sept."),
-    # F — l'agent travaille
-    dict(id="f1", gap=0.70, ls=0.98,
-         tts="Il met à jour votre C.R.M., relance vos vendeurs, et garde votre fichier acquéreurs à jour. Sans double saisie.",
-         cap="Il met à jour votre CRM,|C.R.M., relance vos vendeurs et garde votre fichier acquéreurs à jour. *Sans *double *saisie."),
-    # G — résultats + services
-    dict(id="g1", gap=0.40, ls=0.98,
-         tts="Résultat : de la réactivité sur chaque lead, un fichier fiable, des vendeurs suivis, et des négociateurs sur le terrain.",
-         cap=f"Résultat{NB}: de la *réactivité sur chaque lead, un fichier *fiable, des vendeurs *suivis et des négociateurs sur le *terrain."),
-    dict(id="g2", gap=0.85, ls=0.98,
-         tts="Trois services, un seul interlocuteur : audit et conseil, automatisation sur mesure, et support client I.A. vingt-quatre heures sur vingt-quatre.",
-         cap=f"3|Trois services, un *seul *interlocuteur{NB}: audit et conseil, automatisation sur mesure et support client IA|I.A. *24{NB}h/24.|vingt-quatre_heures_sur_vingt-quatre."),
-    # H — appel à l'action
-    dict(id="h1", gap=0.30, ls=1.00,
-         tts="Tout commence par un diagnostic offert de trente minutes, en visio.",
-         cap=f"Tout commence par un *diagnostic *offert de 30{NB}minutes,|trente_minutes, en visio."),
-    dict(id="h2", gap=0.0, ls=1.02,
+    dict(id="s1", gap=0.35, ls=1.00,
+         tts="Mova, I.A. installe dans votre agence des agents I.A. sur mesure.",
+         cap="*mova.ia|Mova_I.A. installe dans votre agence des agents IA|I.A. sur *mesure."),
+    # S3 — démonstration
+    dict(id="s2", gap=0.30, ls=0.98,
+         tts="Une demande arrive à vingt-deux heures ? L'agent répond aussitôt, qualifie le projet, et propose une visite.",
+         cap=f"Une demande arrive à 22{NB}h ?|vingt-deux_heures L'agent *répond aussitôt, *qualifie le projet et *propose une visite."),
+    dict(id="s3", gap=0.60, ls=1.02,
+         tts="Vous n'avez plus qu'à valider.",
+         cap="Vous n'avez plus qu'à *valider."),
+    # S4 — vendeurs
+    dict(id="v1", gap=0.65, ls=1.00,
+         tts="Et vos vendeurs reçoivent un compte rendu après chaque visite. Automatiquement.",
+         cap="Et vos vendeurs reçoivent un compte rendu après chaque visite. *Automatiquement."),
+    # S5 — appel à l'action
+    dict(id="c1", gap=0.30, ls=1.00,
+         tts="Diagnostic offert de trente minutes, en visio.",
+         cap=f"*Diagnostic *offert de 30{NB}minutes,|trente_minutes, en visio."),
+    dict(id="c2", gap=0.0, ls=1.02,
          tts="Le lien est dans la bio.",
          cap="Le lien est dans la *bio."),
 ]
 
 START = 0.25
-PACE = 1.05
-END_HOLD = 3.2
+PACE = 1.06
+END_HOLD = 2.8
 
 
 def synth(voice, text, ls):
-    cfg = SynthesisConfig(length_scale=ls * PACE, noise_scale=0.6, noise_w_scale=0.8)
+    cfg = SynthesisConfig(speaker_id=1, length_scale=ls * PACE, noise_scale=0.75, noise_w_scale=0.9)
     chunks = [c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)]
     a = np.concatenate(chunks).astype(np.float32)
     # coupe les silences de début et de fin
@@ -132,8 +108,9 @@ with wave.open(raw, "wb") as w:
 # légère mise en forme : coupe-bas, présence, compression
 subprocess.run([
     "ffmpeg", "-y", "-v", "error", "-i", raw, "-af",
-    "highpass=f=75,equalizer=f=3200:t=q:w=1.2:g=2.5,equalizer=f=220:t=q:w=1:g=1.5,"
-    "acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3,aresample=44100",
+    "aresample=44100,highpass=f=70,rubberband=pitch=0.965:formant=preserved,equalizer=f=160:t=q:w=1:g=2,"
+    "equalizer=f=3000:t=q:w=1.2:g=2.5,equalizer=f=7200:t=q:w=2:g=-2,"
+    "acompressor=threshold=-20dB:ratio=3:attack=6:release=120:makeup=3,aecho=0.85:0.6:28|43:0.10|0.06",
     "-ac", "1", os.path.join(BUILD, "voice.wav"),
 ], check=True)
 
@@ -176,7 +153,7 @@ def ts(x):
     return f"{h:02}:{m:02}:{s_:02},{ms:03}"
 
 
-with open(os.path.join(OUT, "mova-ia-pub-beta-v1.srt"), "w", encoding="utf-8") as f:
+with open(os.path.join(OUT, "mova-ia-pub-beta-v2.srt"), "w", encoding="utf-8") as f:
     for n, s in enumerate(SEGS, 1):
         text = " ".join(w["w"] for w in words if w["seg"] == s["id"])
         f.write(f"{n}\n{ts(s['start'])} --> {ts(s['end'])}\n{text}\n\n")

@@ -80,10 +80,17 @@ Volume moyen −18,3 dB, pic −1,3 dB. Silence à partir de 12,4 s : c'est la f
 | 7,7 – 9 s | Un **bouton vert « Réserver une démo → »** apparaît sous le texte. Un curseur arrive du bas gauche, le bouton devient blanc au survol, un cercle marque le clic. |
 | 9 – 12 s | Carte finale **fixe** (logo, promesse, bouton), la voix termine. |
 
-## Ordre des parties et fragments manquants
-- Les parties se suivent : 1 (accroche : problème) → 2 (« il existe une meilleure façon », logo) → 3 (démonstration) → 4 (résultats) → 5 (carte finale avec bouton).
-- Entre certaines parties, il manque du contenu (cassures de continuité entre 2 et 3, et entre 4 et 5). Le Drive contient 8 fichiers : il en manque donc 3 (les fichiers du Drive de 20,6 Mo, 11,4 Mo et 19,7 Mo), à ajouter pour la vidéo complète d'environ 90 s.
-- Les pièces jointes jusqu'à environ 20 Mo passent dans le chat.
+## Partie 7 (11,6 s) – entre les parties 1 et 2
+Suite de la barre de chat de la partie 1 : un curseur, un texte qui **s'écrit dans la zone de saisie** (avec curseur clignotant), clic d'envoi. Puis une **liste inclinée en 3D** sur fond noir, éclairée par la gauche : des étapes s'ajoutent ligne par ligne avec une petite étoile, puis des lignes **rouges en italique** (problèmes détectés). Tout s'assombrit, et « Sauf qu'il existe une meilleure façon » commence mot à mot.
+
+## Partie 8 (10,1 s) – entre les parties 2 et 3
+Zone de saisie dans le paysage : la demande s'écrit, un mot clé passe en **vert**, clic sur envoyer (onde verte). Une carte de questions apparaît. Coupe vers un fond noir avec des **cartes flottantes dispersées** (profondeurs et flous différents) et un texte mot à mot dont le dernier mot est en vert. Puis une liste numérotée s'affiche ligne par ligne.
+
+## Partie 6 (10,3 s) – entre les parties 4 et 5
+Avancée de caméra sur le formulaire jusqu'au bouton « Enregistrer », clic avec onde verte. Transition floue rapide vers l'écran de résultats dans le paysage. Phrase mot à mot au-dessus (« … a enfin une nouvelle appli »), puis « Et vous, » qui enchaîne sur la partie 5.
+
+## Ordre complet de la référence
+1 → 7 → 2 → 8 → 3 → 4 → 6 → 5 (environ 83 s). Toutes les parties sont analysées.
 
 ## Constantes complémentaires (parties 4 et 5)
 9. **Structure de la référence** : problème (rouge) → « il existe une meilleure façon » → logo → démonstration dans un décor cinématographique → résultats chiffrés → phrase de promesse → bouton d'action avec curseur qui clique → carte finale fixe.
@@ -91,8 +98,11 @@ Volume moyen −18,3 dB, pic −1,3 dB. Silence à partir de 12,4 s : c'est la f
 11. **Cartes de résultat** : notes en cercle (type « A+ ») et tableaux de chiffres en 3D. Pour Mova ia : indicateurs d'agence illustrés (exemple).
 12. Le **logo se construit** à chaque fois (forme blanche → icône → nom lettre par lettre), c'est un motif de marque.
 
-## Parties à recevoir
-Les 3 fragments manquants, avec la transcription de la voix et, si possible, l'ordre exact.
+## Constantes ajoutées (parties 6, 7, 8)
+13. Texte qui **s'écrit dans les champs** avec curseur clignotant et mot clé en vert.
+14. **Listes inclinées en 3D** qui se remplissent ligne par ligne (étoiles pour les étapes, rouge italique pour les problèmes).
+15. **Cartes flottantes dispersées** en profondeur derrière le texte.
+16. Clics avec **onde verte**, transitions par flou rapide.
 
 ## Synthèse du style global
 À rédiger après toutes les parties : rythme des coupes, types de schémas, transitions récurrentes, évolution de la voix et des couleurs, structure (accroche, problème, solution, appel à l'action).

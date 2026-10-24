@@ -34,13 +34,10 @@ def wt(seg, key, nth=0, exact=False):
 
 
 # mêmes repères que dans l'animation
-SW = S["b1"]["start"]
-W = {
-    "C": S["c1"]["start"] - .2, "D": S["d1"]["start"] - .25, "E": S["e2"]["start"] - .3,
-    "F": S["f1"]["start"] - .35, "G": S["g1"]["start"] - .35, "H": S["h1"]["start"] - .45,
-}
-F_CLICK = W["F"] + 1.1
-H_CLICK = S["h2"]["start"] + 1.25
+SW = S["h2"]["start"]
+W = {"B": S["b1"]["start"] - .25, "C": S["s2"]["start"] - .3, "D": S["v1"]["start"] - .3, "E": S["c1"]["start"] - .35}
+V_CLICK = wt("s3", "valider") + .25
+H_CLICK = S["c2"]["start"] + 1.2
 
 
 def lp_fft(x, fc):
@@ -81,27 +78,22 @@ def add(n0, L, R=None):
 
 
 A2, C3, E3, G3, A3, C4, E4, D5 = 110, 130.81, 164.81, 196, 220, 261.63, 329.63, 587.33
-logo_t = S["d1"]["end"] + .4
-# ambiance problème (la mineur), plus sombre après la bascule rouge
+logo_t = S["b1"]["end"] + .4
 add(*pad([A2, E3, A3, C4], 0, logo_t + .8, 900, .22))
-add(*pad([55, 82.4], SW - .2, W["D"] + .5, 300, .18))
-# ambiance solution (do majeur, plus lumineuse)
+add(*pad([55, 82.4], SW - .2, W["B"] + .5, 300, .2))
 add(*pad([C3, G3, E4, D5], logo_t - .4, TOTAL + .5, 1800, .2))
 
-# arpège doux pendant la démonstration (100 BPM, croches)
 step = 60 / 100 / 2
 notes = [523.25, 659.25, 783.99, 587.33, 659.25, 783.99, 880.0, 783.99]
-t = W["E"] + .2
+t = W["C"] + .2
 i = 0
-while t < W["H"] + 4:
+while t < W["E"] + 3:
     n = int(.5 * SR)
     tt = np.arange(n) / SR
     tone = np.sin(2 * np.pi * notes[i % 8] * tt) * np.exp(-tt * 9) * .05
     add(int(t * SR), tone * .9, tone * 1.1)
     t += step
     i += 1
-
-
 def env_burst(dur, a, d):
     n = int(dur * SR)
     e = np.ones(n)
@@ -166,26 +158,23 @@ def shimmer(t0):
         add(int((t0 + k * .07) * SR), y * (.8 + .1 * k), y * (1.1 - .1 * k))
 
 
-riser(SW, 1.1)
+riser(SW, .9)
 impact(SW)
 whoosh(SW, .2)
-for k in [W["C"], W["D"], W["E"], W["F"], W["G"], W["H"], S["c3"]["start"], S["c4"]["start"], S["g2"]["start"] - .2]:
+for k in [W["B"], W["C"], W["D"], W["E"], S["h3"]["start"], S["h5"]["start"]]:
     whoosh(k)
-for key in [("b1", "demandes"), ("b2", "saisies"), ("b3", "vendeurs"), ("b4", "fichier")]:
-    alert(wt(*key) - .05)
-shimmer(S["d1"]["end"] + .4)
-shimmer(W["H"] + .1)
-for key in [("e2", "répond"), ("e2", "qualifie"), ("e2", "propose")]:
-    blip(wt(*key))
-blip(S["e3"]["start"], 1400, .12, .1)
-click(F_CLICK)
-for k in [F_CLICK + .6, F_CLICK + 1.1, F_CLICK + 1.6, wt("f1", "crm"), wt("f1", "relance"), wt("f1", "fichier"), wt("f1", "sans")]:
+alert(S["h4"]["start"])
+alert(wt("h4", "ailleurs") - .15)
+for key in ["vendeurs", "nouvelles", "mandat", "danger"]:
+    blip(wt("h5", key), 520, .08, .1)
+shimmer(S["b1"]["end"] + .4)
+shimmer(W["E"] + .1)
+for k in [wt("s2", "répond"), wt("s2", "qualifie"), wt("s2", "propose"), wt("s2", "propose") + .8]:
     blip(k, 2000, .08)
-for key in [("g1", "réactivité"), ("g1", "fiable"), ("g1", "vendeurs"), ("g1", "négociateurs")]:
-    blip(wt(*key) + .35, 1700, .08)
-for key in [("g2", "audit"), ("g2", "automatisation"), ("g2", "support")]:
-    whoosh(wt(*key), .08, .4)
-blip(wt("g2", "seul"), 1500, .1, .1)
+click(V_CLICK)
+blip(V_CLICK + .05, 1400, .1, .1)
+for key in ["vendeurs", "compte", "visite", "automatiquement"]:
+    blip(wt("v1", key), 1700, .07)
 click(H_CLICK)
 
 # baisse de la musique sous la voix
