@@ -22,6 +22,17 @@ body{font-family:"Inter",sans-serif;color:var(--text);-webkit-font-smoothing:ant
 #glowG{width:1400px;height:1100px;left:-160px;top:420px;background:radial-gradient(closest-side,rgba(0,184,127,.30),transparent)}
 #glowR{width:1500px;height:1200px;left:-210px;top:380px;background:radial-gradient(closest-side,rgba(255,40,50,.42),transparent);opacity:0}
 #aurora{width:1700px;height:900px;left:-310px;top:760px;background:radial-gradient(closest-side,rgba(0,184,127,.45),rgba(0,120,90,.15) 55%,transparent);opacity:0}
+#bgDash{position:absolute;left:-70px;top:430px;width:1220px;height:1180px;border-radius:44px;background:linear-gradient(180deg,#0b2c3c,#06182a);border:2px solid rgba(46,230,166,.28);box-shadow:0 0 160px rgba(0,184,127,.28);transform-origin:50% 40%;--acc:#2EE6A6;overflow:hidden}
+#bgDash .dh{height:96px;font-size:32px}
+#bgDash .dh i{width:34px;height:34px}
+#bgDash .kpis{left:40px;top:130px;width:1140px;gap:20px}
+#bgDash .kpi{padding:22px}
+#bgDash .kpi b{font-size:60px}
+#bgDash .kpi span{font-size:21px}
+#bgDash .chart{left:40px;top:330px;width:1140px;height:250px}
+#bgDash .tbl{left:40px;top:610px;width:1140px;font-size:26px}
+#bgDash .tr{padding:20px 18px;grid-template-columns:1.2fr 1.2fr 1.6fr}
+#bgDash .st{font-size:21px;padding:8px 16px}
 #vignette{background:radial-gradient(1200px 1500px at 50% 45%,transparent 55%,rgba(0,0,0,.75) 100%);z-index:40;pointer-events:none}
 #redvig{background:radial-gradient(1100px 1400px at 50% 45%,transparent 45%,rgba(200,0,20,.45) 100%);z-index:41;opacity:0}
 #flash{background:#fff;z-index:60;opacity:0}
@@ -103,6 +114,26 @@ body{font-family:"Inter",sans-serif;color:var(--text);-webkit-font-smoothing:ant
   <div class="glow" id="glowR"></div>
   <div class="glow" id="aurora"></div>
   <svg class="layer" id="city" viewBox="0 0 1080 1920" style="opacity:0"></svg>
+
+  <div class="layer" id="bgWrap" style="perspective:1600px;opacity:0">
+    <div id="bgDash">
+      <div class="dh"><i></i>Agence · <span id="bgTitle">Demandes</span><span class="wk">avec mova.ia</span></div>
+      <div class="kpis">
+        <div class="kpi"><span class="bk" data-a="Demandes traitées" data-b="Comptes rendus">Demandes traitées</span><b class="bk" data-a="41" data-b="12">41</b></div>
+        <div class="kpi"><span class="bk" data-a="Visites proposées" data-b="Vendeurs suivis">Visites proposées</span><b class="bk" data-a="17" data-b="48">17</b></div>
+        <div class="kpi"><span class="bk" data-a="Contacts qualifiés" data-b="Points prévus">Contacts qualifiés</span><b class="bk" data-a="33" data-b="9">33</b></div>
+        <div class="kpi"><span class="bk" data-a="En attente" data-b="Sans nouvelles">En attente</span><b>0</b></div>
+      </div>
+      <div class="chart"><svg width="1140" height="250" viewBox="0 0 1140 250"><polyline fill="none" stroke="#2EE6A6" stroke-width="6" stroke-linejoin="round" points="20,210 100,196 180,200 260,170 340,176 420,140 500,150 580,112 660,120 740,86 820,92 900,60 980,66 1060,36 1120,30"/></svg></div>
+      <div class="tbl">
+        <div class="tr"><span>M. Durand</span><span>T3 · Centre</span><span class="st ok bk" data-a="Répondu · 22:04" data-b="Compte rendu envoyé">Répondu · 22:04</span></div>
+        <div class="tr"><span>Mme Petit</span><span>Maison 5 p.</span><span class="st ok bk" data-a="Qualifié" data-b="Point vendredi">Qualifié</span></div>
+        <div class="tr"><span>M. Leroy</span><span>T2 · Gare</span><span class="st ok bk" data-a="Visite proposée" data-b="Compte rendu envoyé">Visite proposée</span></div>
+        <div class="tr"><span>Mme Martin</span><span>Studio</span><span class="st ok bk" data-a="Répondu · 23:41" data-b="Offre transmise">Répondu · 23:41</span></div>
+        <div class="tr"><span>M. Bernard</span><span>T4 · Parc</span><span class="st ok bk" data-a="Visite validée" data-b="Point lundi">Visite validée</span></div>
+      </div>
+    </div>
+  </div>
 
   <!-- S1 : le problème -->
   <div class="scene" id="sA">
@@ -376,13 +407,13 @@ function sA(t) {
   $('s68').style.opacity = clamp((t - t68 + .1) / .2) * .9;
   // pastilles
   const out = clamp((t - S.h5.start + .1) / .3);
-  [['al1', S.h4.start, -80], ['al2', wt('h4', 'ailleurs') - .15, 80]].forEach(([id, t0, x]) => { ap(id, t, t0, .4, { x, y: 0, s: .9, blur: 10 }); $(id).style.opacity = parseFloat($(id).style.opacity) * (1 - out); });
+  [['al1', S.h4.start, -80], ['al2', wt('h4', 'concurrent') - .15, 80]].forEach(([id, t0, x]) => { ap(id, t, t0, .4, { x, y: 0, s: .9, blur: 10 }); $(id).style.opacity = parseFloat($(id).style.opacity) * (1 - out); });
   // liste inclinée rouge (vendeurs)
   const tr = $('tiltR');
   const ti = ease((t - S.h5.start + .2) / .5);
   tr.style.opacity = ti;
   tr.style.transform = `translateY(${(1 - ti) * 60}px)`;
-  tiltList('tiltR', t, [wt('h5', 'vendeurs'), wt('h5', 'nouvelles'), wt('h5', 'mandat'), wt('h5', 'danger')]);
+  tiltList('tiltR', t, [wt('h5', 'vendeur'), wt('h5', 'nouvelles'), wt('h5', 'mandat'), wt('h5', 'danger')]);
 }
 // S2
 function sB(t) {
@@ -427,7 +458,7 @@ function sC(t) {
   $('spin').style.transform = all ? 'none' : `rotate(${t * 360}deg)`;
   const vb = $('valBtn');
   const vIn = ease((t - S.s3.start + .3) / .4);
-  const click = wt('s3', 'valider') + .25;
+  const click = wt('s3', 'valid') + .25;
   vb.style.opacity = vIn;
   vb.style.transform = `translateY(${(1 - vIn) * 30}px) scale(${t > click && t < click + .15 ? .95 : 1})`;
   vb.style.background = t > click ? 'var(--green)' : 'rgba(10,30,56,.75)';
@@ -466,11 +497,21 @@ function sE(t) {
 }
 
 function render(t) {
-  const world = Math.max(alpha('C', t), alpha('D', t), alpha('E', t));
-  $('city').style.opacity = world * (alpha('D', t) > .5 ? .55 : 1);
-  $('city').style.transform = `translateY(${-Math.max(0, t - W.C[0]) * 1.5}px) scale(1.04)`;
-  WINS.forEach((w, i) => w.setAttribute('opacity', (0.35 + 0.3 * Math.abs(Math.sin(t * .7 + i))).toFixed(2)));
-  $('grid').style.opacity = 1 - world * .6;
+  const world = Math.max(alpha('C', t), alpha('D', t));
+  $('city').style.opacity = 0;
+  const bw = $('bgWrap'), bd = $('bgDash');
+  bw.style.opacity = world;
+  if (world > 0) {
+    const inD = t >= W.D[0];
+    const q = inD ? (t - W.D[0]) / 6 : (t - W.C[0]) / 8;
+    bd.style.transform = inD
+      ? `rotateX(${lerp(20, 14, q)}deg) rotateY(${lerp(18, 10, q)}deg) rotateZ(${lerp(5, 3, q)}deg) translateY(${-q * 60}px) scale(${lerp(1.05, 1.12, q)})`
+      : `rotateX(${lerp(26, 18, q)}deg) rotateY(${lerp(-16, -8, q)}deg) rotateZ(${lerp(-6, -3, q)}deg) translateY(${-q * 80}px) scale(${lerp(1.0, 1.1, q)})`;
+    bd.style.filter = `blur(${inD ? 5 : 4}px) brightness(.62)`;
+    $('bgTitle').textContent = inD ? 'Vendeurs' : 'Demandes';
+    bd.querySelectorAll('.bk').forEach(e => { const v = inD ? e.dataset.b : e.dataset.a; if (e.textContent !== v) e.textContent = v; });
+  }
+  $('grid').style.opacity = 1 - world * .7;
   $('grid').style.transform = `translateY(${(t * 6) % 90}px)`;
   if (t >= W.C[0]) { $('aurora').style.opacity = .7; $('aurora').style.top = '760px'; }
   $('aurora').style.transform = `translateX(${Math.sin(t * .25) * 60}px) scaleY(${1 + .08 * Math.sin(t * .4)})`;
@@ -491,7 +532,7 @@ function render(t) {
   const ex = t < W.B[0] || (t >= W.C[0] && t < W.E[0]);
   $('tag').style.opacity = ex ? clamp(t / .6) : 0;
   let cp = null;
-  const vc = wt('s3', 'valider') + .25;
+  const vc = wt('s3', 'valid') + .25;
   if (t >= vc - 1.1 && t < vc + .8) cp = { t0: vc - 1.0, t1: vc - .1, from: [160, 1600], to: [560, 1352], click: vc };
   if (t >= S.c2.start - .2) cp = { t0: S.c2.start, t1: S.c2.start + .95, from: [200, 1500], to: [640, 980], click: S.c2.start + 1.2 };
   cursorAt(t, cp);

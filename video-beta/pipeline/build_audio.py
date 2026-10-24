@@ -36,7 +36,7 @@ def wt(seg, key, nth=0, exact=False):
 # mêmes repères que dans l'animation
 SW = S["h2"]["start"]
 W = {"B": S["b1"]["start"] - .25, "C": S["s2"]["start"] - .3, "D": S["v1"]["start"] - .3, "E": S["c1"]["start"] - .35}
-V_CLICK = wt("s3", "valider") + .25
+V_CLICK = wt("s3", "valid") + .25
 H_CLICK = S["c2"]["start"] + 1.2
 
 
@@ -77,23 +77,6 @@ def add(n0, L, R=None):
     mus[1, n0:n1] += R[:n1 - n0]
 
 
-A2, C3, E3, G3, A3, C4, E4, D5 = 110, 130.81, 164.81, 196, 220, 261.63, 329.63, 587.33
-logo_t = S["b1"]["end"] + .4
-add(*pad([A2, E3, A3, C4], 0, logo_t + .8, 900, .22))
-add(*pad([55, 82.4], SW - .2, W["B"] + .5, 300, .2))
-add(*pad([C3, G3, E4, D5], logo_t - .4, TOTAL + .5, 1800, .2))
-
-step = 60 / 100 / 2
-notes = [523.25, 659.25, 783.99, 587.33, 659.25, 783.99, 880.0, 783.99]
-t = W["C"] + .2
-i = 0
-while t < W["E"] + 3:
-    n = int(.5 * SR)
-    tt = np.arange(n) / SR
-    tone = np.sin(2 * np.pi * notes[i % 8] * tt) * np.exp(-tt * 9) * .05
-    add(int(t * SR), tone * .9, tone * 1.1)
-    t += step
-    i += 1
 def env_burst(dur, a, d):
     n = int(dur * SR)
     e = np.ones(n)
@@ -158,14 +141,89 @@ def shimmer(t0):
         add(int((t0 + k * .07) * SR), y * (.8 + .1 * k), y * (1.1 - .1 * k))
 
 
+A2, C3, E3, G3, A3, C4, E4, D5 = 110, 130.81, 164.81, 196, 220, 261.63, 329.63, 587.33
+logo_t = S["b1"]["end"] + .4
+END_GROOVE = S["c2"]["end"] + .6
+add(*pad([A2, E3, A3, C4], 0, logo_t + .6, 800, .16))
+add(*pad([55, 82.4], SW - .2, S["b1"]["start"] + .3, 300, .18))
+add(*pad([C3, G3, E4, D5], logo_t - .2, TOTAL + .5, 1600, .13))
+
+BPM = 112
+BEAT = 60 / BPM
+
+
+def kick(t0, g=.5):
+    n = int(.38 * SR)
+    tt = np.arange(n) / SR
+    f = 45 + 80 * np.exp(-tt * 28)
+    y = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 9) * g
+    y[:220] += rng.standard_normal(220) * .12 * np.linspace(1, 0, 220)
+    add(int(t0 * SR), y)
+
+
+def clap(t0, g=.2):
+    n = int(.22 * SR)
+    x = rng.standard_normal(n)
+    x = lp_fft(x, 3800) - lp_fft(x, 900)
+    x = x / np.max(np.abs(x)) * np.exp(-np.arange(n) / SR * 20)
+    for k, dt in enumerate((0, .011, .022)):
+        add(int((t0 + dt) * SR), x * g * (1 if k == 2 else .5), x * g * (.9 if k == 2 else .6))
+
+
+def hat(t0, g=.045):
+    n = int(.05 * SR)
+    x = rng.standard_normal(n)
+    x = x - lp_fft(x, 7000)
+    x = x / np.max(np.abs(x)) * np.exp(-np.arange(n) / SR * 90) * g
+    add(int(t0 * SR), x * .8, x * 1.2)
+
+
+def bass(t0, f, dur, g=.15):
+    n = int(dur * SR)
+    tt = np.arange(n) / SR
+    y = sum(np.sin(2 * np.pi * f * h * tt) / h for h in range(1, 9))
+    y = lp_fft(y, 280)
+    y = y / np.max(np.abs(y)) * np.minimum(1, tt / .008) * np.exp(-tt * 2.5) * g
+    add(int(t0 * SR), y)
+
+
+# tension : battement sourd jusqu'à la bascule, puis pouls + tic-tac
+t = .25
+while t < SW:
+    kick(t, .22)
+    t += BEAT * 2
+t = SW + .55
+while t < S["b1"]["start"] - .1:
+    kick(t, .32)
+    bass(t, 55, BEAT * .45, .09)
+    hat(t + BEAT / 2, .03)
+    t += BEAT
+# montée, puis groove complet au logo (do, la, fa, sol)
+riser(logo_t, 1.6, .14)
+roots = [65.41, 55.0, 43.65, 49.0]
+t, b = logo_t, 0
+while t < END_GROOVE:
+    bar = int(b // 4)
+    kick(t, .48)
+    if b % 4 in (1, 3):
+        clap(t, .18)
+    hat(t + BEAT / 2, .045)
+    hat(t, .025)
+    bass(t, roots[bar % 4], BEAT * .48, .14)
+    bass(t + BEAT / 2, roots[bar % 4], BEAT * .4, .1)
+    t += BEAT
+    b += 1
+impact(END_GROOVE, .35)
+
+
 riser(SW, .9)
 impact(SW)
 whoosh(SW, .2)
 for k in [W["B"], W["C"], W["D"], W["E"], S["h3"]["start"], S["h5"]["start"]]:
     whoosh(k)
 alert(S["h4"]["start"])
-alert(wt("h4", "ailleurs") - .15)
-for key in ["vendeurs", "nouvelles", "mandat", "danger"]:
+alert(wt("h4", "concurrent") - .15)
+for key in ["vendeur", "nouvelles", "mandat", "danger"]:
     blip(wt("h5", key), 520, .08, .1)
 shimmer(S["b1"]["end"] + .4)
 shimmer(W["E"] + .1)
@@ -183,7 +241,7 @@ with wave.open(os.path.join(BUILD, "voice.wav")) as w:
 v = np.pad(v, (0, max(0, N - len(v))))[:N]
 envv = np.sqrt(np.convolve(v ** 2, np.ones(4410) / 4410, mode="same"))
 envv = envv / (envv.max() + 1e-9)
-duck = 1 - .45 * np.clip(envv * 3, 0, 1)
+duck = 1 - .5 * np.clip(envv * 3, 0, 1)
 mus *= duck
 fin = int(1.6 * SR)
 end = int(TOTAL * SR)

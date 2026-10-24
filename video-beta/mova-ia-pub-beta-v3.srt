@@ -1,0 +1,48 @@
+1
+00:00:00,250 --> 00:00:02,648
+Chaque jour, votre agence reçoit des demandes.
+
+2
+00:00:02,848 --> 00:00:03,586
+Le problème ?
+
+3
+00:00:03,986 --> 00:00:09,576
+Sur 2 198 demandes envoyées à des agences, 68 % sont restées sans réponse en 24 h.
+
+4
+00:00:09,926 --> 00:00:12,571
+Un acheteur sans réponse ? Il part chez le concurrent.
+
+5
+00:00:12,871 --> 00:00:15,800
+Un vendeur sans nouvelles ? Votre mandat est en danger.
+
+6
+00:00:16,400 --> 00:00:18,747
+Il existe une meilleure façon de travailler.
+
+7
+00:00:20,447 --> 00:00:24,032
+mova.ia installe des agents IA sur mesure, dans votre agence.
+
+8
+00:00:24,332 --> 00:00:29,674
+Une demande arrive à 22 h ? L'agent répond. Il qualifie le projet. Il propose une visite.
+
+9
+00:00:29,924 --> 00:00:31,571
+Vous ? Vous validez. C'est tout.
+
+10
+00:00:32,071 --> 00:00:35,772
+Vos vendeurs reçoivent un compte rendu après chaque visite. Automatiquement.
+
+11
+00:00:36,272 --> 00:00:38,999
+30 minutes. Diagnostic offert. En visio.
+
+12
+00:00:39,249 --> 00:00:40,257
+Le lien est dans la bio.
+

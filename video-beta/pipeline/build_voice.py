@@ -18,55 +18,55 @@ NB = " "
 # préfixe "*" = mot en vert, "^" = mot en rouge. gap : silence après. ls : lenteur.
 SEGS = [
     # S1 — accroche : le problème
-    dict(id="h1", gap=0.25, ls=1.00,
-         tts="Votre agence reçoit des demandes tous les jours.",
-         cap="Votre agence reçoit des *demandes tous les jours."),
-    dict(id="h2", gap=0.45, ls=1.10,
+    dict(id="h1", gap=0.20, ls=0.95,
+         tts="Chaque jour, votre agence reçoit des demandes.",
+         cap="Chaque jour, votre agence reçoit des *demandes."),
+    dict(id="h2", gap=0.40, ls=1.05,
          tts="Le problème ?",
          cap="Le ^problème ?"),
-    dict(id="h3", gap=0.35, ls=0.98,
+    dict(id="h3", gap=0.35, ls=0.93,
          tts="Sur plus de deux mille demandes envoyées à des agences, soixante-huit pour cent sont restées sans réponse en vingt-quatre heures.",
          cap=f"Sur 2{NB}198|plus_de_deux_mille demandes envoyées à des agences, ^68{NB}%|soixante-huit_pour_cent sont restées ^sans ^réponse en 24{NB}h.|vingt-quatre_heures."),
-    dict(id="h4", gap=0.35, ls=1.00,
-         tts="Et un acheteur sans réponse, c'est un acheteur qui visite ailleurs.",
-         cap="Et un acheteur sans réponse, c'est un acheteur qui visite ^ailleurs."),
-    dict(id="h5", gap=0.70, ls=1.00,
-         tts="Même chose pour vos vendeurs : sans nouvelles, votre mandat est en danger.",
-         cap=f"Même chose pour vos vendeurs{NB}: sans nouvelles, votre ^mandat est en ^danger."),
+    dict(id="h4", gap=0.30, ls=0.95,
+         tts="Un acheteur sans réponse ? Il part chez le concurrent.",
+         cap="Un acheteur sans réponse ? Il part chez le ^concurrent."),
+    dict(id="h5", gap=0.60, ls=0.95,
+         tts="Un vendeur sans nouvelles ? Votre mandat est en danger.",
+         cap="Un vendeur sans nouvelles ? Votre ^mandat est en ^danger."),
     # S2 — pont + logo
-    dict(id="b1", gap=1.90, ls=1.05,
+    dict(id="b1", gap=1.70, ls=1.00,
          tts="Il existe une meilleure façon de travailler.",
          cap="Il existe une *meilleure *façon de travailler."),
-    dict(id="s1", gap=0.35, ls=1.00,
-         tts="Mova, I.A. installe dans votre agence des agents I.A. sur mesure.",
-         cap="*mova.ia|Mova_I.A. installe dans votre agence des agents IA|I.A. sur *mesure."),
+    dict(id="s1", gap=0.30, ls=0.95,
+         tts="Mova, I.A. installe des agents I.A. sur mesure, dans votre agence.",
+         cap="*mova.ia|Mova_I.A. installe des agents IA|I.A. sur *mesure, dans votre agence."),
     # S3 — démonstration
-    dict(id="s2", gap=0.30, ls=0.98,
-         tts="Une demande arrive à vingt-deux heures ? L'agent répond aussitôt, qualifie le projet, et propose une visite.",
-         cap=f"Une demande arrive à 22{NB}h ?|vingt-deux_heures L'agent *répond aussitôt, *qualifie le projet et *propose une visite."),
-    dict(id="s3", gap=0.60, ls=1.02,
-         tts="Vous n'avez plus qu'à valider.",
-         cap="Vous n'avez plus qu'à *valider."),
+    dict(id="s2", gap=0.25, ls=0.93,
+         tts="Une demande arrive à vingt-deux heures ? L'agent répond. Il qualifie le projet. Il propose une visite.",
+         cap=f"Une demande arrive à 22{NB}h ?|vingt-deux_heures L'agent *répond. Il *qualifie le projet. Il *propose une visite."),
+    dict(id="s3", gap=0.50, ls=0.98,
+         tts="Vous ? Vous validez. C'est tout.",
+         cap="Vous ? Vous *validez. C'est tout."),
     # S4 — vendeurs
-    dict(id="v1", gap=0.65, ls=1.00,
-         tts="Et vos vendeurs reçoivent un compte rendu après chaque visite. Automatiquement.",
-         cap="Et vos vendeurs reçoivent un compte rendu après chaque visite. *Automatiquement."),
+    dict(id="v1", gap=0.50, ls=0.95,
+         tts="Vos vendeurs reçoivent un compte rendu après chaque visite. Automatiquement.",
+         cap="Vos vendeurs reçoivent un compte rendu après chaque visite. *Automatiquement."),
     # S5 — appel à l'action
-    dict(id="c1", gap=0.30, ls=1.00,
-         tts="Diagnostic offert de trente minutes, en visio.",
-         cap=f"*Diagnostic *offert de 30{NB}minutes,|trente_minutes, en visio."),
-    dict(id="c2", gap=0.0, ls=1.02,
+    dict(id="c1", gap=0.25, ls=0.98,
+         tts="Trente minutes. Diagnostic offert. En visio.",
+         cap=f"30{NB}minutes.|Trente_minutes. *Diagnostic *offert. En visio."),
+    dict(id="c2", gap=0.0, ls=1.0,
          tts="Le lien est dans la bio.",
          cap="Le lien est dans la *bio."),
 ]
 
 START = 0.25
-PACE = 1.06
+PACE = 0.97
 END_HOLD = 2.8
 
 
 def synth(voice, text, ls):
-    cfg = SynthesisConfig(speaker_id=1, length_scale=ls * PACE, noise_scale=0.75, noise_w_scale=0.9)
+    cfg = SynthesisConfig(speaker_id=1, length_scale=ls * PACE, noise_scale=0.8, noise_w_scale=0.85)
     chunks = [c.audio_float_array for c in voice.synthesize(text, syn_config=cfg)]
     a = np.concatenate(chunks).astype(np.float32)
     # coupe les silences de début et de fin
@@ -108,9 +108,9 @@ with wave.open(raw, "wb") as w:
 # légère mise en forme : coupe-bas, présence, compression
 subprocess.run([
     "ffmpeg", "-y", "-v", "error", "-i", raw, "-af",
-    "aresample=44100,highpass=f=70,rubberband=pitch=0.965:formant=preserved,equalizer=f=160:t=q:w=1:g=2,"
-    "equalizer=f=3000:t=q:w=1.2:g=2.5,equalizer=f=7200:t=q:w=2:g=-2,"
-    "acompressor=threshold=-20dB:ratio=3:attack=6:release=120:makeup=3,aecho=0.85:0.6:28|43:0.10|0.06",
+    "aresample=44100,highpass=f=65,rubberband=pitch=0.93:formant=preserved,"
+    "equalizer=f=115:t=q:w=0.9:g=3.5,equalizer=f=420:t=q:w=1.2:g=-2.5,equalizer=f=3400:t=q:w=1.1:g=3.5,equalizer=f=7000:t=q:w=2:g=-1.5,"
+    "acompressor=threshold=-24dB:ratio=4.5:attack=4:release=90:makeup=5,asoftclip=type=tanh:threshold=0.85,alimiter=limit=0.89",
     "-ac", "1", os.path.join(BUILD, "voice.wav"),
 ], check=True)
 
@@ -153,7 +153,7 @@ def ts(x):
     return f"{h:02}:{m:02}:{s_:02},{ms:03}"
 
 
-with open(os.path.join(OUT, "mova-ia-pub-beta-v2.srt"), "w", encoding="utf-8") as f:
+with open(os.path.join(OUT, "mova-ia-pub-beta-v3.srt"), "w", encoding="utf-8") as f:
     for n, s in enumerate(SEGS, 1):
         text = " ".join(w["w"] for w in words if w["seg"] == s["id"])
         f.write(f"{n}\n{ts(s['start'])} --> {ts(s['end'])}\n{text}\n\n")

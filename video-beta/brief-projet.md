@@ -47,4 +47,5 @@ Définir le problème, l'expliquer avec des chiffres concrets, puis la solution.
 - Pièces jointes dans le chat : fonctionnent (≈ 10 Mo max). Le connecteur Drive ne peut pas lire les vidéos.
 - Pub bêta v1 livrée : `mova-ia-pub-beta-v1.mp4` (92,7 s), script et sources dans `mova-ia-pub-beta-v1-script.md`, générateur dans `pipeline/`.
 - Pub bêta v2 livrée : `mova-ia-pub-beta-v2.mp4` (48 s, 2 problèmes, voix « Pierre »), script dans `mova-ia-pub-beta-v2-script.md`. Toutes les parties de la référence analysées (ordre 1 → 7 → 2 → 8 → 3 → 4 → 6 → 5).
-- Reste à faire : retours de l'utilisateur sur la bêta v2, voix premium (service + clé `TTS_API_KEY`), musique définitive.
+- Pub bêta v3 livrée : `mova-ia-pub-beta-v3.mp4` (43 s, voix plus grave et sèche, musique rythmée, fond tableau de bord vert en deuxième partie).
+- Reste à faire : retours de l'utilisateur sur la bêta v3, voix premium (service + clé `TTS_API_KEY`), musique définitive.
