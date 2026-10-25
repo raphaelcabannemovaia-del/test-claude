@@ -11,7 +11,7 @@ Ce fichier garde toutes les décisions prises avec l'utilisateur, pour ne rien o
 
 ## Cible et but
 - Dirigeants d'agences immobilières indépendantes de taille moyenne et agents immobiliers, partout en France.
-- But final : clic sur le lien du profil, ou saisie du domaine. Appel gratuit de 30 minutes en visio (diagnostic offert).
+- But final : clic sur le lien du profil, ou saisie du domaine. Échange **one-to-one** de 30 minutes en visio (formulation retenue depuis la v4 : plus formelle que « diagnostic offert »).
 - Réseaux : Instagram et LinkedIn, format 9:16.
 - Contenu **universel** : parler à tous les types d'agences, y compris celles qui ont déjà un bon suivi. Pas de client précis.
 
@@ -48,4 +48,6 @@ Définir le problème, l'expliquer avec des chiffres concrets, puis la solution.
 - Pub bêta v1 livrée : `mova-ia-pub-beta-v1.mp4` (92,7 s), script et sources dans `mova-ia-pub-beta-v1-script.md`, générateur dans `pipeline/`.
 - Pub bêta v2 livrée : `mova-ia-pub-beta-v2.mp4` (48 s, 2 problèmes, voix « Pierre »), script dans `mova-ia-pub-beta-v2-script.md`. Toutes les parties de la référence analysées (ordre 1 → 7 → 2 → 8 → 3 → 4 → 6 → 5).
 - Pub bêta v3 livrée : `mova-ia-pub-beta-v3.mp4` (43 s, voix plus grave et sèche, musique rythmée, fond tableau de bord vert en deuxième partie).
-- Reste à faire : retours de l'utilisateur sur la bêta v3, voix premium (service + clé `TTS_API_KEY`), musique définitive.
+- Pub bêta v4 livrée : `mova-ia-pub-beta-v4.mp4` (50,8 s). Relue avec un œil d'agent : accroche en scène vécue (samedi 21:47 → lundi 09:12), chaque problème suivi de sa solution, scène « Avant / Avec mova.ia », « Vous gardez la main », appel à l'action « one-to-one ». Voix ElevenLabs « Hugo from Paris » (eleven_v4), voice_id `DbbNuBL7lf62XwY7arQb`.
+- ElevenLabs : une génération = environ 900 crédits pour 47 s. Ne jamais relancer une génération en cas d'erreur 429 (limite de requêtes), attendre.
+- Reste à faire : retours de l'utilisateur sur la v4 (prononciation de « Mova I.A. »), musique définitive.

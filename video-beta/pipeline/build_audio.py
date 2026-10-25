@@ -34,10 +34,11 @@ def wt(seg, key, nth=0, exact=False):
 
 
 # mêmes repères que dans l'animation
-SW = S["h2"]["start"]
-W = {"B": S["b1"]["start"] - .25, "C": S["s2"]["start"] - .3, "D": S["v1"]["start"] - .3, "E": S["c1"]["start"] - .35}
-V_CLICK = wt("s3", "valid") + .25
-H_CLICK = S["c2"]["start"] + 1.2
+SW = S["h4"]["start"]
+W = {"B": S["b1"]["start"] - .25, "C": S["s2"]["start"] - .3, "D": S["v1"]["start"] - .3, "R": S["r"]["start"] - .3,
+     "E": S["c1"]["start"] - .35}
+V_CLICK = wt("s5", "valid") + .25
+H_CLICK = S["c3"]["start"] + 1.0
 
 
 def lp_fft(x, fc):
@@ -143,7 +144,7 @@ def shimmer(t0):
 
 A2, C3, E3, G3, A3, C4, E4, D5 = 110, 130.81, 164.81, 196, 220, 261.63, 329.63, 587.33
 logo_t = S["b1"]["end"] + .4
-END_GROOVE = S["c2"]["end"] + .6
+END_GROOVE = S["c3"]["end"] + .6
 add(*pad([A2, E3, A3, C4], 0, logo_t + .6, 800, .16))
 add(*pad([55, 82.4], SW - .2, S["b1"]["start"] + .3, 300, .18))
 add(*pad([C3, G3, E4, D5], logo_t - .2, TOTAL + .5, 1600, .13))
@@ -219,20 +220,32 @@ impact(END_GROOVE, .35)
 riser(SW, .9)
 impact(SW)
 whoosh(SW, .2)
-for k in [W["B"], W["C"], W["D"], W["E"], S["h3"]["start"], S["h5"]["start"]]:
+for k in [W["B"], W["C"], W["D"], W["R"], W["E"], S["h6"]["start"], S["v0"]["start"]]:
     whoosh(k)
-alert(S["h4"]["start"])
-alert(wt("h4", "concurrent") - .15)
-for key in ["vendeur", "nouvelles", "mandat", "danger"]:
-    blip(wt("h5", key), 520, .08, .1)
+# notification de la demande, puis avance rapide de l'horloge
+blip(.12, 1320, .09, .12)
+blip(.24, 1760, .09, .16)
+ff0 = S["h3"]["start"]
+for k in range(14):
+    blip(ff0 + .9 * (1 - (1 - k / 14) ** 2), 2600 - k * 60, .04, .025)
+whoosh(ff0 + .45, .12, .9)
+blip(ff0 + .9, 880, .08, .12)
+alert(SW)
+for key in ["vendeurs", "nouvelles", "mandat", "danger"]:
+    blip(wt("v0", key), 520, .08, .1)
 shimmer(S["b1"]["end"] + .4)
 shimmer(W["E"] + .1)
-for k in [wt("s2", "répond"), wt("s2", "qualifie"), wt("s2", "propose"), wt("s2", "propose") + .8]:
+for k in [wt("s3", "répond"), wt("s3", "qualifie"), wt("s3", "propose"), wt("s3", "propose") + .8]:
     blip(k, 2000, .08)
 click(V_CLICK)
 blip(V_CLICK + .05, 1400, .1, .1)
-for key in ["vendeurs", "compte", "visite", "automatiquement"]:
-    blip(wt("v1", key), 1700, .07)
+for k in [S["v1"]["start"] + .3, wt("v1", "compte"), wt("v1", "rendu") + .4, wt("v1", "automatiquement")]:
+    blip(k, 1700, .07)
+# résolution : rature puis validation, pour chaque problème
+for kg in [wt("r", "réponse"), wt("r", "nouvelles")]:
+    whoosh(kg - .35, .08, .35)
+    blip(kg, 1568, .08, .12)
+    blip(kg + .08, 2093, .07, .14)
 click(H_CLICK)
 
 # baisse de la musique sous la voix
