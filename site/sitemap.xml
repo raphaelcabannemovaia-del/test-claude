@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Remplacer https://www.votre-domaine.fr/ par le vrai domaine avant la mise en ligne -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.votre-domaine.fr/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/index.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/agents-ia-agence-immobiliere.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/leads-portails-reponse-rapide.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/rgpd-automatisation-agence-immobiliere.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/compte-rendu-vendeur-suivi-mandat.html</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://www.votre-domaine.fr/guides/calculer-temps-gagne-automatisation.html</loc><lastmod>2026-10-27</lastmod></url>
+</urlset>

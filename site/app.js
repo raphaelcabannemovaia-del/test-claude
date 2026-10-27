@@ -159,7 +159,7 @@ const CONFIG = {
     });
 
     // Halo lumineux qui suit le pointeur sur les cartes
-    document.querySelectorAll(".pc, .svc, .ben, .fit-c, .pact-c, .vs-c, .pain li").forEach(function (el) {
+    document.querySelectorAll(".pc, .svc, .ben, .fit-c, .pact-c, .vs-c, .pain li, .g-card").forEach(function (el) {
       var glow = document.createElement("span");
       glow.className = "spot-l";
       glow.setAttribute("aria-hidden", "true");

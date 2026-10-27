@@ -81,3 +81,16 @@ Cookies : le site ne dépose aucun cookie et n'a donc pas de bandeau. Le bandeau
 Accessibilité : lien d'évitement, contrastes de couleurs vérifiés (texte blanc sur vert profond `#007a5c`, le vert du logo `#00a87d` sert aux fonds sans texte), bouton de pause des animations, respect de « réduire les animations ». Contrôle automatique avec axe-core : aucune violation sur les sept pages. Un audit manuel (lecteur d'écran, zoom 200 %) reste recommandé.
 
 En-têtes de sécurité : le fichier `_headers` est lu par Netlify et Cloudflare Pages. Sur un autre hébergeur, reprendre ces valeurs dans sa configuration.
+
+## Guides et référencement
+
+Cinq guides dans `guides/` (agents IA, leads portails, RGPD, suivi vendeur, calcul du temps gagné) et une page qui les regroupe (`guides/index.html`). Ils sont liés depuis la page d'accueil (section « Pour aller plus loin », entre la FAQ et la réservation), le menu mobile et le pied de page.
+
+Pour corriger un guide, modifiez directement son fichier HTML.
+
+Avant la mise en ligne :
+
+1. Remplacer `https://www.votre-domaine.fr/` par le vrai domaine dans `sitemap.xml` et `robots.txt`.
+2. Déclarer le site et le plan du site dans Google Search Console.
+3. Enrichir chaque guide avec votre expérience réelle dès les premiers clients (cas concrets, chiffres mesurés, avec leur accord). C'est ce qui distingue un guide utile d'un texte générique pour les moteurs de recherche.
+4. Publier un nouveau guide seulement s'il répond à une question différente des existants.
