@@ -13,8 +13,6 @@ const CONFIG = {
   var hasIO = "IntersectionObserver" in window;
   var NB = " ";
   document.documentElement.classList.add("js");
-  var root_ = document.documentElement;
-  var isPaused = function () { return root_.classList.contains("anim-off"); };
 
   /* ---------- Progression, en-tête, menu mobile ---------- */
   var hdr = $("hdr"), prog = $("progress");
@@ -123,7 +121,7 @@ const CONFIG = {
     document.querySelectorAll(".hero h1, .rv h2, .pact-h h3").forEach(split);
 
     // Listes : les lignes arrivent l'une après l'autre
-    document.querySelectorAll(".pact-c ul, .vs-list, .svc ul, .info-list").forEach(function (l) {
+    document.querySelectorAll(".info-list").forEach(function (l) {
       Array.prototype.forEach.call(l.children, function (li, k) { li.style.setProperty("--k", k); });
     });
 
@@ -190,7 +188,7 @@ const CONFIG = {
     });
 
     // Halo lumineux qui suit le pointeur sur les cartes
-    document.querySelectorAll(".pc, .svc, .ben, .fit-c, .pact-c, .vs-c, .pain li, .g-card").forEach(function (el) {
+    document.querySelectorAll(".pc, .ben, .pain li, .g-card").forEach(function (el) {
       var glow = document.createElement("span");
       glow.className = "spot-l";
       glow.setAttribute("aria-hidden", "true");
@@ -224,10 +222,10 @@ const CONFIG = {
         if (!raf) raf = requestAnimationFrame(loop);
       });
     }
-    document.querySelectorAll(".wf, .vs-c--us").forEach(function (el) { tilt(el, 5); });
+    document.querySelectorAll(".wf").forEach(function (el) { tilt(el, 5); });
 
     // Boutons d'appel à l'action aimantés
-    document.querySelectorAll(".cta-row .btn, .deal .btn, .vs-c--us .btn, .nav .btn, #send-btn").forEach(function (b) {
+    document.querySelectorAll(".cta-row .btn, .nav .btn, #send-btn").forEach(function (b) {
       b.classList.add("magnet");
       b.addEventListener("pointermove", function (e) {
         var r = b.getBoundingClientRect();
@@ -255,7 +253,6 @@ const CONFIG = {
       if (fb) fb.classList.toggle("show", i >= 4);
     }
     function tick() {
-      if (isPaused()) return;
       i = i >= steps.length - 1 ? -1 : i + 1;
       paint();
       clearTimeout(timer);
@@ -263,12 +260,10 @@ const CONFIG = {
     }
     function sync() {
       clearTimeout(timer);
-      if (isPaused()) { i = steps.length - 1; paint(); return; }
       if (visible && !document.hidden) timer = setTimeout(tick, 700);
     }
     i = 0; paint();
     document.addEventListener("visibilitychange", sync);
-    document.addEventListener("motionchange", sync);
     if (hasIO) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }, { threshold: 0.3 }).observe(root);
     else { visible = true; sync(); }
   })();
@@ -319,11 +314,11 @@ const CONFIG = {
     update();
   })();
 
-  /* ---------- Bouton de demande de diagnostic : ouvre un e-mail prérempli ---------- */
+  /* ---------- Demande de diagnostic : tous les boutons « en 1 clic » ouvrent un e-mail prérempli ---------- */
   (function send() {
-    var btn = $("send-btn");
-    if (!btn) return;
-    var mail = CONFIG.contactEmail, sub = $("send-sub"), subHtml = sub.textContent, cp = $("send-copy");
+    var links = document.querySelectorAll("[data-mail]");
+    if (!links.length) return;
+    var mail = CONFIG.contactEmail, btn = $("send-btn"), cp = $("send-copy");
     var subject = "Demande de diagnostic offert";
     var body = [
       "Bonjour,", "",
@@ -334,30 +329,43 @@ const CONFIG = {
     ].join("\r\n");
     var q = encodeURIComponent;
     var mailto = "mailto:" + mail + "?subject=" + q(subject) + "&body=" + q(body);
-    btn.href = mailto;
-    $("send-gmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q(mail) + "&su=" + q(subject) + "&body=" + q(body);
-    $("send-outlook").href = "https://outlook.live.com/mail/0/deeplink/compose?to=" + q(mail) + "&subject=" + q(subject) + "&body=" + q(body);
-    $("send-addr").textContent = mail;
+    var gmail = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q(mail) + "&su=" + q(subject) + "&body=" + q(body);
+    if ($("send-gmail")) $("send-gmail").href = gmail;
+    if ($("send-outlook")) $("send-outlook").href = "https://outlook.live.com/mail/0/deeplink/compose?to=" + q(mail) + "&subject=" + q(subject) + "&body=" + q(body);
+    if ($("send-addr")) $("send-addr").textContent = mail;
     var framed = false;
     try { framed = window.self !== window.top; } catch (e) { framed = true; }
 
-    btn.addEventListener("click", function (e) {
-      // Dans un cadre (aperçu), naviguer vers mailto: remplace tout le site par une page d'erreur :
-      // on l'ouvre dans une nouvelle fenêtre, et on bascule sur le webmail si le navigateur la bloque.
-      if (framed) {
-        e.preventDefault();
-        var w = null;
-        try { w = window.open(mailto, "_blank"); } catch (x) { w = null; }
-        if (!w) {
-          var g = window.open($("send-gmail").href, "_blank");
-          if (!g) { cp.textContent = "Copier : " + mail; }
+    Array.prototype.forEach.call(links, function (a) {
+      a.href = mailto;
+      a.addEventListener("click", function (e) {
+        // Dans un cadre (aperçu), naviguer vers mailto: remplace tout le site par une page d'erreur :
+        // on l'ouvre dans une nouvelle fenêtre, et on bascule sur le webmail si le navigateur la bloque.
+        if (framed) {
+          e.preventDefault();
+          var w = null;
+          try { w = window.open(mailto, "_blank"); } catch (x) { w = null; }
+          if (!w) window.open(gmail, "_blank");
         }
-      }
-      btn.classList.add("is-sent");
-      sub.textContent = "Ouverture de votre messagerie…";
-      setTimeout(function () { btn.classList.remove("is-sent"); sub.textContent = subHtml; }, 2200);
+        if (a === btn) {
+          a.classList.add("is-sent");
+          setTimeout(function () { a.classList.remove("is-sent"); }, 2200);
+          return;
+        }
+        // Bouton du haut : si la fenêtre garde le focus, aucune messagerie ne s'est ouverte :
+        // on descend vers la réservation, qui propose Gmail, Outlook et la copie de l'adresse.
+        var left = false, onLeave = function () { left = true; };
+        window.addEventListener("blur", onLeave, { once: true });
+        document.addEventListener("visibilitychange", onLeave, { once: true });
+        setTimeout(function () {
+          window.removeEventListener("blur", onLeave);
+          document.removeEventListener("visibilitychange", onLeave);
+          var t = $("appel");
+          if (!left && t) t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+        }, 1400);
+      });
     });
-    cp.addEventListener("click", function () {
+    if (cp) cp.addEventListener("click", function () {
       var ok = function () { cp.textContent = "Adresse copiée"; };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(ok, function () { cp.textContent = mail; });
       else cp.textContent = mail;
@@ -420,28 +428,13 @@ const CONFIG = {
     }
     function frame() {
       t++; lon0 -= 0.0016; draw();
-      raf = visible && !document.hidden && !isPaused() ? requestAnimationFrame(frame) : null;
+      raf = visible && !document.hidden ? requestAnimationFrame(frame) : null;
     }
-    function sync() { if (visible && !document.hidden && !isPaused() && !raf) raf = requestAnimationFrame(frame); }
+    function sync() { if (visible && !document.hidden && !raf) raf = requestAnimationFrame(frame); }
     draw();
     if (reduce || !hasIO) return;
     document.addEventListener("visibilitychange", sync);
-    document.addEventListener("motionchange", sync);
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }).observe(cv);
-  })();
-
-  /* ---------- Pause des animations (WCAG 2.2.2) ---------- */
-  (function motionControl() {
-    var b = $("anim-ctl");
-    if (!b) return;
-    if (reduce) { b.hidden = true; return; }
-    b.addEventListener("click", function () {
-      var off = root_.classList.toggle("anim-off");
-      b.setAttribute("aria-pressed", off ? "true" : "false");
-      b.setAttribute("aria-label", off ? "Reprendre les animations" : "Mettre en pause les animations");
-      b.lastChild.textContent = off ? "Reprendre" : "Animations";
-      document.dispatchEvent(new Event("motionchange"));
-    });
   })();
 
   /* ---------- Consentement : le bandeau n'apparaît que si des traceurs sont ajoutés ----------

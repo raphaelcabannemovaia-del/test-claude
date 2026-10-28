@@ -78,7 +78,7 @@ Cookies : le site ne dépose aucun cookie. Un bandeau s'affiche pourtant à chaq
 3. Ajouter le domaine du traceur dans la politique de sécurité de `_headers`, sinon le navigateur le bloque.
 4. Le bandeau présente « Tout refuser » et « Tout accepter » au même niveau, conserve le choix 6 mois et ajoute le lien « Gérer mes cookies » dans le pied de page.
 
-Accessibilité : lien d'évitement, contrastes de couleurs vérifiés (texte blanc sur vert profond `#007a5c`, le vert du logo `#00a87d` sert aux fonds sans texte), bouton de pause des animations, respect de « réduire les animations ». Contrôle automatique avec axe-core : aucune violation sur les sept pages. Un audit manuel (lecteur d'écran, zoom 200 %) reste recommandé.
+Accessibilité : lien d'évitement, contrastes de couleurs vérifiés (texte blanc sur vert profond `#007a5c`, le vert du logo `#00a87d` sert aux fonds sans texte), respect du réglage « réduire les animations » de l'appareil (sans bouton de pause : les animations en boucle ne s'arrêtent pas pour les visiteurs qui ne l'ont pas réglé). Contrôle automatique avec axe-core : aucune violation sur les sept pages. Un audit manuel (lecteur d'écran, zoom 200 %) reste recommandé.
 
 En-têtes de sécurité : `.htaccess` pour un hébergement Apache (IONOS), `_headers` pour Netlify et Cloudflare Pages. Le site est un dossier de fichiers statiques : le déposer à la racine de l'hébergement (par FTP ou le gestionnaire de fichiers IONOS). Le fichier `.htaccess` n'a pas pu être testé sur IONOS : vérifier après la mise en ligne que `http://` redirige vers `https://`.
 
@@ -96,3 +96,7 @@ Avant la mise en ligne :
 2. Déclarer le site et le plan du site dans Google Search Console.
 3. Enrichir chaque guide avec votre expérience réelle dès les premiers clients (cas concrets, chiffres mesurés, avec leur accord). C'est ce qui distingue un guide utile d'un texte générique pour les moteurs de recherche.
 4. Publier un nouveau guide seulement s'il répond à une question différente des existants.
+
+## Structure de la page d'accueil
+
+Ouverture, bandeau d'outils, constat, procédé, ce que ça change, simulateur de temps, FAQ (qui comprend « Pour quelles agences » et « Dans quels cas mova.ia n'est pas adapté »), guides, réservation. Les boutons « Réserver un diagnostic en 1 clic » (menu, ouverture, réservation) ouvrent directement l'e-mail prérempli ; si rien ne s'ouvre au bout d'une seconde et demie, la page descend vers la réservation, qui propose Gmail, Outlook et la copie de l'adresse.
