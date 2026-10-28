@@ -48,7 +48,6 @@ Si vous ajoutez Google Analytics, un pixel publicitaire ou une vidéo YouTube in
 - Outils cités (bandeau et FAQ) : n8n, Make, Zapier, Claude, Claude Code, Mistral AI, OpenAI. Retirer ceux que vous n'utilisez pas réellement.
 - Procédé (5 étapes) et services (audit, automatisations sur mesure, support client 24h/24) : ne promettre que ce qui est réellement livrable.
 - FAQ « données » : l'hébergement UE et l'exclusion de l'entraînement des modèles doivent être vérifiés dans les conditions de chaque outil utilisé.
-- Simulateur : mesure le temps passé aujourd'hui (leads × minutes + administratif × 4,33 semaines). Aucun gain annoncé.
 
 ## Chiffres affichés
 
@@ -99,4 +98,4 @@ Avant la mise en ligne :
 
 ## Structure de la page d'accueil
 
-Ouverture, bandeau d'outils, constat, procédé, ce que ça change, simulateur de temps, FAQ (qui comprend « Pour quelles agences » et « Dans quels cas mova.ia n'est pas adapté »), guides, réservation. Les boutons « Réserver un diagnostic en 1 clic » (menu, ouverture, réservation) ouvrent directement l'e-mail prérempli ; si rien ne s'ouvre au bout d'une seconde et demie, la page descend vers la réservation, qui propose Gmail, Outlook et la copie de l'adresse.
+Ouverture, bandeau d'outils, constat, procédé, ce que ça change, FAQ (qui comprend « Pour quelles agences » et « Dans quels cas mova.ia n'est pas adapté »), guides, réservation. Les boutons « Réserver un diagnostic en 1 clic » (menu, ouverture, réservation) ouvrent directement l'e-mail prérempli ; si rien ne s'ouvre au bout d'une seconde et demie, la page descend vers la réservation, qui propose Gmail, Outlook et la copie de l'adresse.

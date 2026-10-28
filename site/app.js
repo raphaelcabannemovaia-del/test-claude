@@ -268,52 +268,6 @@ const CONFIG = {
     else { visible = true; sync(); }
   })();
 
-  /* ---------- Simulateur de temps ---------- */
-  (function sim() {
-    var leads = $("s-leads"), min = $("s-min"), admin = $("s-admin");
-    if (!leads) return;
-    var WEEKS = 52 / 12, DAY = 7, rate = 35;
-    var shown = 0, raf = null;
-    document.querySelectorAll(".rate button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        rate = +b.dataset.rate;
-        document.querySelectorAll(".rate button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
-        update();
-      });
-    });
-    function fill(r) { r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min) * 100) + "%"); }
-    function tween(target) {
-      var from = shown, t0 = null, dur = reduce ? 0 : 400;
-      if (raf) cancelAnimationFrame(raf);
-      (function step(ts) {
-        if (t0 === null) t0 = ts;
-        var p = dur ? Math.min(1, (ts - t0) / dur) : 1, k = 1 - Math.pow(1 - p, 3);
-        shown = from + (target - from) * k;
-        $("r-total").textContent = Math.round(shown) + NB + "h";
-        if (p < 1) raf = requestAnimationFrame(step);
-      })(performance.now());
-    }
-    function update() {
-      var L = +leads.value, M = +min.value, A = +admin.value;
-      [leads, min, admin].forEach(fill);
-      $("o-leads").textContent = L;
-      $("o-min").textContent = M + NB + "min";
-      $("o-admin").textContent = A + NB + "h";
-      var hLeads = L * M / 60, hAdmin = A * WEEKS, total = hLeads + hAdmin;
-      $("r-leads").textContent = Math.round(hLeads) + NB + "h";
-      $("r-admin").textContent = Math.round(hAdmin) + NB + "h";
-      $("b-leads").style.setProperty("--w", (total ? hLeads / total * 100 : 0) + "%");
-      $("b-admin").style.setProperty("--w", (total ? hAdmin / total * 100 : 0) + "%");
-      var days = Math.round(total / DAY * 10) / 10;
-      $("r-days").textContent = "Soit environ " + String(days).replace(".", ",") + " jour" + (days >= 2 ? "s" : "") + " de travail par mois.";
-      $("r-value").textContent = String(Math.round(total * rate / 10) * 10).replace(/\B(?=(\d{3})+(?!\d))/g, NB) + NB + "€ / mois";
-      tween(total);
-    }
-    [leads, min, admin].forEach(function (r) { r.addEventListener("input", update); });
-    shown = 80 * 12 / 60 + 6 * WEEKS;
-    update();
-  })();
-
   /* ---------- Demande de diagnostic : tous les boutons « en 1 clic » ouvrent un e-mail prérempli ---------- */
   (function send() {
     var links = document.querySelectorAll("[data-mail]");
