@@ -974,7 +974,7 @@ h4 { font-size: 1rem; letter-spacing: -0.02em; line-height: 1.25; }
 .cmp-opt b { font-size: .95rem; }
 .cmp-opt small { grid-column: 1; color: var(--muted); font-size: .82rem; }
 .cmp-opt input { grid-column: 2; grid-row: 1 / span 2; width: 22px; height: 22px; accent-color: var(--green-ink); }
-@media (max-width: 480px) { .cmp-bar { left: 10px; right: 10px; bottom: 10px; padding: 18px; } .cmp-act { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .cmp-bar { left: 10px; right: 10px; bottom: 10px; padding: 16px; } .cmp-bar h2 { font-size: 1.05rem; } .cmp-bar p { font-size: .85rem; margin-bottom: 12px; } .cmp-act { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cmp-act button { min-height: 44px; padding: 0 8px; font-size: .85rem; } .cmp-act button[data-act="custom"] { grid-column: 1 / -1; min-height: 40px; border-color: transparent; text-decoration: underline; } }
 .link-btn { padding: 0; border: 0; background: none; color: #dce6f0; font: inherit; cursor: pointer; text-align: left; }
 .link-btn:hover { color: var(--mint); }
 

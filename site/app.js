@@ -1,7 +1,9 @@
 /* Configuration : à compléter avant la mise en ligne (voir README.md) */
 const CONFIG = {
   // Adresse qui reçoit les demandes de diagnostic (le bouton ouvre la messagerie du visiteur)
-  contactEmail: "raphaelcabanne.mova.ia@gmail.com"
+  contactEmail: "raphaelcabanne.mova.ia@gmail.com",
+  // true : le bandeau cookies s'affiche à chaque nouveau visiteur (son choix est gardé 6 mois)
+  consentBanner: true
 };
 
 (function () {
@@ -43,19 +45,48 @@ const CONFIG = {
   document.querySelectorAll("[data-stagger]").forEach(function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", i); });
   });
+  var countUp = function () {};
   if (!reduce && hasIO) {
     document.documentElement.classList.add("motion");
-    var rvObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var el = e.target, i = +el.style.getPropertyValue("--i") || 0;
-        el.classList.add("in");
-        rvObs.unobserve(el);
-        // une fois l'apparition finie, les survols retrouvent des transitions courtes
-        setTimeout(function () { el.classList.add("rv-done"); }, 1500 + i * 90);
-      });
+    // Les chiffres repartent de zéro à chaque apparition
+    var runs = new WeakMap();
+    countUp = function (el, start) {
+      var to = +el.dataset.count, pre = el.dataset.prefix || "", suf = (el.dataset.suffix || "").replace(" ", NB), token = {};
+      runs.set(el, token);
+      if (!start) { el.textContent = pre + "0" + suf; return; }
+      var t0 = null;
+      (function step(ts) {
+        if (runs.get(el) !== token) return;
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / 1200), k = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + Math.round(to * k) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    };
+    function enter(el) {
+      if (el.classList.contains("in")) return;
+      var i = +el.style.getPropertyValue("--i") || 0;
+      el.classList.add("in");
+      el.querySelectorAll("[data-count]").forEach(function (c) { countUp(c, true); });
+      // une fois l'apparition finie, les survols retrouvent des transitions courtes
+      clearTimeout(el._rvT);
+      el._rvT = setTimeout(function () { el.classList.add("rv-done"); }, 1500 + i * 90);
+    }
+    function leave(el) {
+      if (!el.classList.contains("in")) return;
+      clearTimeout(el._rvT);
+      el.classList.remove("in", "rv-done");
+      el.querySelectorAll("[data-count]").forEach(function (c) { countUp(c, false); });
+    }
+    // Entrée dès que l'élément dépasse un peu le bas de l'écran ; sortie une fois entièrement hors de l'écran :
+    // l'écart évite les clignotements, et l'animation se rejoue en montant comme en descendant.
+    var inObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) enter(e.target); });
     }, { rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".rv").forEach(function (el) { rvObs.observe(el); });
+    var outObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (!e.isIntersecting) leave(e.target); });
+    }, { rootMargin: "0px" });
+    document.querySelectorAll(".rv").forEach(function (el) { inObs.observe(el); outObs.observe(el); });
   }
 
   /* ---------- Mouvement : titres mot à mot, halo, inclinaison, aimant, parallaxe ---------- */
@@ -205,24 +236,6 @@ const CONFIG = {
       b.addEventListener("pointerleave", function () { b.style.translate = ""; });
     });
   })();
-
-  /* ---------- Compteurs des chiffres sourcés ---------- */
-  if (!reduce && hasIO) {
-    var cObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        cObs.unobserve(e.target);
-        var el = e.target, to = +el.dataset.count, pre = el.dataset.prefix || "", suf = (el.dataset.suffix || "").replace(" ", NB), t0 = null;
-        (function step(ts) {
-          if (t0 === null) t0 = ts;
-          var p = Math.min(1, (ts - t0) / 1200), k = 1 - Math.pow(1 - p, 3);
-          el.textContent = pre + Math.round(to * k) + suf;
-          if (p < 1) requestAnimationFrame(step);
-        })(performance.now());
-      });
-    }, { threshold: 0.6 });
-    document.querySelectorAll("[data-count]").forEach(function (el) { cObs.observe(el); });
-  }
 
   /* ---------- Déroulé de l'automatisation (ouverture) ---------- */
   (function workflow() {
@@ -436,19 +449,23 @@ const CONFIG = {
      (audience) ou data-consent="publicite" (pixels publicitaires). Il ne s'exécute qu'après accord. */
   (function consent() {
     var pending = document.querySelectorAll('script[type="text/plain"][data-consent]');
-    if (!pending.length) return;
+    // Le bandeau s'affiche à chaque nouveau visiteur, même sans traceur actif (CONFIG.consentBanner)
+    if (!pending.length && !CONFIG.consentBanner) return;
     var KEY = "mova_consent", MAXAGE = 182 * 864e5;
+    // Signature des traceurs présents : si elle change, l'ancien accord ne vaut plus et on redemande
+    var sig = Array.prototype.map.call(pending, function (s) { return (s.getAttribute("data-consent") || "") + ":" + (s.getAttribute("src") || s.text.length); }).sort().join("|") || "aucun";
     var CATS = { mesure: ["Mesure d'audience", "Comprendre comment le site est utilisé, de façon statistique."], publicite: ["Publicité", "Mesurer l'efficacité de nos campagnes sur Instagram, LinkedIn et Meta."] };
     var used = {};
     Array.prototype.forEach.call(pending, function (s) { used[s.getAttribute("data-consent")] = true; });
+    if (!pending.length) { used.mesure = true; used.publicite = true; }
     function read() {
       try {
         var v = JSON.parse(localStorage.getItem(KEY) || "null");
-        if (v && v.t && Date.now() - v.t < MAXAGE && v.c) return v.c;
+        if (v && v.t && Date.now() - v.t < MAXAGE && v.c && v.s === sig) return v.c;
       } catch (e) {}
       return null;
     }
-    function write(c) { try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), c: c })); } catch (e) {} }
+    function write(c) { try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), c: c, s: sig })); } catch (e) {} }
     function run(c) {
       Array.prototype.forEach.call(document.querySelectorAll('script[type="text/plain"][data-consent]'), function (old) {
         if (!c[old.getAttribute("data-consent")]) return;
@@ -477,7 +494,7 @@ const CONFIG = {
         return '<label class="cmp-opt"><b>' + CATS[k][0] + '</b><small>' + CATS[k][1] + '</small><input type="checkbox" data-k="' + k + '"' + (previous && previous[k] ? " checked" : "") + '></label>';
       }).join("");
       bar.innerHTML = '<h2 id="cmp-t">Vos choix sur les cookies</h2>' +
-        '<p>Nous aimerions mesurer l\'audience et l\'efficacité de nos publicités. Rien n\'est déposé sans votre accord, et le site fonctionne de la même façon si vous refusez. <a href="cookies.html">En savoir plus</a>.</p>' +
+        '<p>' + (pending.length ? 'Nous aimerions mesurer l\'audience et l\'efficacité de nos publicités. Rien n\'est déposé sans votre accord, et le site fonctionne de la même façon si vous refusez.' : 'Aucun cookie de mesure ni de publicité n\'est actif aujourd\'hui sur ce site. Si nous en ajoutons un, il ne s\'activera qu\'avec votre accord, que nous vous redemanderons alors.') + ' <a href="cookies.html">En savoir plus</a>.</p>' +
         (custom ? '<div class="cmp-opts">' + opts + '</div><button type="button" class="cmp-save" data-act="save">Enregistrer mes choix</button>' :
           '<div class="cmp-act"><button type="button" data-act="none">Tout refuser</button><button type="button" data-act="all">Tout accepter</button><button type="button" data-act="custom">Personnaliser</button></div>');
       document.body.appendChild(bar);
@@ -497,7 +514,7 @@ const CONFIG = {
     }
     // Lien permanent pour modifier ou retirer son choix
     var list = $("legal-links");
-    if (list) {
+    if (list && !list.querySelector(".link-btn")) {
       var li = document.createElement("li"), btn = document.createElement("button");
       btn.type = "button"; btn.className = "link-btn"; btn.textContent = "Gérer mes cookies";
       btn.addEventListener("click", function () { open(true); });

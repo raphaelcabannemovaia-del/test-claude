@@ -71,7 +71,7 @@ Pages du site : mentions légales, politique de confidentialité, politique de c
 4. Supprimer les blocs « Modèle à valider » une fois les pages relues.
 5. Mettre à jour la date « Version du » à chaque modification de fond.
 
-Cookies : le site ne dépose aucun cookie et n'a donc pas de bandeau. Le bandeau de consentement est déjà écrit et reste inactif tant qu'aucun traceur n'est ajouté. Pour ajouter un pixel ou un outil d'audience :
+Cookies : le site ne dépose aucun cookie. Un bandeau s'affiche pourtant à chaque nouveau visiteur (`consentBanner: true` dans `CONFIG`, en haut de `app.js`) et garde son choix 6 mois ; passer à `false` le masque tant qu'aucun traceur n'est ajouté. Quand un traceur est ajouté, l'ancien choix est invalidé et le bandeau redemande l'accord. Pour ajouter un pixel ou un outil d'audience :
 
 1. Insérer le script avec `type="text/plain"` et `data-consent="publicite"` (ou `"mesure"`), avant `app.js`. Il ne s'exécute qu'après accord.
 2. Mettre à jour `cookies.html` (liste des traceurs, finalité, durée) et la politique de confidentialité (destinataires, transferts hors UE).
@@ -80,7 +80,9 @@ Cookies : le site ne dépose aucun cookie et n'a donc pas de bandeau. Le bandeau
 
 Accessibilité : lien d'évitement, contrastes de couleurs vérifiés (texte blanc sur vert profond `#007a5c`, le vert du logo `#00a87d` sert aux fonds sans texte), bouton de pause des animations, respect de « réduire les animations ». Contrôle automatique avec axe-core : aucune violation sur les sept pages. Un audit manuel (lecteur d'écran, zoom 200 %) reste recommandé.
 
-En-têtes de sécurité : le fichier `_headers` est lu par Netlify et Cloudflare Pages. Sur un autre hébergeur, reprendre ces valeurs dans sa configuration.
+En-têtes de sécurité : `.htaccess` pour un hébergement Apache (IONOS), `_headers` pour Netlify et Cloudflare Pages. Le site est un dossier de fichiers statiques : le déposer à la racine de l'hébergement (par FTP ou le gestionnaire de fichiers IONOS). Le fichier `.htaccess` n'a pas pu être testé sur IONOS : vérifier après la mise en ligne que `http://` redirige vers `https://`.
+
+Animations : les apparitions se rejouent à chaque passage à l'écran, en montant comme en descendant.
 
 ## Guides et référencement
 
