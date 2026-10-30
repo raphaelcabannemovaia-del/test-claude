@@ -1,0 +1,52 @@
+1
+00:00:00,140 --> 00:00:01,500
+Dix-neuf jours sans nouvelles.
+
+2
+00:00:01,910 --> 00:00:04,570
+Trois visites ont eu lieu. Aucun compte rendu n'est parti.
+
+3
+00:00:05,050 --> 00:00:07,760
+Votre vendeuse s'inquiète. Et un concurrent vient de l'appeler.
+
+4
+00:00:08,190 --> 00:00:10,090
+Sans nouvelles, votre mandat est en danger.
+
+5
+00:00:10,630 --> 00:00:11,960
+Il existe une meilleure façon.
+
+6
+00:00:13,280 --> 00:00:16,490
+mova.ia installe un agent IA sur mesure dans votre agence.
+
+7
+00:00:16,830 --> 00:00:18,980
+Après chaque visite, il prépare le compte rendu.
+
+8
+00:00:19,350 --> 00:00:20,870
+Vous relisez. Vous validez.
+
+9
+00:00:21,260 --> 00:00:23,600
+Il l'envoie au vendeur, et programme le prochain point.
+
+10
+00:00:24,020 --> 00:00:26,150
+Un vendeur informé est un vendeur rassuré.
+
+11
+00:00:26,530 --> 00:00:29,180
+Réservez votre one-to-one de 30 minutes, en visio.
+
+12
+00:00:29,480 --> 00:00:32,050
+On identifie ensemble où votre agence perd des affaires.
+
+13
+00:00:32,440 --> 00:00:33,380
+Le lien est dans la bio.
+

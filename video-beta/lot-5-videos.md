@@ -6,14 +6,16 @@ Conventions de ce document :
 - **Zone utile** : cartes et schémas entre y = 520 et y = 1 600 px. Rien d'important sous y = 1 620 px ni contre le bord droit.
 - Les temps sont en secondes, calculés pour la voix « Hugo from Paris » (environ 3,3 mots par seconde, pauses comprises). Ils se recalent après la génération de la voix.
 
-## Informations manquantes (à me confirmer, je n'ai rien inventé)
+## Réponses intégrées (production du 30 octobre 2026)
 
-1. **Source du compte rendu de visite (vidéo 1).** D'où l'agent tire-t-il le contenu : notes du négociateur, message vocal, retour de l'acquéreur ? J'ai écrit « à partir de vos notes », marqué [À CONFIRMER].
-2. **Outils compatibles.** Le brief dit « met à jour le CRM », sans citer de logiciel. Je n'en nomme aucun.
-3. **Le one-to-one est-il gratuit ou sans engagement ?** Le brief ne le dit pas, donc je ne l'écris nulle part. Si c'est le cas, « sans engagement » rassurerait un directeur sceptique.
-4. **L'agent se présente-t-il comme une IA aux prospects ?** Un directeur posera la question « mes clients verront-ils que c'est un robot ? ». Faute de réponse dans le brief, aucune vidéo ne la traite.
-5. **Données et RGPD.** Un directeur demandera où vont les données de ses clients. Aucune affirmation n'est faite faute d'information.
-6. **Domaine.** `movaia.fr` reste provisoire : à acheter avant publication.
+1. **Compte rendu (vidéo 1)** : l'agent est connecté au CRM et aux logiciels de l'agence. La voix dit « il prépare le compte rendu » ; l'écran montre « Visite récupérée dans votre CRM ». Le moteur d'IA n'est pas nommé.
+2. **Outils** : formule du site, « se branche aux outils que vous utilisez déjà ». Aucun logiciel n'est nommé.
+3. **One-to-one gratuit** : affiché sur la carte finale (« Échange one-to-one gratuit · 30 min · en visio »). « Sans engagement » ne concerne que l'abonnement (vidéo 4).
+4. **L'agent se présente comme une IA** : ajouté à la vidéo 3 (« Et face à vos clients, il se présente comme une I.A. »).
+5. **Prix** : installation sur devis, puis abonnement mensuel. Aucun montant, aucune mention de crédits dans les vidéos.
+6. **Domaine** : `movaia.fr` reste provisoire.
+
+Les vidéos produites et leurs sous-titres sont dans `video-beta/lot-5/`. Les minutages réels (voix ElevenLabs « Hugo from Paris ») sont dans les fichiers `.srt` ; les minutages ci-dessous sont ceux de la conception.
 
 ---
 
@@ -38,7 +40,7 @@ Plan serré sur un message de vendeuse : « Bonjour, avez-vous des retours sur l
 | 11,9 – 13,5 | Il existe une meilleure façon. |
 | 13,5 – 14,4 | *(respiration, le logo se construit)* |
 | 14,4 – 17,8 | Mova I.A. installe un agent I.A. sur mesure dans votre agence. |
-| 18,2 – 21,8 | Après chaque visite, il prépare le compte rendu, à partir de vos notes. [À CONFIRMER] |
+| 18,2 – 21,8 | Après chaque visite, il prépare le compte rendu. |
 | 22,2 – 24,0 | Vous relisez. Vous validez. |
 | 24,4 – 27,2 | Il l'envoie au vendeur, et programme le prochain point. |
 | 27,6 – 29,9 | Un vendeur informé est un vendeur rassuré. |
@@ -53,9 +55,9 @@ Plan serré sur un message de vendeuse : « Bonjour, avez-vous des retours sur l
 | 0,0 – 5,3 | Fond : tableau de bord vert, flou et incliné en 3D. Carte de message en verre sombre, en plan serré qui recule. En-tête : « Mme Petit · vendeuse · mandat exclusif ». Le message s'écrit avec un curseur. La pastille rouge « Dernier contact : il y a 19 jours » s'allume sur « nouvelles ». Sur « Trois visites », trois lignes glissent sous la carte : « Visite · mardi 14:30 · compte rendu : non envoyé » (3 fois, croix rouges). **Exemple**. | Voix mot à mot. Rouge : « sans nouvelles », « Aucun compte rendu ». | Nappe sourde, battement lent, blip à chaque ligne. |
 | 5,7 – 11,5 | Sur « concurrent » : flash, secousse, tout bascule au rouge, lueur rouge sur les bords. Pastille d'alerte : « Contactée par une autre agence ». Puis liste inclinée rouge qui s'écrit : « Mandat exclusif · fin dans 12 jours », « Vendeuse inquiète », « Risque : le bien part ailleurs ». **Exemple**. | Rouge : « concurrent », « danger ». | Alerte à la bascule, souffle, pouls plus rapide. |
 | 11,9 – 17,8 | Coupe franche : fond noir, grille discrète. La phrase se resserre en forme blanche, qui devient l'icône maison, puis le carré vert s'allume et « mova.ia » s'écrit lettre par lettre. Baseline dessous. | Vert : « meilleure façon ». Puis « mova.ia » (vert) sous le logo. | Montée, impact, le groove démarre. |
-| 18,2 – 27,2 | Fond : tableau de bord vert flou, vue « Vendeurs ». Carte de l'agent : « L'agent mova.ia prépare le compte rendu ». Tâches cochées une à une : « Notes de visite récupérées » [À CONFIRMER], « Compte rendu rédigé », puis en orange « En attente de votre validation ». Sur « validez » : le curseur clique « Valider l'envoi » (onde verte), le bouton passe au vert. Puis « Envoyé à Mme Petit ✓ » et « Prochain point : vendredi 10 h ✓ ». **Exemple**. | Vert : « compte rendu », « validez », « prochain point ». | Blip à chaque coche, clic. |
+| 18,2 – 27,2 | Fond : tableau de bord vert flou, vue « Vendeurs ». Carte de l'agent : « L'agent mova.ia prépare le compte rendu ». Tâches cochées une à une : « Visite récupérée dans votre CRM », « Compte rendu rédigé », puis en orange « En attente de votre validation ». Sur « validez » : le curseur clique « Valider l'envoi » (onde verte), le bouton passe au vert. Puis « Envoyé à Mme Petit ✓ » et « Prochain point : vendredi 10 h ✓ ». **Exemple**. | Vert : « compte rendu », « validez », « prochain point ». | Blip à chaque coche, clic. |
 | 27,6 – 29,9 | Carte « Avant / Avec mova.ia ». En-tête : « Vendeuse · Mme Petit · mandat exclusif ». Avant : « 19 jours sans nouvelles », barré en rouge. Avec mova.ia : « Compte rendu après chaque visite », coché en vert. **Exemple**. | Vert : « rassuré ». | Souffle sur la rature, double blip sur la coche. |
-| 30,4 – 40,5 | Carte finale : logo qui se construit, baseline, « Échange one-to-one · 30 min · en visio ». Bouton vert « Réserver mon one-to-one → ». Le curseur arrive et clique (onde verte), puis « movaia.fr · lien en bio ». Tenue 3 s. | Vert : « one-to-one », « bio ». | Scintillement au logo, clic, fin du groove sur un impact. |
+| 30,4 – 40,5 | Carte finale : logo qui se construit, baseline, « Échange one-to-one gratuit · 30 min · en visio ». Bouton vert « Réserver mon one-to-one → ». Le curseur arrive et clique (onde verte), puis « movaia.fr · lien en bio ». Tenue 3 s. | Vert : « one-to-one », « bio ». | Scintillement au logo, clic, fin du groove sur un impact. |
 
 **5. Jeu de la voix**
 - Accroche : constat grave et lent, appui sur « Dix-neuf ». Silence net avant « Trois visites ».
@@ -81,7 +83,7 @@ Plan serré sur un message de vendeuse : « Bonjour, avez-vous des retours sur l
 **8. Critique (directeur sceptique) et corrections déjà appliquées**
 - Le premier jet disait « Un vendeur informé reste ». C'est une promesse invérifiable, et un directeur pense aussitôt « rien ne le garantit ». J'ai écrit « rassuré » à la place.
 - Dans le premier jet, l'agent envoyait seul le compte rendu. Un directeur refuse qu'un texte parte sans relecture vers un vendeur en exclusivité. J'ai ajouté « Vous relisez. Vous validez. » et l'étape orange « En attente de votre validation ».
-- Reste ouvert : « qui remplit le compte rendu ? ». C'est la première question qu'il posera, d'où le point 1 des informations manquantes.
+- « Qui remplit le compte rendu ? » : l'écran montre que l'agent récupère la visite dans le CRM de l'agence.
 - Risque de décrochage pendant la construction du logo (11 à 15 s) : la respiration est limitée à 0,9 s et le logo se construit sous la voix.
 
 ---
@@ -150,7 +152,7 @@ Carte verte « Nouveau mandat · Maison 5 p. · jardin » qui entre en plan serr
 **8. Critique et corrections déjà appliquées**
 - Premier jet : « Vos acheteurs restent chez vous ». Promesse invérifiable, remplacée par « le bon acheteur reçoit le bon bien », qui décrit l'action.
 - Premier jet : l'agent prévenait les acheteurs seul. Un directeur craint qu'un bien parte vers le mauvais contact. J'ai ajouté la proposition de liste et la validation.
-- « Met à jour votre CRM » : le directeur demandera « lequel ? ». Voir le point 2 des informations manquantes.
+- « Met à jour votre CRM » : le directeur demandera « lequel ? ». Réponse du site reprise : l'agent se branche aux outils que l'agence utilise déjà.
 - La scène « Deux fois » est la plus faible visuellement (deux fenêtres). Elle dure 3 s, pas plus.
 
 ---
@@ -175,6 +177,7 @@ La question s'écrit en grand au centre, sur fond noir. Derrière, floue, la soi
 | 7,8 – 13,0 | Répondre à une demande à vingt-deux heures. Relancer. Saisir dans le CRM. Envoyer les comptes rendus. |
 | 13,4 – 18,4 | Vos négociateurs gardent ce qui fait vendre : la relation, la visite, la négociation, la décision. |
 | 18,8 – 21,4 | L'agent prépare. Vous validez. Vous gardez la main. |
+| 21,6 – 24,0 | Et face à vos clients, il se présente comme une I.A. |
 | 21,8 – 27,6 | En France, quarante pour cent des TPE et PME utilisent déjà une solution d'I.A. Contre vingt-six pour cent un an plus tôt. |
 | 28,0 – 31,2 | Mova I.A. conçoit ces agents sur mesure pour votre agence. |
 | 31,6 – 37,1 | Réservez votre one-to-one de trente minutes, en visio. On identifie ensemble où votre agence perd des affaires. |
@@ -218,7 +221,7 @@ La question s'écrit en grand au centre, sur fond noir. Derrière, floue, la soi
 - La règle du brief impose de commencer par un problème concret, et une question seule reste abstraite. J'ai ajouté la carte floue de la soirée du négociateur, dont chaque pastille rouge s'éteint quand la tâche passe à l'agent.
 - Premier jet : le chiffre de 82 % (étude américaine). J'ai préféré le chiffre français 40 % / 26 % : pour un directeur français, il pèse plus, sans ambiguïté de pays.
 - Un directeur sceptique trouvera « Non » trop facile. La preuve vient juste après, avec la liste précise des tâches et la validation. Il ne faut pas raccourcir cette partie.
-- Question non traitée : « mes clients sauront-ils que c'est une IA ? ». Voir le point 4 des informations manquantes. C'est un bon sujet pour une vidéo suivante.
+- « Mes clients sauront-ils que c'est une IA ? » : la réponse est maintenant dans la vidéo (l'agent se présente comme une IA, signature « Assistant IA de l'agence » à l'écran).
 
 ---
 
@@ -243,7 +246,7 @@ Une carte « Nouvel outil » dont la courbe d'utilisation chute à zéro en quat
 | 15,4 – 18,4 | Deux. L'audit de vos outils actuels. |
 | 18,8 – 21,6 | Trois. Vos agents, conçus sur mesure. |
 | 22,0 – 24,8 | Quatre. Test, puis mise en service. |
-| 25,2 – 28,4 | Cinq. Un suivi chaque mois, et des évolutions. |
+| 25,2 – 28,4 | Cinq. Un suivi chaque mois, sans engagement. |
 | 28,8 – 31,8 | Un seul interlocuteur, du premier échange au suivi. |
 | 32,2 – 35,4 | Réservez votre one-to-one de trente minutes, en visio. |
 | 35,8 – 37,0 | Le lien est dans la bio. |

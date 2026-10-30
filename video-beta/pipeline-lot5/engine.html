@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>mova.ia – lot de vidéos</title>
+<style>
+@font-face{font-family:"Inter";font-weight:400;src:url("fonts/inter-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:500;src:url("fonts/inter-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:600;src:url("fonts/inter-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Jakarta";font-weight:600;src:url("fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Jakarta";font-weight:700;src:url("fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Jakarta";font-weight:800;src:url("fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2")}
+:root{--bg:#000611;--green:#00B87F;--mint:#2EE6A6;--red:#FF4D4F;--amber:#FFC266;--text:#E9EFF6;--muted:#8FA3BC;--glass:rgba(10,30,56,.62);--line:rgba(130,175,220,.20)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+body{font-family:"Inter",sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:radial-gradient(1400px 1000px at 50% 18%,#0a2246 0%,#020b1a 55%,#000611 100%)}
+.abs{position:absolute}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#grid{background-image:linear-gradient(rgba(120,170,230,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(120,170,230,.06) 1px,transparent 1px);background-size:90px 90px;-webkit-mask-image:radial-gradient(900px 900px at 50% 45%,#000 20%,transparent 75%)}
+.glow{position:absolute;border-radius:50%;pointer-events:none}
+#glowG{width:1400px;height:1100px;left:-160px;top:420px;background:radial-gradient(closest-side,rgba(0,184,127,.30),transparent)}
+#glowR{width:1500px;height:1200px;left:-210px;top:380px;background:radial-gradient(closest-side,rgba(255,40,50,.42),transparent);opacity:0}
+#aurora{width:1700px;height:900px;left:-310px;top:760px;background:radial-gradient(closest-side,rgba(0,184,127,.45),rgba(0,120,90,.15) 55%,transparent);opacity:0}
+#bgDash{position:absolute;left:-70px;top:430px;width:1220px;height:1180px;border-radius:44px;background:linear-gradient(180deg,#0b2c3c,#06182a);border:2px solid rgba(46,230,166,.28);box-shadow:0 0 160px rgba(0,184,127,.28);transform-origin:50% 40%;--acc:#2EE6A6;overflow:hidden}
+#bgDash.red{--acc:#FF5A5F;border-color:rgba(255,77,79,.45);box-shadow:0 0 160px rgba(255,40,50,.3)}
+#bgTint{position:absolute;inset:0;background:#ff2a35;mix-blend-mode:color;opacity:0;pointer-events:none}
+.dh{position:absolute;left:0;top:0;width:100%;height:96px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 34px;font-family:"Jakarta";font-weight:700;font-size:32px}
+.dh i{display:block;width:34px;height:34px;border-radius:9px;background:var(--acc)}
+.dh .wk{margin-left:auto;font-family:"Inter";font-weight:500;font-size:22px;color:var(--muted);border:1px solid var(--line);padding:8px 18px;border-radius:999px}
+.kpis{position:absolute;left:40px;top:130px;width:1140px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.kpi{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:22px}
+.kpi b{display:block;font-family:"Jakarta";font-weight:800;font-size:60px;margin-top:6px;color:var(--acc)}
+.kpi span{font-size:21px;color:var(--muted)}
+.chart{position:absolute;left:40px;top:330px;width:1140px;height:250px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
+.tbl{position:absolute;left:40px;top:610px;width:1140px;font-size:26px}
+.tr{display:grid;grid-template-columns:1.1fr 1.2fr 1.7fr;align-items:center;padding:20px 18px;border-bottom:1px solid var(--line)}
+.st{justify-self:start;padding:8px 16px;border-radius:999px;font-size:21px;font-weight:600;background:rgba(255,255,255,.07);color:var(--text)}
+.st.ok{background:rgba(46,230,166,.18);color:#2EE6A6}
+.st.bad{background:rgba(255,77,79,.2);color:#FF8A8C}
+#vignette{background:radial-gradient(1200px 1500px at 50% 45%,transparent 55%,rgba(0,0,0,.75) 100%);z-index:40;pointer-events:none}
+#redvig{background:radial-gradient(1100px 1400px at 50% 45%,transparent 45%,rgba(200,0,20,.45) 100%);z-index:41;opacity:0}
+#flash{background:#fff;z-index:60;opacity:0}
+.scene{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;visibility:hidden}
+#kt{position:absolute;left:70px;width:940px;text-align:center;font-weight:600;font-size:44px;line-height:1.28;letter-spacing:-.5px;z-index:50;text-shadow:0 2px 18px rgba(0,0,0,.85)}
+#kt span{display:inline-block;margin:0 1px;opacity:0}
+#kt span.g{color:var(--mint)}
+#kt span.r{color:#FF6B6E}
+#tag{position:absolute;right:60px;top:228px;padding:8px 20px;border-radius:999px;border:2px dashed rgba(143,163,188,.55);color:var(--muted);font-size:24px;font-weight:600;z-index:55;opacity:0}
+
+/* cartes en verre */
+.glass{position:absolute;border-radius:30px;background:rgba(9,26,48,.88);border:1.5px solid rgba(160,210,235,.28);box-shadow:0 40px 110px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(12px);opacity:0}
+.gh{position:absolute;left:34px;top:30px;display:flex;align-items:center;gap:16px;font-size:25px;color:var(--muted);white-space:nowrap}
+.mini{width:48px;height:48px;border-radius:12px;background:#0B3A2E;display:flex;align-items:center;justify-content:center;color:#2EE6A6;font-weight:800;font-size:26px;flex:none}
+.clk{position:absolute;right:30px;top:24px;padding:10px 20px;border-radius:14px;background:rgba(255,255,255,.07);border:1.5px solid var(--line);font-family:"Jakarta";font-weight:800;font-size:34px;color:#F2F6FA;white-space:nowrap}
+.mtx{position:absolute;left:34px;top:112px;width:870px;font-size:36px;line-height:1.32}
+.pill{position:absolute;padding:12px 24px;border-radius:999px;font-size:28px;font-weight:600;white-space:nowrap;border:1.5px solid transparent}
+.pill.n{background:rgba(255,255,255,.08);color:#C9D6E3}
+.pill.a{background:rgba(255,190,70,.14);color:var(--amber);border-color:rgba(255,190,70,.55)}
+.pill.r{background:rgba(255,77,79,.2);color:#FFB3B4;border-color:rgba(255,77,79,.8)}
+.pill.g{background:rgba(46,230,166,.16);color:var(--mint);border-color:rgba(46,230,166,.6)}
+.alert{position:absolute;display:flex;align-items:center;gap:16px;padding:16px 28px 16px 18px;border-radius:999px;background:rgba(58,6,12,.85);border:2px solid rgba(255,77,79,.8);color:#FFC2C3;font-size:30px;font-weight:500;white-space:nowrap;box-shadow:0 0 36px rgba(255,50,60,.45);z-index:20;opacity:0}
+.alert i,.li i.x{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;font-style:normal;font-weight:800;font-size:24px;flex:none}
+.row{position:absolute;left:70px;width:940px;height:84px;border-radius:20px;background:rgba(9,26,48,.86);border:1.5px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 26px;font-size:28px;white-space:nowrap;opacity:0}
+.row i{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font-style:normal;font-weight:800;font-size:22px;flex:none}
+.row em{font-style:normal;margin-left:auto;font-size:24px}
+
+/* carte de l'agent */
+.ring{position:absolute;left:34px;top:30px;width:80px;height:80px}
+.at{position:absolute;left:134px;top:34px;font-family:"Jakarta";font-weight:800;font-size:33px;letter-spacing:-.5px;white-space:nowrap}
+.as{position:absolute;left:134px;top:82px;font-size:23px;color:var(--muted)}
+.ck{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#03231A;font-weight:900;font-size:21px;flex:none}
+.task{position:absolute;left:44px;display:flex;align-items:center;gap:18px;font-size:30px;white-space:nowrap;opacity:0}
+.task .s{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,190,70,.9);border-right-color:transparent;flex:none}
+.task .d{display:none}
+.caret{display:inline-block;width:3px;height:38px;background:var(--mint);vertical-align:-6px;margin-left:2px}
+.vbtn{position:absolute;left:250px;width:580px;height:104px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:14px;font-family:"Jakarta";font-weight:800;font-size:36px;background:rgba(10,30,56,.8);border:2px solid rgba(46,230,166,.6);box-shadow:0 0 50px rgba(0,184,127,.25);opacity:0;white-space:nowrap}
+
+/* liste inclinée */
+.tiltWrap{position:absolute;left:0;width:1080px;height:760px;perspective:1500px;opacity:0}
+.tilt{position:absolute;left:60px;top:40px;width:960px;height:560px;border-radius:30px;border:1.5px solid rgba(255,77,79,.35);transform-origin:40% 50%;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.tilt.r{background:linear-gradient(120deg,rgba(40,10,16,.94),rgba(14,6,12,.92) 55%)}
+.tilt.g{background:linear-gradient(120deg,rgba(6,40,36,.94),rgba(4,18,30,.92) 55%);border-color:rgba(46,230,166,.35)}
+.tilt.w{background:linear-gradient(120deg,rgba(14,32,56,.94),rgba(6,16,30,.92) 55%);border-color:rgba(160,210,235,.35)}
+.tilt h4{position:absolute;left:46px;top:34px;font-size:26px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.li{position:absolute;left:46px;display:flex;align-items:center;gap:20px;font-size:40px;font-style:italic;font-weight:500;white-space:nowrap;opacity:0}
+.li.r{color:#FF7A7D}
+.li.g{color:#BFF5E1}
+.li.w{color:#F2F6FA;font-style:normal;font-weight:600}
+.li svg{width:38px;height:38px;flex:none}
+
+/* avant / avec */
+.cmp{position:absolute;left:70px;width:940px;height:262px;border-radius:30px;background:rgba(9,28,48,.9);border:1.5px solid rgba(160,220,200,.28);box-shadow:0 40px 110px rgba(0,0,0,.6);opacity:0}
+.cmp .hd{position:absolute;left:36px;top:28px;font-size:25px;color:var(--muted);letter-spacing:.5px;white-space:nowrap}
+.cmp .rw{position:absolute;left:36px;display:flex;align-items:center;gap:18px;font-size:34px;white-space:nowrap}
+.cmp .lab{width:200px;font-size:20px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.cmp .bad{top:92px;color:#FF8A8C}
+.cmp .bad .lab{color:#FF6B6E}
+.cmp .good{top:172px;color:#E9EFF6;font-weight:600;opacity:0}
+.cmp .good .lab{color:var(--mint)}
+.cmp .txt{position:relative}
+.cmp .strike{position:absolute;left:-4px;top:52%;height:4px;width:0;background:#FF6B6E;border-radius:2px}
+
+/* logo, statistique, appel à l'action */
+.logo{position:absolute;left:0;width:1080px;display:flex;justify-content:center;align-items:center;gap:30px;z-index:30}
+.logo svg{overflow:visible}
+.wm{font-family:"Jakarta";font-weight:800;letter-spacing:-3px;white-space:nowrap;color:#F2F6FA}
+.tagl{position:absolute;left:0;width:1080px;text-align:center;font-size:35px;color:#B9C8D8;letter-spacing:1px;z-index:30}
+.seed{position:absolute;width:44px;height:44px;border-radius:10px;background:#fff;left:518px;z-index:31;opacity:0}
+.stat{position:absolute;left:90px;top:640px;width:900px;height:440px;border-radius:34px;background:rgba(40,4,10,.78);border:2px solid rgba(255,77,79,.55);box-shadow:0 0 90px rgba(255,40,50,.35);opacity:0;z-index:25}
+.stat .n{position:absolute;left:50px;top:40px;font-family:"Jakarta";font-weight:800;font-size:220px;letter-spacing:-7px;line-height:1;white-space:nowrap}
+.stat .la,.stat .lb{position:absolute;left:54px;top:290px;width:800px;font-size:42px;font-weight:600;line-height:1.2}
+.btn{position:absolute;padding:30px 54px;border-radius:999px;background:var(--green);color:#03231A;font-family:"Jakarta";font-weight:800;font-size:42px;white-space:nowrap;z-index:30;opacity:0}
+.ctaTx{position:absolute;left:0;width:1080px;text-align:center;opacity:0}
+#cursor{position:absolute;left:0;top:0;width:56px;height:56px;z-index:70;opacity:0;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+#ripple{position:absolute;width:90px;height:90px;border-radius:50%;border:4px solid rgba(46,230,166,.95);z-index:69;opacity:0}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="grid"></div>
+  <div class="glow" id="glowG"></div>
+  <div class="glow" id="glowR"></div>
+  <div class="glow" id="aurora"></div>
+  <div class="layer" id="bgWrap" style="perspective:1600px;opacity:0">
+    <div id="bgDash">
+      <div class="dh"><i></i>Agence · <span id="bgTitle"></span><span class="wk" id="bgWk"></span></div>
+      <div class="kpis" id="bgKpis"></div>
+      <div class="chart"><svg width="1140" height="250" viewBox="0 0 1140 250"><polyline id="bgLine" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linejoin="round" points=""/></svg></div>
+      <div class="tbl" id="bgTbl"></div>
+      <div id="bgTint"></div>
+    </div>
+  </div>
+  <div id="scenes"></div>
+  <div class="layer" id="vignette"></div>
+  <div class="layer" id="redvig"></div>
+  <div id="kt"></div>
+  <div id="tag">Exemple</div>
+  <div id="ripple"></div>
+  <svg id="cursor" viewBox="0 0 24 24"><path d="M4 2l15 11-6.5 1.2L16 21l-3 1.3-3.5-6.8L4 20z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg>
+  <div class="layer" id="flash"></div>
+</div>
+
+<script>
+const TL = /*TL*/;
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+const inout = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const back = x => { x = clamp(x); const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, p) => a + (b - a) * p;
+const S = TL.segs;
+const NB = ' ';
+const STAR = '<svg viewBox="0 0 24 24"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#2EE6A6"/></svg>';
+const HOUSE = (w, sw = 12) => `<svg viewBox="0 0 100 100" style="width:${w}px;height:${w}px;overflow:visible"><path class="house" d="M19 83V45L50 21l31 24v38" fill="none" stroke="#F2F6FA" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="190" stroke-dashoffset="190"/><rect class="win" x="40" y="56" width="20" height="20" rx="2.5" fill="#00B87F" style="transform-origin:50px 66px;transform:scale(0)"/></svg>`;
+
+function ap(el, t, t0, d = .45, o = {}) {
+  const p = ease((t - t0) / d);
+  const y = o.y ?? 30, x = o.x ?? 0, s = o.s ?? .96, bl = o.blur ?? 0;
+  el.style.opacity = p * (o.op ?? 1);
+  el.style.transform = `translate(${(1 - p) * x + (o.dx ?? 0)}px,${(1 - p) * y + (o.dy ?? 0)}px) scale(${(s + (1 - s) * p) * (o.k ?? 1)})`;
+  if (bl) el.style.filter = `blur(${(1 - p) * bl + (o.bl0 ?? 0)}px)`;
+  return p;
+}
+const out = (el, t, t0, d = .3) => { const q = clamp((t - t0) / d); el.style.opacity = parseFloat(el.style.opacity || 0) * (1 - q); return q; };
+function pop(el, t, t0, d = .5) {
+  const p = clamp((t - t0) / d);
+  el.style.opacity = clamp(p * 3);
+  el.style.transform = `scale(${.5 + .5 * back(p)})`;
+  return p;
+}
+const norm = s => s.toLowerCase().replace(/[.,:?!«»¶]/g, '').replace(/ /g, ' ');
+function wt(seg, key, nth = 0) {
+  let k = 0;
+  for (const w of TL.words) {
+    if (w.seg !== seg) continue;
+    if (norm(w.w).includes(key)) { if (k === nth) return w.t0; k++; }
+  }
+  return S[seg].start;
+}
+function el(tag, cls, html, style, parent) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html) e.innerHTML = html;
+  if (style) e.style.cssText = style;
+  (parent || $('scenes')).appendChild(e);
+  return e;
+}
+function mkScene(id) { const d = el('div', 'scene'); d.id = id; return d; }
+function typeText(e, text, t, t0, cps, caret, hl) {
+  const n = Math.max(0, Math.min(text.length, Math.floor((t - t0) * cps)));
+  let s = text.slice(0, n);
+  if (hl) s = s.replace(hl, `<span style="color:#2EE6A6">${hl}</span>`);
+  e.innerHTML = s + (caret && (n < text.length || Math.floor(t * 2) % 2) && t > t0 - .3 ? '<span class="caret"></span>' : '');
+  return n >= text.length;
+}
+
+// ——— tableau de bord en fond ———
+const UP = '20,210 100,196 180,200 260,170 340,176 420,140 500,150 580,112 660,120 740,86 820,92 900,60 980,66 1060,36 1120,30';
+const DOWN = '20,40 100,52 180,48 260,80 340,74 420,110 500,104 580,140 660,132 740,168 820,160 900,192 980,186 1060,214 1120,220';
+const VIEWS = {
+  leads: {
+    title: 'Demandes',
+    A: { k: [['Leads (30 j)', '186'], ['Visites (7 j)', '23'], ['Mandats actifs', '48'], ['Offres', '9']], r: [['M. Durand', 'T3 · Centre', 'Visite planifiée', 'ok'], ['Mme Petit', 'Maison 5 p.', 'Nouveau', ''], ['M. Leroy', 'T2 · Gare', 'En cours', ''], ['Mme Martin', 'Studio', 'Rappel jeudi', ''], ['M. Bernard', 'T4 · Parc', 'Offre reçue', 'ok']] },
+    B: { k: [['Sans réponse', '41'], ['Visites (7 j)', '23'], ['Rappels en retard', '12'], ['Perdus', '6']], r: [['M. Durand', 'T3 · Centre', 'Sans réponse · 26 h', 'bad'], ['Mme Petit', 'Maison 5 p.', 'Sans réponse · 19 h', 'bad'], ['M. Leroy', 'T2 · Gare', 'Sans nouvelles', 'bad'], ['Mme Martin', 'Studio', 'Rappel oublié', 'bad'], ['M. Bernard', 'T4 · Parc', 'Parti ailleurs', 'bad']] },
+    C: { k: [['Demandes traitées', '41'], ['Visites proposées', '17'], ['Contacts qualifiés', '33'], ['En attente', '0']], r: [['M. Durand', 'T3 · Centre', 'Répondu · 22:04', 'ok'], ['Mme Petit', 'Maison 5 p.', 'Qualifié', 'ok'], ['M. Leroy', 'T2 · Gare', 'Visite proposée', 'ok'], ['Mme Martin', 'Studio', 'Répondu · 23:41', 'ok'], ['M. Bernard', 'T4 · Parc', 'Visite validée', 'ok']] },
+  },
+  vendeurs: {
+    title: 'Vendeurs',
+    A: { k: [['Mandats actifs', '48'], ['Exclusifs', '14'], ['Visites (7 j)', '23'], ['Offres', '9']], r: [['Mme Petit', 'Maison 5 p.', 'Exclusif · 3 visites', ''], ['M. Leroy', 'T2 · Gare', 'Simple · 1 visite', ''], ['M. Durand', 'T3 · Centre', 'Exclusif · 2 visites', ''], ['Mme Martin', 'Studio', 'Simple · 4 visites', ''], ['M. Bernard', 'T4 · Parc', 'Offre en cours', 'ok']] },
+    B: { k: [['Sans nouvelles', '11'], ['CR en retard', '17'], ['À échéance', '4'], ['Inquiets', '3']], r: [['Mme Petit', 'Maison 5 p.', 'Sans nouvelles · 19 j', 'bad'], ['M. Leroy', 'T2 · Gare', 'CR non envoyé', 'bad'], ['M. Durand', 'T3 · Centre', 'Sans nouvelles · 12 j', 'bad'], ['Mme Martin', 'Studio', 'Point oublié', 'bad'], ['M. Bernard', 'T4 · Parc', 'Mandat à échéance', 'bad']] },
+    C: { k: [['Comptes rendus', '12'], ['Vendeurs suivis', '48'], ['Points prévus', '9'], ['Sans nouvelles', '0']], r: [['Mme Petit', 'Maison 5 p.', 'Compte rendu envoyé', 'ok'], ['M. Leroy', 'T2 · Gare', 'Point vendredi', 'ok'], ['M. Durand', 'T3 · Centre', 'Compte rendu envoyé', 'ok'], ['Mme Martin', 'Studio', 'Offre transmise', 'ok'], ['M. Bernard', 'T4 · Parc', 'Point lundi', 'ok']] },
+  },
+  acquereurs: {
+    title: 'Acquéreurs',
+    A: { k: [['Acquéreurs', '214'], ['Nouveaux (30 j)', '18'], ['Mandats actifs', '48'], ['Visites (7 j)', '23']], r: [['M. Durand', 'Maison + jardin', 'Recherche active', ''], ['Mme Martin', 'T3 · Centre', 'En veille', ''], ['M. Leroy', 'Maison 5 p.', 'Recherche active', ''], ['Mme Petit', 'T2 · Gare', 'Nouveau', ''], ['M. Bernard', 'T4 · Parc', 'Recherche active', '']] },
+    B: { k: [['Acquéreurs', '214'], ['Non relancés', '96'], ['Fiches à jour', '31'], ['Doublons', '27']], r: [['M. Durand', 'Maison + jardin', 'Relance : il y a 5 mois', 'bad'], ['Mme Martin', 'T3 · Centre', 'Projet changé ?', 'bad'], ['M. Leroy', 'Maison 5 p.', 'A acheté ailleurs', 'bad'], ['Mme Petit', 'T2 · Gare', 'Relance : il y a 7 mois', 'bad'], ['M. Bernard', 'T4 · Parc', 'Fiche en double', 'bad']] },
+    C: { k: [['Acquéreurs', '214'], ['Relancés (30 j)', '186'], ['Projets à jour', '192'], ['Doublons', '0']], r: [['M. Durand', 'Maison + jardin', 'Prévenu · nouveau mandat', 'ok'], ['Mme Martin', 'T3 · Centre', 'Projet à jour', 'ok'], ['M. Leroy', 'Maison 5 p.', 'Relancé · mardi', 'ok'], ['Mme Petit', 'T2 · Gare', 'Projet à jour', 'ok'], ['M. Bernard', 'T4 · Parc', 'Prévenu · nouveau mandat', 'ok']] },
+  },
+};
+let dashKey = '';
+function setDash(view, mode) {
+  const key = view + mode;
+  if (key === dashKey) return;
+  dashKey = key;
+  const V = VIEWS[view], M = V[mode];
+  $('bgTitle').textContent = V.title;
+  $('bgWk').textContent = mode === 'C' ? 'avec mova.ia' : 'Semaine 42';
+  $('bgKpis').innerHTML = M.k.map(([l, v]) => `<div class="kpi"><span>${l}</span><b>${v}</b></div>`).join('');
+  $('bgTbl').innerHTML = M.r.map(([a, b, c, d]) => `<div class="tr"><span>${a}</span><span>${b}</span><span class="st ${d}">${c}</span></div>`).join('');
+  $('bgLine').setAttribute('points', mode === 'B' ? DOWN : UP);
+  $('bgDash').classList.toggle('red', mode === 'B');
+  $('bgTint').style.opacity = mode === 'B' ? .45 : 0;
+}
+// o : {op, view, mode, pose ('in' | 'L' | 'R'), t0, blur, bright, shake}
+function dash(t, o) {
+  const bw = $('bgWrap'), bd = $('bgDash');
+  if (!o || o.op <= 0) { bw.style.opacity = 0; return 0; }
+  bw.style.opacity = o.op;
+  setDash(o.view, o.mode);
+  const q = clamp((t - o.t0) / 8);
+  let rx, ry, rz, sc, ty = 0;
+  if (o.pose === 'in') {
+    const p = inout((t - o.t0) / 3.5), q2 = clamp((t - o.t0 - 3.5) / 10);
+    rx = lerp(lerp(30, 16, p), 11, q2); ry = lerp(lerp(-20, -8, p), 4, q2); rz = lerp(5, 2, p); sc = lerp(lerp(.86, 1, p), 1.1, q2);
+  } else if (o.pose === 'R') {
+    rx = lerp(20, 14, q); ry = lerp(18, 10, q); rz = lerp(5, 3, q); ty = -q * 60; sc = lerp(1.05, 1.12, q);
+  } else {
+    rx = lerp(26, 18, q); ry = lerp(-16, -8, q); rz = lerp(-6, -3, q); ty = -q * 80; sc = lerp(1, 1.1, q);
+  }
+  let shx = 0, shy = 0;
+  if (o.shake != null && t > o.shake && t < o.shake + .45) { const a = (1 - (t - o.shake) / .45) * 14; shx = Math.sin(t * 90) * a; shy = Math.cos(t * 77) * a; }
+  bd.style.transform = `translate(${shx}px,${shy + ty}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc})`;
+  bd.style.filter = `blur(${o.blur ?? 0}px) brightness(${o.bright ?? 1})`;
+  return o.op;
+}
+function shakeAt(t, t0, amp = 10) {
+  if (t < t0 || t > t0 + .45) return [0, 0];
+  const a = (1 - (t - t0) / .45) * amp;
+  return [Math.sin(t * 90) * a, Math.cos(t * 77) * a];
+}
+
+// ——— composants ———
+function mkAgent(parent, title, tasks, top, h) {
+  const c = el('div', 'glass', `<svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7"/><circle class="spin" cx="50" cy="50" r="42" fill="none" stroke="#FFBE46" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 194" style="transform-origin:50px 50px"/><path d="M28 70V48L50 30l22 18v22" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><rect x="43" y="52" width="14" height="14" rx="2" fill="#00B87F"/></svg><div class="at">${title}</div><div class="as">Mise à jour en temps réel</div>`,
+    `left:70px;top:${top}px;width:940px;height:${h}px;border-color:rgba(46,230,166,.45)`, parent);
+  tasks.forEach((tk, i) => el('div', 'task', `<div class="s"></div><span class="ck d">✓</span><span class="tx">${tk.tx}</span>`, `top:${150 + i * 70}px`, c));
+  c._tasks = tasks;
+  return c;
+}
+function animAgent(t, c, tin) {
+  ap(c, t, tin, .45, { y: 40 });
+  let all = true;
+  c.querySelectorAll('.task').forEach((e, i) => {
+    const tk = c._tasks[i];
+    const vis = ease((t - tk.show) / .35);
+    e.style.opacity = vis;
+    e.style.transform = `translateX(${(1 - vis) * 30}px)`;
+    const done = t > tk.done;
+    if (!done) all = false;
+    e.querySelector('.s').style.display = done ? 'none' : 'block';
+    e.querySelector('.s').style.transform = `rotate(${t * 400}deg)`;
+    e.querySelector('.d').style.display = done ? 'flex' : 'none';
+    const tx = e.querySelector('.tx');
+    const txt = done && tk.txDone ? tk.txDone : tk.tx;
+    if (tx.textContent !== txt) tx.textContent = txt;
+    tx.style.color = done ? '#E9EFF6' : tk.wait ? '#FFC266' : '#8FA3BC';
+  });
+  const sp = c.querySelector('.spin');
+  sp.setAttribute('stroke', all ? '#00B87F' : '#FFBE46');
+  sp.setAttribute('stroke-dasharray', all ? '264 0' : '70 194');
+  sp.style.transform = all ? 'none' : `rotate(${t * 360}deg)`;
+}
+function mkBtn(parent, label, labelDone, top) {
+  const b = el('div', 'vbtn', `<span>${label}</span>`, `top:${top}px`, parent);
+  b._l = [label, labelDone];
+  return b;
+}
+function animBtn(t, b, tin, click) {
+  const p = ease((t - tin) / .4);
+  b.style.opacity = p;
+  b.style.transform = `translateY(${(1 - p) * 30}px) scale(${t > click && t < click + .15 ? .95 : 1})`;
+  b.style.background = t > click ? 'var(--green)' : 'rgba(10,30,56,.8)';
+  b.style.color = t > click ? '#03231A' : '#E9EFF6';
+  const s = t > click ? b._l[1] : b._l[0];
+  if (b.firstChild.textContent !== s) b.firstChild.textContent = s;
+}
+function mkCmp(parent, hd, bad, good, top) {
+  return el('div', 'cmp', `<div class="hd">${hd}</div><div class="rw bad"><span class="lab">Avant</span><span class="txt">${bad}<i class="strike"></i></span></div><div class="rw good"><span class="lab">Avec mova.ia</span><span class="ck">✓</span><span>${good}</span></div>`, `top:${top}px`, parent);
+}
+function animCmp(t, e, tin, kg) {
+  ap(e, t, tin, .45, { y: 40 });
+  const ps = ease((t - kg + .5) / .35);
+  e.querySelector('.strike').style.width = ps * (e.querySelector('.bad .txt').offsetWidth + 8) + 'px';
+  e.querySelector('.bad').style.opacity = 1 - .5 * ps;
+  const g = e.querySelector('.good'), pg = ease((t - kg) / .35);
+  g.style.opacity = pg;
+  g.style.transform = `translateX(${(1 - pg) * -24}px)`;
+  e.style.borderColor = pg > .5 ? 'rgba(46,230,166,.6)' : 'rgba(160,220,200,.28)';
+  e.style.boxShadow = pg > .5 ? '0 0 70px rgba(0,184,127,.25)' : '0 40px 110px rgba(0,0,0,.6)';
+}
+// kind : r (problèmes), g (solutions), w (ce qui reste humain)
+function mkTilt(parent, items, kind, top, title, flip) {
+  const ico = kind === 'r' ? '<i class="x">!</i>' : kind === 'g' ? STAR : '<span class="ck">✓</span>';
+  const y0 = title ? 110 : 60, dy = title ? 108 : 120;
+  const w = el('div', 'tiltWrap', `<div class="tilt ${kind}" style="transform:rotateX(14deg) rotateY(${flip ? 12 : -12}deg) rotateZ(${flip ? 3 : -3}deg)">${title ? `<h4>${title}</h4>` : ''}${items.map((s, i) => `<div class="li ${kind}" style="top:${y0 + i * dy}px">${ico}<span class="tx" data-t="${s}"></span></div>`).join('')}</div>`, `top:${top}px`, parent);
+  return w;
+}
+function animTilt(t, w, tin, keys, cps = 34) {
+  const ti = ease((t - tin) / .5);
+  w.style.opacity = ti;
+  w.style.transform = `translateY(${(1 - ti) * 60}px) scale(${1 + .03 * ease((t - tin) / 5)})`;
+  w.querySelectorAll('.li').forEach((li, i) => {
+    const p = ease((t - keys[i]) / .35);
+    li.style.opacity = p;
+    li.style.transform = `translateX(${(1 - p) * -30}px)`;
+    const tx = li.querySelector('.tx');
+    typeText(tx, tx.dataset.t, t, keys[i], cps, false);
+  });
+}
+function mkLogo(parent, top, icon = 150, font = 122) {
+  const L = el('div', 'logo', `${HOUSE(icon)}<div class="wm" style="font-size:${font}px"></div>`, `top:${top}px`, parent);
+  return L;
+}
+function animLogo(t, L, t0, k = 1) {
+  L.querySelector('.house').style.strokeDashoffset = 190 * (1 - ease((t - t0) / (.7 * k)));
+  const pw = clamp((t - t0 - .55 * k) / (.4 * k));
+  L.querySelector('.win').style.transform = `scale(${pw > 0 ? back(pw) : 0})`;
+  const word = 'mova.ia';
+  const n = Math.max(0, Math.min(word.length, Math.floor((t - t0 - .75 * k) / (.07 * k))));
+  L.querySelector('.wm').innerHTML = word.slice(0, n).replace('.', '<span style="color:#00B87F">.</span>');
+  return t >= t0;
+}
+function typeLine(e, text, t, t0, cps = 36) {
+  const m = Math.max(0, Math.min(text.length, Math.floor((t - t0) * cps)));
+  const s = text.slice(0, m);
+  if (e.textContent !== s) e.textContent = s;
+}
+const TAGLINE = 'L’IA au service des agences immobilières';
+// pont « meilleure façon » : le texte devient une forme blanche, puis le logo
+function mkBridge(parent) {
+  return { seed: el('div', 'seed', '', 'top:836px', parent), L: mkLogo(parent, 780), tag: el('div', 'tagl', '', 'top:975px', parent) };
+}
+function animBridge(t, B, t0, tagT0) {
+  const ps = clamp((t - t0) / .25), pe = clamp((t - t0 - .35) / .2);
+  B.seed.style.opacity = ps * (1 - pe);
+  B.seed.style.transform = `rotate(${ps * 45}deg) scale(${.4 + ps * .8})`;
+  animLogo(t, B.L, t0 + .3);
+  typeLine(B.tag, TAGLINE, t, tagT0);
+  B.L.style.transform = `scale(${1 + .03 * Math.sin((t - t0) * 1.5) * ease((t - t0 - .3) / 1.2)})`;
+}
+// carte finale
+function mkCta(parent, promise) {
+  const C = {};
+  C.L = mkLogo(parent, 560, 120, 100);
+  C.tag = el('div', 'tagl', '', 'top:720px;font-size:34px', parent);
+  C.offer = el('div', 'ctaTx', 'Échange one-to-one gratuit · 30 min · en visio', 'top:820px;font-size:30px;color:var(--muted)', parent);
+  C.btn = el('div', 'btn', 'Réserver mon one-to-one →', 'top:920px;left:200px', parent);
+  C.dom = el('div', 'ctaTx', 'movaia.fr · lien en bio', 'top:1080px;font-size:32px;color:#C9D6E3', parent);
+  if (promise) C.pr = el('div', 'ctaTx', 'On identifie ensemble où votre agence perd des affaires.', 'top:1160px;font-size:28px;color:var(--muted)', parent);
+  return C;
+}
+function animCta(t, C, st, offerT, btnT, domT, click) {
+  animLogo(t, C.L, st);
+  typeLine(C.tag, TAGLINE, t, st + 1.1);
+  ap(C.offer, t, offerT, .5, { y: 20 });
+  pop(C.btn, t, btnT, .5);
+  C.btn.style.left = ((1080 - C.btn.offsetWidth) / 2) + 'px';
+  C.btn.style.background = t > click - .35 && t < click + .4 ? '#F2F6FA' : '#00B87F';
+  if (t > btnT + .5) C.btn.style.transform = `scale(${(t > click && t < click + .15 ? .95 : 1) * (1 + .02 * Math.sin(t * 5))})`;
+  ap(C.dom, t, domT, .5, { y: 16 });
+  if (C.pr) ap(C.pr, t, domT + .4, .5, { y: 16 });
+}
+function mkStat(parent) {
+  const e = el('div', 'stat', `<div class="n">2${NB}198</div><div class="la">demandes envoyées à des agences</div><div class="lb" style="opacity:0">des demandes <span style="color:#FF8A8C">sans réponse</span> en 24${NB}h</div>`, '', parent);
+  return e;
+}
+function animStat(t, e, tin, tout, t68) {
+  const sIn = ease((t - tin) / .45), sOut = clamp((t - tout) / .3);
+  e.style.opacity = sIn * (1 - sOut);
+  e.style.transform = `translateY(${(1 - sIn) * 50 - sOut * 40}px) scale(${.95 + .05 * sIn})`;
+  const pre = t < t68 - .25, n = e.querySelector('.n');
+  n.textContent = pre ? '2' + NB + '198' : Math.round(68 * ease((t - t68 + .2) / 1.3)) + NB + '%';
+  n.style.color = pre ? '#F2F6FA' : '#FF5A5F';
+  e.querySelector('.la').style.opacity = 1 - clamp((t - t68 + .3) / .15);
+  e.querySelector('.lb').style.opacity = clamp((t - t68 + .1) / .2);
+}
+
+// ——— texte cinétique ———
+const ORDER = Object.keys(S);
+const WSEG = {}; TL.words.forEach(w => (WSEG[w.seg] = WSEG[w.seg] || []).push(w));
+const kt = $('kt');
+function kinetic(t) {
+  let seg = null;
+  for (const id of ORDER) { const s = S[id]; if (t >= s.start - .05 && t < s.end + .5) seg = id; }
+  const cfg = (seg && VIDEO.kt && VIDEO.kt[seg]) || {};
+  if (!seg || cfg.hide) { kt.style.opacity = 0; return; }
+  if (kt.dataset.seg !== seg) {
+    kt.dataset.seg = seg;
+    kt.innerHTML = WSEG[seg].map(w => `<span class="${w.hl}">${w.w.replace('¶', '')}</span>` + (w.w.endsWith('¶') ? '<br>' : '')).join(' ');
+    kt.style.top = (cfg.top || 320) + 'px';
+    kt.style.fontSize = (cfg.size || 44) + 'px';
+  }
+  const s = S[seg];
+  kt.style.opacity = 1 - clamp((t - (s.end + .25)) / .25);
+  const sp = kt.querySelectorAll('span');
+  WSEG[seg].forEach((w, i) => { const p = ease((t - w.t0 + .06) / .2); sp[i].style.opacity = p; sp[i].style.transform = `translateY(${(1 - p) * 10}px)`; sp[i].style.filter = `blur(${(1 - p) * 6}px)`; });
+}
+function cursorAt(t, path) {
+  const c = $('cursor'), r = $('ripple');
+  if (!path) { c.style.opacity = 0; r.style.opacity = 0; return; }
+  const { t0, t1, from, to, click } = path;
+  const p = inout((t - t0) / (t1 - t0));
+  c.style.opacity = clamp((t - t0) / .2) * (path.hold ? 1 : 1 - clamp((t - click - .5) / .3));
+  c.style.transform = `translate(${lerp(from[0], to[0], p)}px,${lerp(from[1], to[1], p)}px) scale(${t > click && t < click + .15 ? .85 : 1})`;
+  const rp = clamp((t - click) / .5);
+  r.style.opacity = t > click ? (1 - rp) : 0;
+  r.style.left = (to[0] - 39) + 'px'; r.style.top = (to[1] - 39) + 'px';
+  r.style.transform = `scale(${.4 + rp})`;
+}
+
+let VIDEO = {};
+/*VIDEO*/
+
+// ——— moteur ———
+function alpha(sc, t) { const fin = sc.from <= 0 ? 1 : clamp((t - sc.from) / .14); return fin * (1 - clamp((t - sc.to) / .14)); }
+function render(t) {
+  const bg = VIDEO.bg ? VIDEO.bg(t) : null;
+  const dop = dash(t, bg);
+  $('grid').style.opacity = 1 - dop * .7;
+  $('grid').style.transform = `translateY(${(t * 6) % 90}px)`;
+  const au = VIDEO.aurora ? VIDEO.aurora(t) : null;
+  $('aurora').style.opacity = au ? au.op : 0;
+  $('aurora').style.top = (au ? au.top : 760) + 'px';
+  $('aurora').style.transform = `translateX(${Math.sin(t * .25) * 60}px) scaleY(${1 + .08 * Math.sin(t * .4)})`;
+  const red = VIDEO.red ? VIDEO.red(t) : 0;
+  $('glowR').style.opacity = red;
+  $('redvig').style.opacity = red * .9;
+  $('glowG').style.opacity = (1 - red) * (VIDEO.glowG ? VIDEO.glowG(t) : .7);
+  let ex = 0;
+  for (const sc of VIDEO.scenes) {
+    const a = alpha(sc, t);
+    sc.el.style.opacity = a;
+    sc.el.style.visibility = a > .001 ? 'visible' : 'hidden';
+    if (a > 0) { sc.render(t); if (sc.ex) ex = Math.max(ex, a); }
+  }
+  let f = 0, fc = '#ffffff';
+  (VIDEO.flashes || []).forEach(([t0, a, d, c]) => { if (t >= t0 && t < t0 + d) { const v = a * (1 - (t - t0) / d); if (v > f) { f = v; fc = c || '#ffffff'; } } });
+  $('flash').style.opacity = f;
+  $('flash').style.background = fc;
+  $('tag').style.opacity = ex;
+  let cp = null;
+  for (const c of VIDEO.clicks || []) {
+    if (t >= c.click - 1.1 && (c.hold || t < c.click + .8)) cp = { t0: c.click - 1.0, t1: c.click - .1, from: c.from || [180, 1600], to: c.to, click: c.click, hold: c.hold };
+  }
+  cursorAt(t, cp);
+  kinetic(t);
+}
+// bruitages et musique, lus par build_audio.py
+function events() { return { sfx: VIDEO.sfx || [], music: VIDEO.music, total: TL.total }; }
+render(0);
+</script>
+</body>
+</html>
